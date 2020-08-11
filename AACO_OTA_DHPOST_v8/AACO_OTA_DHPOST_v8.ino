@@ -447,9 +447,9 @@ void WiFi_setup()
   while (WiFi.status() != WL_CONNECTED && (WiFiConnAttemptCount < 100))
   { WiFiConnAttemptCount++;
     Serial.print("."); delay(50);
-    WiFiConnRetryAttempt++;
   }
-
+  WiFiConnRetryAttempt++;
+  
   if (WiFi.status() != WL_CONNECTED && (WiFiConnRetryAttempt>=5))
   { Serial.println("Restarting ESP32 ... in 100ms");
     delay(100);

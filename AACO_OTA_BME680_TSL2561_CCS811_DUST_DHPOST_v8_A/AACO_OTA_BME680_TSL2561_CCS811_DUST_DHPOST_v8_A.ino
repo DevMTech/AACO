@@ -430,9 +430,9 @@ void WiFi_setup()
 
 
   // Configures static IP address
-    if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) // if (!WiFi.config(local_IP, gateway, subnet))
-    { Serial.println("STA Failed to configure");
-    }
+//    if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) // if (!WiFi.config(local_IP, gateway, subnet))
+//    { Serial.println("STA Failed to configure");
+//    }
 
   // Connect to Wi-Fi network with SSID and password
   Serial.print("Connecting to ");
@@ -446,10 +446,10 @@ void WiFi_setup()
   int WiFiConnAttemptCount = 0;
   while (WiFi.status() != WL_CONNECTED && (WiFiConnAttemptCount < 100))
   { WiFiConnAttemptCount++;
-    Serial.print("."); delay(50);
-    WiFiConnRetryAttempt++;
+    Serial.print("."); delay(50);  
   }
-
+  WiFiConnRetryAttempt++;
+  
   if (WiFi.status() != WL_CONNECTED && (WiFiConnRetryAttempt>=5))
   { Serial.println("Restarting ESP32 ... in 100ms");
     delay(100);

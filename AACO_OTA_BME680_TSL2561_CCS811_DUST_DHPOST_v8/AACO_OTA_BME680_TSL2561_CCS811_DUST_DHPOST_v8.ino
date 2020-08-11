@@ -151,6 +151,7 @@ int LED2 = 2; //GPIO2 - ESP32
 //RTC_DATA_ATTR char* ssid = SECRET_SSID;
 //RTC_DATA_ATTR char* password = SECRET_OPTIONAL_PWD;
 RTC_DATA_ATTR long int bootCount = 0;
+RTC_DATA_ATTR long int WiFiConnRetryAttempt = 0;
 //RTC_DATA_ATTR int
 
 //#define NEW_FIRMWARE_MAJOR_VERSION 8
@@ -276,7 +277,7 @@ void loopOnce()
   BME680_Simple_loop();
   LUX_TSL2561_setup();
   LUX_TSL2561_loop();
-  CO2_I2C_CCS811_setup();   //CO2_I2C_CCS811_loop();   // delay(5);
+  //  CO2_I2C_CCS811_setup();   //CO2_I2C_CCS811_loop();   // delay(5);
   //  SDS011_DUST_MHZ19B_CO2_setup(); //   SDS011_DUST_loop();  delay(5);
 
   //  BME680_Air_Q_setup(); //  BME680_Air_Q_loop();  //delay(1);
@@ -306,7 +307,7 @@ void loopOnce()
   // if (WiFi.status() != WL_CONNECTED)  WiFi_setup(); // 84:0D:8E:C3:60:8C ESP32S 84:0d:8e:c3:60:8c
   // WIFI_STATUS_OLED();
 
-// HTTP_POST_NOTIF();  //  delay(1500);
+  HTTP_POST_NOTIF();  //  delay(1500);
 
   //if(!bootCount)
   //if (bootCount < 6) // OR USE AN EXTERNAL INTERRUPT TO TRIGGER THE OTA FEATURE
@@ -427,9 +428,9 @@ void WiFi_setup()
 
 
   // Configures static IP address
-  //  if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) // if (!WiFi.config(local_IP, gateway, subnet))
-  //  { Serial.println("STA Failed to configure");
-  //  }
+    if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) // if (!WiFi.config(local_IP, gateway, subnet))
+    { Serial.println("STA Failed to configure");
+    }
 
   // Connect to Wi-Fi network with SSID and password
   Serial.print("Connecting to ");
@@ -444,11 +445,13 @@ void WiFi_setup()
   while (WiFi.status() != WL_CONNECTED && (WiFiConnAttemptCount < 100))
   { WiFiConnAttemptCount++;
     Serial.print("."); delay(50);
+    WiFiConnRetryAttempt++;
   }
 
-  if (WiFi.status() != WL_CONNECTED)
+  if (WiFi.status() != WL_CONNECTED && (WiFiConnRetryAttempt>=5))
   { Serial.println("Restarting ESP32 ... in 100ms");
     delay(100);
+    WiFiConnRetryAttempt = 0;
     ESP.restart();
   }
   WiFiConnAttemptDuration = millis() - WiFiConnAttemptDuration;

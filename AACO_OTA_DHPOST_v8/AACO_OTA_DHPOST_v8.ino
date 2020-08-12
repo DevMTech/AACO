@@ -128,7 +128,7 @@
 // wifi-AACO_STATIC_2
 //10.208.34.23    // 10.208.35.255      // 255.255.254.0      // 10.208.0.11  // 10.208.11.16  
 IPAddress local_IP(10, 208, 34, 23); // Set your Static IP address
-IPAddress gateway(10, 208, 35, 255); // Set your Gateway IP address
+IPAddress gateway(10, 208, 34, 255); // Set your Gateway IP address
 IPAddress subnet(255, 255, 254, 0);
 IPAddress primaryDNS(10, 208, 0, 11);   //optional
 IPAddress secondaryDNS(10, 208, 11, 16); //optional

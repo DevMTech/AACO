@@ -430,9 +430,9 @@ void WiFi_setup()
 
 
   // Configures static IP address
-    if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) // if (!WiFi.config(local_IP, gateway, subnet))
-    { Serial.println("STA Failed to configure");
-    }
+//    if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) // if (!WiFi.config(local_IP, gateway, subnet))
+//    { Serial.println("STA Failed to configure");
+//    }
 
   // Connect to Wi-Fi network with SSID and password
   Serial.print("Connecting to ");

@@ -126,9 +126,9 @@
 //10.208.22.151   // 10.208.22.1        // 255.255.254.0      // 10.208.0.11  // 10.208.11.16  // HP WIFI
 
 // wifi-AACO_STATIC_2
-//10.208.34.23    // 10.208.35.255      // 255.255.254.0      // 10.208.0.11  // 10.208.11.16  
+//10.208.34.23    // 10.208.34.255      // 255.255.254.0      // 10.208.0.11  // 10.208.11.16
 IPAddress local_IP(10, 208, 34, 23); // Set your Static IP address
-IPAddress gateway(10, 208, 35, 255); // Set your Gateway IP address
+IPAddress gateway(10, 208, 34, 255); // Set your Gateway IP address
 IPAddress subnet(255, 255, 254, 0);
 IPAddress primaryDNS(10, 208, 0, 11);   //optional
 IPAddress secondaryDNS(10, 208, 11, 16); //optional
@@ -212,7 +212,7 @@ void setup()
   Serial.println("\n\n*********************WAKE UP***********************\n\n");
 
   //Serial.println("\nFIRMWARE_MAJOR_VERSION: " + String(NEW_FIRMWARE_MAJOR_VERSION));
-  
+
   //if(NEW_FIRMWARE_MAJOR_VERSION > FIRMWARE_MAJOR_VERSION)
   { FIRMWARE_MAJOR_VERSION = NEW_FIRMWARE_MAJOR_VERSION;
     Serial.println("\nFIRMWARE_MAJOR_VERSION: " + String(FIRMWARE_MAJOR_VERSION));
@@ -430,9 +430,9 @@ void WiFi_setup()
 
 
   // Configures static IP address
-    if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) // if (!WiFi.config(local_IP, gateway, subnet))
-    { Serial.println("STA Failed to configure");
-    }
+//  if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) // if (!WiFi.config(local_IP, gateway, subnet))
+//  { Serial.println("STA Failed to configure");
+//  }
 
   // Connect to Wi-Fi network with SSID and password
   Serial.print("Connecting to ");
@@ -446,11 +446,11 @@ void WiFi_setup()
   int WiFiConnAttemptCount = 0;
   while (WiFi.status() != WL_CONNECTED && (WiFiConnAttemptCount < 100))
   { WiFiConnAttemptCount++;
-    Serial.print("."); delay(50);  
+    Serial.print("."); delay(50);
   }
   WiFiConnRetryAttempt++;
-  
-  if (WiFi.status() != WL_CONNECTED && (WiFiConnRetryAttempt>=5))
+
+  if (WiFi.status() != WL_CONNECTED && (WiFiConnRetryAttempt >= 5))
   { Serial.println("Restarting ESP32 ... in 100ms");
     delay(100);
     WiFiConnRetryAttempt = 0;

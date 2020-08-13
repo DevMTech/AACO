@@ -120,28 +120,6 @@
 //#define DEBUG_Sprint2(a, b)
 //#define BAUD_RATE 9600 // USED BY SENSOR ON UART0 //static const uint8_t
 
-// IP             // GATEWAY/BROADCAST  // NETMASK/SUB-NET
-//10.208.35.169   // 10.208.35.255      // 255.255.254.0      // 10.208.0.11  // 10.208.11.16  // CENTOS
-//10.208.34.163   // 10.208.35.255      // 255.255.254.0      // 10.208.0.11  // 10.208.11.16  // UBUNTU
-//10.208.22.151   // 10.208.22.1        // 255.255.254.0      // 10.208.0.11  // 10.208.11.16  // HP WIFI
-
-// wifi-AACO_STATIC_2
-//10.208.34.23    // 10.208.35.255      // 255.255.254.0      // 10.208.0.11  // 10.208.11.16  
-IPAddress local_IP(10, 208, 34, 23); // Set your Static IP address
-IPAddress gateway(10, 208, 34, 255); // Set your Gateway IP address
-IPAddress subnet(255, 255, 254, 0);
-IPAddress primaryDNS(10, 208, 0, 11);   //optional
-IPAddress secondaryDNS(10, 208, 11, 16); //optional
-
-//IPAddress local_IP(192, 168, 0, 184); // Set your Static IP address
-//IPAddress gateway(192, 168, 0, 1); // Set your Gateway IP address
-//IPAddress subnet(255, 255, 255, 0);
-//IPAddress primaryDNS(8, 8, 8, 8);   //optional
-//IPAddress secondaryDNS(8, 8, 4, 4); //optional
-//IPAddress primaryDNS(192, 168, 0, 1); //optional
-//IPAddress secondaryDNS(0, 0, 0, 0); //optional
-
-
 //static const uint8_t TX0_PIN = 1;
 //static const uint8_t RX0_PIN = 3;
 static const uint8_t SCL_PIN = 22;

@@ -63,25 +63,27 @@
 // WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); //disable brownout detector
 
 #ifdef ESP32
-#define LED_BUILTIN   2 // GPIO02 ESP32
-#define PFET_3V3_BUS 25 // GPIO25 ESP32
-#define PFET_POT_DIV 32 // GPIO32 ESP32
-#define BATTERY_V_IN 35 // GPIO35 ESP32
+  #include <Arduino.h>
+  #include <WiFi.h>
+  #include <HTTPClient.h>
+  #include <HTTPUpdate.h>
+  #include <ESP32Ping.h> // https://github.com/marian-craciunescu/ESP32Ping
+  //#include <WiFiMulti.h>
+  //WiFiMulti wifiMulti;
+  
+  #define LED_BUILTIN   2 // GPIO02 ESP32
+  #define PFET_3V3_BUS 25 // GPIO25 ESP32
+  #define PFET_POT_DIV 32 // GPIO32 ESP32
+  #define BATTERY_V_IN 35 // GPIO35 ESP32
 #endif
 
 #if defined(ESP8266)              // ESP12E - ESP8266cdac
-#include <ESP8266WiFi.h>
-#include <ESP8266HTTPClient.h>
-//#include <WiFiClientSecure.h>
-//      #include <ESP8266WiFiMulti.h>   // Include the Wi-Fi-Multi library
-//      ESP8266WiFiMulti wifiMulti;     // Create an instance of the ESP8266WiFiMulti class, called 'wifiMulti'
-
-#else                             // ESP32
-#include <WiFi.h>
-#include <HTTPClient.h>
-#include <ESP32Ping.h> // https://github.com/marian-craciunescu/ESP32Ping
-//#include <WiFiMulti.h>
-//WiFiMulti wifiMulti;
+  #include <ESP8266WiFi.h>
+  #include <ESP8266HTTPClient.h>
+  //#include <WiFiClientSecure.h>
+  //#include <ESP8266WiFiMulti.h>   // Include the Wi-Fi-Multi library
+  //ESP8266WiFiMulti wifiMulti;     // Create an instance of the ESP8266WiFiMulti class, called 'wifiMulti'
+  //#else // ESP32
 #endif
 
 #include "SSID.h"
@@ -314,9 +316,10 @@ void loopOnce()
   //if(!bootCount)
   //if (bootCount < 6) // OR USE AN EXTERNAL INTERRUPT TO TRIGGER THE OTA FEATURE
   {
-    OTAsetup();
+  //  OTAsetup();
   }
 
+  OTA_HTTP_UPDATER();
 
   //  WEB_SERVER_setup();
   //  WEB_SERVER_loop();

@@ -9,14 +9,6 @@
   cloud-URL     : https://playground.devicehive.com/api/rest
 */
 
-// devicehive login:
-// login details : Dev , dev123
-// http://10.208.34.163/admin
-// http://10.208.34.163/admin/login
-// http://10.208.34.163/api/swagger
-// http://10.208.34.163/auth/swagger
-// http://10.208.34.163:80/api/rest/device/8CM74F79oVNGuLRzvrGFTo5MFdEK3FUsBz36/notification
-
 //{
 //  "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTUsMTYsMTddLCJlIjoxNTk2NDQ2NjkyODMyLCJ0IjoxLCJ1IjozLCJuIjpbIjEiLCIyIl0sImR0IjpbIioiXX19.ZdHiO2oxoOLZn_H4d4_01piHTr5VHEJd9vh4KnulJ2M",
 //  "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTUsMTYsMTddLCJlIjoxNjEyMTY5NjkyODMyLCJ0IjowLCJ1IjozLCJuIjpbIjEiLCIyIl0sImR0IjpbIioiXX19.JHL0nHh4DCl4w6e49_BO80haa4HbGcFh7vl599BsLHs"

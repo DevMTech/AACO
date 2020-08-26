@@ -316,7 +316,7 @@ void loopOnce()
   //if(!bootCount)
   //if (bootCount < 6) // OR USE AN EXTERNAL INTERRUPT TO TRIGGER THE OTA FEATURE
   {
-  //  OTAsetup();
+    OTAsetup();
   }
 
   OTA_HTTP_UPDATER();

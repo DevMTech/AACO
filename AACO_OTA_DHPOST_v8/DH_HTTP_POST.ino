@@ -72,9 +72,6 @@ void HTTP_POST_NOTIF()
     http.addHeader("Authorization" , TokenBearer);
 
     // Serial.print("[HTTP] POST...\n");
-
-    tempC = 22.5; humidity = 52;  lux = 560;  batteryLevel = 3.32; 
-    CO2 = 432;  pm_2point5 = 3.51;  pm_10 = 8.5;    // timeStamp = "2020-01-15T10:15:34.444Z";
     
     //        TimeNow(); // delay(500);
 

@@ -254,6 +254,8 @@ void loopOnce()
   digitalWrite(PFET_3V3_BUS, LOW); // POWER ON 3V3 BUS -> TURN ON SPI/I2C PERIPHERALS
   delay(1);
 
+  initialize();
+
 //  batteryLevelRead_setup();
 //  batteryLevelRead(); // delay(500);
 //  BME680_Simple_setup();
@@ -528,6 +530,12 @@ void WiFi_setup()
 
     // SAVE DATA IN EEPROM & GO TO DEEP SLEEP
   }
+}
+
+void initialize()
+{
+  tempC = 22.5; humidity = 52;  lux = 560;  batteryLevel = 3.32;
+  CO2 = 432;  pm_2point5 = 3.51;  pm_10 = 8.5;    // timeStamp = "2020-01-15T10:15:34.444Z";
 }
 
 /*

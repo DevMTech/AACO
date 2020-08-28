@@ -131,7 +131,7 @@ CCS811 ccs811(-1); // pass -1 when nWAKE to GND, I2C default address 0x5A
 
 // uint16_t eCO2, tVOC; // estimated total Volatile Organic Compunds // errstat, raw;
 
-void CO2_I2C_CCS811_setup()
+int CO2_I2C_CCS811_setup()
 {
   //  Serial.begin(115200); // Enable serial
 
@@ -143,7 +143,11 @@ void CO2_I2C_CCS811_setup()
   // Enable CCS811
   ccs811.set_i2cdelay(50); // Needed for ESP8266 because it doesn't handle I2C clock stretch correctly
   bool ok = ccs811.begin();
-  if ( !ok ) Serial.println("setup: CCS811 begin FAILED");
+  if ( !ok ) 
+  {
+    Serial.println("setup: CCS811 begin FAILED");
+    return -1;
+  }
 
   // Print CCS811 versions
   Serial.print("setup: hardware    version: "); Serial.println(ccs811.hardware_version(), HEX);
@@ -213,6 +217,7 @@ void CO2_I2C_CCS811_setup()
 //  if (CO2 > 1000 && CO2 < 2000) Serial.println("HIGH CO2 concentration... can cause drowsiness, poor concentration!\n");
 //  if (CO2 > 2000) Serial.println("DANGEROUSLY HIGH CO2 concentration... can cause loss of attention, Headaches, sleepiness, increased heart rate!!!\n");
 
+  return 0;
 }
 
 

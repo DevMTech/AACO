@@ -275,14 +275,18 @@ void loopOnce()
   digitalWrite(PFET_3V3_BUS, LOW); // POWER ON 3V3 BUS -> TURN ON SPI/I2C PERIPHERALS
   delay(1);
 
+  tempC = 22.5; humidity = 52;  lux = 560;  batteryLevel = 3.32;
+  CO2 = 432;  pm_2point5 = 3.51;  pm_10 = 8.5;    // timeStamp = "2020-01-15T10:15:34.444Z";
+  
+
   batteryLevelRead_setup();
   batteryLevelRead(); // delay(500);
   BME680_Simple_setup();
   BME680_Simple_loop();
   LUX_TSL2561_setup();
   LUX_TSL2561_loop();
-  //  CO2_I2C_CCS811_setup();   //CO2_I2C_CCS811_loop();   // delay(5);
-  //  SDS011_DUST_MHZ19B_CO2_setup(); //   SDS011_DUST_loop();  delay(5);
+  CO2_I2C_CCS811_setup();   //CO2_I2C_CCS811_loop();   // delay(5);
+  SDS011_DUST_MHZ19B_CO2_setup(); //   SDS011_DUST_loop();  delay(5);
 
   //  BME680_Air_Q_setup(); //  BME680_Air_Q_loop();  //delay(1);
   //  LUX_BH1750_setup(); //  LUX_BH1750_loop();  //delay(1);

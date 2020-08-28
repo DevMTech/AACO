@@ -9,6 +9,7 @@
   cloud-URL     : https://playground.devicehive.com/api/rest
 */
 
+
 String accessTokenS = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTYwOTM1MzAwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.J5ivLupuJ8ZggldOmoprFuN6z_SKOgY4m-jYzWxHQeQ";
 String DH_DEVICE_ID = "a-9-3"; // "AACO163"; // "device2"; //  DEVICE ID
 // http://10.208.34.163/admin/admin/device/a-9-3

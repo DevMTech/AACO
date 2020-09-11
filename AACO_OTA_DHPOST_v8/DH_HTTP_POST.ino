@@ -1,51 +1,12 @@
 /******************************************CONFIGURE THESE PARAMETERS***************************************************/
-//String DH_DEVICE_ID = "wfh-aaco01"; //  DEVICE ID
-//String accessTokenS = "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTIsMTUsMTYsMTddLCJlIjoxNjQ4NzUxNDAwMDAwLCJ0IjoxLCJ1IjoxMDc0LCJuIjpbIjEwNzIiXSwiZHQiOlsiKiJdfX0.fFjhKYFl4Wh9rXHCJXLQYjmzRLVl2adK2_2RX3rBYAc";
-//String URL = "https://playground.devicehive.com/api/rest/device/" + DH_DEVICE_ID + "/notification";
-/*
-Authorization : Bearer eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTIsMTUsMTYsMTddLCJlIjoxNjQ4NzUxNDAwMDAwLCJ0IjoxLCJ1IjoxMDc0LCJuIjpbIjEwNzIiXSwiZHQiOlsiKiJdfX0.fFjhKYFl4Wh9rXHCJXLQYjmzRLVl2adK2_2RX3rBYAc
-DeviceName    : wfh-aaco01
-networkId     : 1072
-cloud-URL     : https://playground.devicehive.com/api/rest
-*/
 
-//{
-//  "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTUsMTYsMTddLCJlIjoxNTk2NDQ2NjkyODMyLCJ0IjoxLCJ1IjozLCJuIjpbIjEiLCIyIl0sImR0IjpbIioiXX19.ZdHiO2oxoOLZn_H4d4_01piHTr5VHEJd9vh4KnulJ2M",
-//  "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTUsMTYsMTddLCJlIjoxNjEyMTY5NjkyODMyLCJ0IjowLCJ1IjozLCJuIjpbIjEiLCIyIl0sImR0IjpbIioiXX19.JHL0nHh4DCl4w6e49_BO80haa4HbGcFh7vl599BsLHs"
-//}
-//String accessTokenS = "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTYyNzY2OTgwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.4WGrTGvrCN_mCaZ_appkBsHw_uPfzpFqYHUlica-lMs";
-// eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTUsMTYsMTddLCJlIjoxNjMwNDIxNDAwMDAwLCJ0IjoxLCJ1IjozLCJuIjpbIjEiLCIyIl0sImR0IjpbIioiXX19.biLhMhe8vUE9Vro_J_zRKoxUTLOLsTLCX6sMZr9S5UE
-// eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTUsMTYsMTddLCJlIjoxNjMwNDIxNDAwMDAwLCJ0IjowLCJ1IjozLCJuIjpbIjEiLCIyIl0sImR0IjpbIioiXX19.vrCISIgkhMwcZQyim35LjtJdjpoofDHrCt58QmcyHRY
-
-// expiration: 31-8-2021 20:20
-//String accessTokenS = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTUsMTYsMTddLCJlIjoxNjMwNDIxNDAwMDAwLCJ0IjoxLCJ1IjozLCJuIjpbIjEiLCIyIl0sImR0IjpbIioiXX19.biLhMhe8vUE9Vro_J_zRKoxUTLOLsTLCX6sMZr9S5UE";
-//String DH_DEVICE_ID = "8CM74F79oVNGuLRzvrGFTo5MFdEK3FUsBz36"; // "AACO163"; // "device2"; //  DEVICE ID
-
-String accessTokenS = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTYwOTM1MzAwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.J5ivLupuJ8ZggldOmoprFuN6z_SKOgY4m-jYzWxHQeQ";
-String DH_DEVICE_ID = "a-9-3"; // "AACO163"; // "device2"; //  DEVICE ID
-// http://10.208.34.163/admin/admin/device/a-9-3
+String accessTokenS = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTkyNDg4NTgwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.uNqldVfNzxl3aL_kb9UvxmUHjLMsYpbRt7w3so0O3ig";
+String DH_DEVICE_ID = "b-9-2"; // "AACO163"; // "device2"; //  DEVICE ID
 
 String DH_SERVER_IP = "10.208.34.163"; // "10.42.0.1"; // "10.208.34.242"; // "192.168.122.1"; // "10.42.0.1"; //  "10.208.37.221"; // "10.208.35.79"; // ifconfig
 String URL = "http://" + DH_SERVER_IP + ":80/api/rest/device/" + DH_DEVICE_ID + "/notification"; //HTTP DEVICE NAME: ESP_AFMS_01
 
-// expiration: 31-12-2030 20:20
-// String accessTokenS = "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTU5NTkyNzQ5MDQ3NywidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.Uz6Q3KxitRmas0xiHFN3qvb4Phnvg4OLhELgx9OrFfs";
-
-//String ACCESSTokenExpDate31_12_2030 = "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTUsMTYsMTddLCJlIjoxOTI0OTU3ODAwMDAwLCJ0IjoxLCJ1IjozLCJuIjpbIjEiXSwiZHQiOlsiKiJdfX0.N5xQW_W3ZSkgdHEOCKXCNVftDtLQg4QWGdjtG6UW3LI";
-//String REFRESHTokenExpDate31_12_2030 = "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTUsMTYsMTddLCJlIjoxOTI0OTU3ODAwMDAwLCJ0IjowLCJ1IjozLCJuIjpbIjEiXSwiZHQiOlsiKiJdfX0.ywuU_vFiNRTXng9WuvLbEd-AWI3ZiUIxYJtwuZPCTrA";
-//String accessTokenS = ACCESSTokenExpDate31_12_2030;
-
-//String accessTokenExpDate31_12_2030 = "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTkyNDk1OTAwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.3ymgwtMP1phpRep52U_j1fJ-4KlMReqGEkLqaGpygfY";
-//String accessTokenS = accessTokenExpDate31_12_2030;
-
-//String accessTokenExpDate31_3_2020 = "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTU4NTU5MzAwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.-tbtkjeVlI3XvFKxJjf7uu2LdxvNGqc7TpZqM8NmLik";
-//String accessTokenS = accessTokenExpDate31_3_2020;
-
-
 /******************************************CONFIGURE THESE PARAMETERS***************************************************/
-
-
-
 
 void HTTP_POST_NOTIF()
 {
@@ -158,3 +119,41 @@ void HTTP_POST_NOTIF()
     WiFi_ON(); // WiFi_setup();
   }
 }
+
+/*
+String DH_DEVICE_ID = "wfh-aaco01"; //  DEVICE ID
+String accessTokenS = "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTIsMTUsMTYsMTddLCJlIjoxNjQ4NzUxNDAwMDAwLCJ0IjoxLCJ1IjoxMDc0LCJuIjpbIjEwNzIiXSwiZHQiOlsiKiJdfX0.fFjhKYFl4Wh9rXHCJXLQYjmzRLVl2adK2_2RX3rBYAc";
+String URL = "https://playground.devicehive.com/api/rest/device/" + DH_DEVICE_ID + "/notification";
+
+Authorization : Bearer eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTIsMTUsMTYsMTddLCJlIjoxNjQ4NzUxNDAwMDAwLCJ0IjoxLCJ1IjoxMDc0LCJuIjpbIjEwNzIiXSwiZHQiOlsiKiJdfX0.fFjhKYFl4Wh9rXHCJXLQYjmzRLVl2adK2_2RX3rBYAc
+DeviceName    : wfh-aaco01
+networkId     : 1072
+cloud-URL     : https://playground.devicehive.com/api/rest
+*/
+
+
+//{
+//  "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTUsMTYsMTddLCJlIjoxNTk2NDQ2NjkyODMyLCJ0IjoxLCJ1IjozLCJuIjpbIjEiLCIyIl0sImR0IjpbIioiXX19.ZdHiO2oxoOLZn_H4d4_01piHTr5VHEJd9vh4KnulJ2M",
+//  "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTUsMTYsMTddLCJlIjoxNjEyMTY5NjkyODMyLCJ0IjowLCJ1IjozLCJuIjpbIjEiLCIyIl0sImR0IjpbIioiXX19.JHL0nHh4DCl4w6e49_BO80haa4HbGcFh7vl599BsLHs"
+//}
+//String accessTokenS = "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTYyNzY2OTgwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.4WGrTGvrCN_mCaZ_appkBsHw_uPfzpFqYHUlica-lMs";
+// eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTUsMTYsMTddLCJlIjoxNjMwNDIxNDAwMDAwLCJ0IjoxLCJ1IjozLCJuIjpbIjEiLCIyIl0sImR0IjpbIioiXX19.biLhMhe8vUE9Vro_J_zRKoxUTLOLsTLCX6sMZr9S5UE
+// eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTUsMTYsMTddLCJlIjoxNjMwNDIxNDAwMDAwLCJ0IjowLCJ1IjozLCJuIjpbIjEiLCIyIl0sImR0IjpbIioiXX19.vrCISIgkhMwcZQyim35LjtJdjpoofDHrCt58QmcyHRY
+
+// expiration: 31-8-2021 20:20
+//String accessTokenS = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTUsMTYsMTddLCJlIjoxNjMwNDIxNDAwMDAwLCJ0IjoxLCJ1IjozLCJuIjpbIjEiLCIyIl0sImR0IjpbIioiXX19.biLhMhe8vUE9Vro_J_zRKoxUTLOLsTLCX6sMZr9S5UE";
+//String DH_DEVICE_ID = "8CM74F79oVNGuLRzvrGFTo5MFdEK3FUsBz36"; // "AACO163"; // "device2"; //  DEVICE ID
+
+
+// expiration: 31-12-2030 20:20
+// String accessTokenS = "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTU5NTkyNzQ5MDQ3NywidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.Uz6Q3KxitRmas0xiHFN3qvb4Phnvg4OLhELgx9OrFfs";
+
+//String ACCESSTokenExpDate31_12_2030 = "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTUsMTYsMTddLCJlIjoxOTI0OTU3ODAwMDAwLCJ0IjoxLCJ1IjozLCJuIjpbIjEiXSwiZHQiOlsiKiJdfX0.N5xQW_W3ZSkgdHEOCKXCNVftDtLQg4QWGdjtG6UW3LI";
+//String REFRESHTokenExpDate31_12_2030 = "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTUsMTYsMTddLCJlIjoxOTI0OTU3ODAwMDAwLCJ0IjowLCJ1IjozLCJuIjpbIjEiXSwiZHQiOlsiKiJdfX0.ywuU_vFiNRTXng9WuvLbEd-AWI3ZiUIxYJtwuZPCTrA";
+//String accessTokenS = ACCESSTokenExpDate31_12_2030;
+
+//String accessTokenExpDate31_12_2030 = "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTkyNDk1OTAwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.3ymgwtMP1phpRep52U_j1fJ-4KlMReqGEkLqaGpygfY";
+//String accessTokenS = accessTokenExpDate31_12_2030;
+
+//String accessTokenExpDate31_3_2020 = "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTU4NTU5MzAwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.-tbtkjeVlI3XvFKxJjf7uu2LdxvNGqc7TpZqM8NmLik";
+//String accessTokenS = accessTokenExpDate31_3_2020;

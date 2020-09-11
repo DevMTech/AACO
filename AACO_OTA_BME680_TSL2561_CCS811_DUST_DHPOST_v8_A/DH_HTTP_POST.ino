@@ -1,23 +1,10 @@
 /******************************************CONFIGURE THESE PARAMETERS***************************************************/
-//String DH_DEVICE_ID = "wfh-aaco01"; //  DEVICE ID
-//String accessTokenS = "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTIsMTUsMTYsMTddLCJlIjoxNjQ4NzUxNDAwMDAwLCJ0IjoxLCJ1IjoxMDc0LCJuIjpbIjEwNzIiXSwiZHQiOlsiKiJdfX0.fFjhKYFl4Wh9rXHCJXLQYjmzRLVl2adK2_2RX3rBYAc";
-//String URL = "https://playground.devicehive.com/api/rest/device/" + DH_DEVICE_ID + "/notification";
-/*
-  Authorization : Bearer eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTIsMTUsMTYsMTddLCJlIjoxNjQ4NzUxNDAwMDAwLCJ0IjoxLCJ1IjoxMDc0LCJuIjpbIjEwNzIiXSwiZHQiOlsiKiJdfX0.fFjhKYFl4Wh9rXHCJXLQYjmzRLVl2adK2_2RX3rBYAc
-  DeviceName    : wfh-aaco01
-  networkId     : 1072
-  cloud-URL     : https://playground.devicehive.com/api/rest
-*/
 
-
-String accessTokenS = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTYwOTM1MzAwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.J5ivLupuJ8ZggldOmoprFuN6z_SKOgY4m-jYzWxHQeQ";
-String DH_DEVICE_ID = "a-9-3"; // "AACO163"; // "device2"; //  DEVICE ID
-// http://10.208.34.163/admin/admin/device/a-9-3
+String accessTokenS = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTkyNDg4NTgwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.uNqldVfNzxl3aL_kb9UvxmUHjLMsYpbRt7w3so0O3ig";
+String DH_DEVICE_ID = "b-9-2"; // "AACO163"; // "device2"; //  DEVICE ID
 
 String DH_SERVER_IP = "10.208.34.163"; // "10.42.0.1"; // "10.208.34.242"; // "192.168.122.1"; // "10.42.0.1"; //  "10.208.37.221"; // "10.208.35.79"; // ifconfig
 String URL = "http://" + DH_SERVER_IP + ":80/api/rest/device/" + DH_DEVICE_ID + "/notification"; //HTTP DEVICE NAME: ESP_AFMS_01
-
-
 
 /******************************************CONFIGURE THESE PARAMETERS***************************************************/
 
@@ -138,6 +125,18 @@ void HTTP_POST_NOTIF()
   }
 }
 
+//String DH_DEVICE_ID = "wfh-aaco01"; //  DEVICE ID
+//String accessTokenS = "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTIsMTUsMTYsMTddLCJlIjoxNjQ4NzUxNDAwMDAwLCJ0IjoxLCJ1IjoxMDc0LCJuIjpbIjEwNzIiXSwiZHQiOlsiKiJdfX0.fFjhKYFl4Wh9rXHCJXLQYjmzRLVl2adK2_2RX3rBYAc";
+//String URL = "https://playground.devicehive.com/api/rest/device/" + DH_DEVICE_ID + "/notification";
+/*
+  Authorization : Bearer eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTIsMTUsMTYsMTddLCJlIjoxNjQ4NzUxNDAwMDAwLCJ0IjoxLCJ1IjoxMDc0LCJuIjpbIjEwNzIiXSwiZHQiOlsiKiJdfX0.fFjhKYFl4Wh9rXHCJXLQYjmzRLVl2adK2_2RX3rBYAc
+  DeviceName    : wfh-aaco01
+  networkId     : 1072
+  cloud-URL     : https://playground.devicehive.com/api/rest
+*/
+
+//String accessTokenS = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTYwOTM1MzAwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.J5ivLupuJ8ZggldOmoprFuN6z_SKOgY4m-jYzWxHQeQ";
+//String DH_DEVICE_ID = "a-9-3"; // "AACO163"; // "device2"; //  DEVICE ID
 
 
 

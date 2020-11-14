@@ -296,10 +296,10 @@ void loopOnce()
   //  ePaperSetup(); // ePaperPrintValues(); delay(1000);  //  delay(500);
 
   /////////////////// FOR OLED : UNCOMMENT NEXT LINE &  THIS TAB : "SSD1306_OLED_128x64_I2C" /////////////////////
-  //  SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
-  //  DRAW_BITMAP_LOGO();
-  //  print_PARAMS();
-  //  BLANK_SCREEN();
+    SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
+    DRAW_BITMAP_LOGO();
+    print_PARAMS();
+    BLANK_SCREEN();
 
   digitalWrite(PFET_3V3_BUS, HIGH); // POWER OFF 3V3 BUS -> TURN OFF SPI/I2C PERIPHERALS
   // pinMode(PFET_3V3_BUS, INPUT); // TURN OFF 3V3 BUS
@@ -310,7 +310,7 @@ void loopOnce()
   //  delay(POST_EVERY_x_mS);
 
   // WiFi_ON();
-  // if (WiFi.status() != WL_CONNECTED)  WiFi_setup(); // 84:0D:8E:C3:60:8C ESP32S 84:0d:8e:c3:60:8c
+  //if (WiFi.status() != WL_CONNECTED)  WiFi_setup(); // 84:0D:8E:C3:60:8C ESP32S 84:0d:8e:c3:60:8c
   // WIFI_STATUS_OLED();
 
   HTTP_POST_NOTIF();  //  delay(1500);
@@ -318,29 +318,28 @@ void loopOnce()
   //if(!bootCount)
   //if (bootCount < 6) // OR USE AN EXTERNAL INTERRUPT TO TRIGGER THE OTA FEATURE
   {
-    OTAsetup();
+    OTAsetup(); // OTA VIA SERVER IN ESP32 
   }
 
-  OTA_HTTP_UPDATER();
+  OTA_HTTP_UPDATER(); // OTA FROM CDAC SERVER 
 
   //  WEB_SERVER_setup();
   //  WEB_SERVER_loop();
   //  delay(5*60000);
-  /*
+
     pinMode(PFET_3V3_BUS, OUTPUT); // TURN ON 3V3 BUS
     digitalWrite(PFET_3V3_BUS, LOW); // POWER ON 3V3 BUS -> TURN ON SPI/I2C PERIPHERALS
     delay(5);
 
     /////////////////// FOR OLED : UNCOMMENT NEXT LINE &  THIS TAB : "SSD1306_OLED_128x64_I2C" /////////////////////
     SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
-
     WIFI_HTTP_STATUS_OLED();
     BLANK_SCREEN();
 
     digitalWrite(PFET_3V3_BUS, HIGH); // POWER OFF 3V3 BUS -> TURN OFF SPI/I2C PERIPHERALS
     //pinMode(PFET_3V3_BUS, INPUT); // TURN OFF 3V3 BUS
     //delay(10);
-  */
+
 
   WiFi_OFF();
   //WIFI_STATUS_OLED();
@@ -451,8 +450,10 @@ void WiFi_setup()
   int WiFiConnAttemptCount = 0;
   while (WiFi.status() != WL_CONNECTED && (WiFiConnAttemptCount < 100))
   { WiFiConnAttemptCount++;
-    Serial.print("."); delay(50);
+    Serial.print("."); 
+    delay(50);
   }
+  
   WiFiConnRetryAttempt++;
 
   if (WiFi.status() != WL_CONNECTED && (WiFiConnRetryAttempt >= 5))
@@ -461,22 +462,26 @@ void WiFi_setup()
     WiFiConnRetryAttempt = 0;
     ESP.restart();
   }
+  
   WiFiConnAttemptDuration = millis() - WiFiConnAttemptDuration;
 
   // Print local IP address and start web server
-  Serial.println("");
-  Serial.println("WiFi connected.");
-  Serial.print("IP address: "); // Local
+  Serial.flush();
+  Serial.println("\nConnection successful ...");
+//  Serial.println("\n\n");   
+  Serial.println("\nWiFi connected.");
+  Serial.print("\nIP address: \t"); // Local
   Serial.println(WiFi.localIP());
   Serial.print("Gateway IP: \t");
   Serial.println(WiFi.gatewayIP());
   Serial.print("Subnet Mask: \t");
   Serial.println(WiFi.subnetMask());
-  Serial.print("DNS 1: ");
+  Serial.print("DNS 1: \t\t");
   Serial.println(WiFi.dnsIP(0));
-  Serial.print("DNS 2: ");
+  Serial.print("DNS 2: \t\t");
   Serial.println(WiFi.dnsIP(1));
-
+  Serial.println("");
+  
   bool success = Ping.ping("172.217.166.36", 3); // ("www.google.com", 3);
   if (!success)
   { Serial.println("\nFailed to Ping www.google.com");   // return;

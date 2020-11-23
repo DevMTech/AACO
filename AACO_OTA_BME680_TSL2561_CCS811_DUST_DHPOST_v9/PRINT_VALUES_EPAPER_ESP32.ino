@@ -28,7 +28,7 @@
 // enable or disable GxEPD2_GFX base class
 #define ENABLE_GxEPD2_GFX 0
 
-
+// https://github.com/ZinggJM/GxEPD2
 #include <GxEPD2_3C.h> // 3-color e-papers //#include <GxEPD2_BW.h>
 
 
@@ -219,6 +219,8 @@ void ePaperPrintValues2()
   while (display.nextPage());
 }
 
+#include "RTClib.h" // https://github.com/adafruit/RTClib
+
 void ePaperPrintRTCtime()
 { Serial.println("\n\t ePaperPrintRTCtime()\n");
   display.setFullWindow();
@@ -245,7 +247,7 @@ void ePaperPrintRTCtime()
     
     display.println();
 
-    DateTime now = rtc.now();
+    DateTime now = rtc.now(); // https://github.com/adafruit/RTClib
 
 //    timeStamp = String(now.hour(), DEC);
 //    timeStamp = timeStamp + String(".") + String(now.minute(), DEC); // String(":") + 
@@ -279,4 +281,4 @@ void ePaperPrintRTCtime()
   while (display.nextPage());
 }
 
-*/
+/**/

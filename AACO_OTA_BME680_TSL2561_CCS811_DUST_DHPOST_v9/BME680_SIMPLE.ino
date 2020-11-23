@@ -75,8 +75,11 @@ Possible use cases:
  ***************************************************************************/
 
 //#include <Wire.h>
-#include <Adafruit_Sensor.h>
-#include "Adafruit_BME680.h"
+
+#include <Adafruit_Sensor.h> // https://github.com/adafruit/Adafruit_Sensor
+#include <Adafruit_BME680.h> // https://github.com/adafruit/Adafruit_BME680
+// #include "Adafruit_BME680.h"
+
 #define SEALEVELPRESSURE_HPA (1013.25)
 Adafruit_BME680 bme; // I2C
 

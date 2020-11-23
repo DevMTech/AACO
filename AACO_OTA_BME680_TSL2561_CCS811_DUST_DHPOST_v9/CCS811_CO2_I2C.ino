@@ -100,7 +100,9 @@
 // #endif
 
 #include <Wire.h>    // I2C library
-#include "ccs811.h"  // CCS811 library
+
+
+#include "ccs811.h"  // https://github.com/maarten-pennings/CCS811 // CCS811 library
 
 
 // Wiring for ESP8266 NodeMCU boards: VDD to 3V3, GND to GND, SDA to D2, SCL to D1, nWAKE to D3 (or GND)

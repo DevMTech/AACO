@@ -1,5 +1,5 @@
 //#include <Wire.h>
-#include <SparkFunTSL2561.h>
+#include <SparkFunTSL2561.h> // https://github.com/sparkfun/SparkFun_TSL2561_Arduino_Library
 
 //double lux; // Resulting lux value
 boolean good; // True if neither sensor is saturated

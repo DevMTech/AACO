@@ -23,9 +23,13 @@
 
 #include <SPI.h>
 #include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
-#include <Fonts/FreeSerif12pt7b.h>
+
+#include <Adafruit_GFX.h> // https://github.com/adafruit/Adafruit-GFX-Library
+// ADAFRUIT GFX DEPENDANCY: ADAFRUIT BUSIO -> https://github.com/adafruit/Adafruit_BusIO
+#include <Fonts/FreeSerif12pt7b.h> // https://github.com/adafruit/Adafruit-GFX-Library
+
+#include <Adafruit_SSD1306.h> // https://github.com/adafruit/Adafruit_SSD1306
+
 
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
@@ -604,7 +608,7 @@ void BLANK_SCREEN()
 
   display.setTextSize(1);
   display.setCursor(0, 20);
-  DateTime now = rtc.now();
+  DateTime now = rtc.now(); // https://github.com/adafruit/RTClib
   display.print(daysOfTheWeek[now.dayOfTheWeek()]);
 
   display.setTextSize(2);
@@ -628,4 +632,4 @@ void BLANK_SCREEN()
   display.display();
   delay(2000);
   }
-*/
+/**/

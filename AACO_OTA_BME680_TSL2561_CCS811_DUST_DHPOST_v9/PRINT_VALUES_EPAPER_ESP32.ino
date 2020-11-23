@@ -61,6 +61,8 @@ GxEPD2_3C<GxEPD2_213c, GxEPD2_213c::HEIGHT> display(GxEPD2_213c(SS, 2, 0, 4)); /
 // https://forum.arduino.cc/index.php?topic=578874.0
 
 
+// #include <RTClib.h> // https://github.com/adafruit/RTClib
+
 void ePaperSetup()
 {
   //  Serial.begin(115200); delay(100);
@@ -70,7 +72,7 @@ void ePaperSetup()
   display.init(115200);
   // first update should be full refresh
 
-  ePaperPrintRTCtime(); delay(1000);
+  // ePaperPrintRTCtime(); delay(1000);
   ePaperPrintValues1(); delay(1000);
   ePaperPrintValues2(); delay(1000);
 
@@ -219,66 +221,66 @@ void ePaperPrintValues2()
   while (display.nextPage());
 }
 
-#include "RTClib.h" // https://github.com/adafruit/RTClib
 
-void ePaperPrintRTCtime()
-{ Serial.println("\n\t ePaperPrintRTCtime()\n");
-  display.setFullWindow();
-  display.setRotation(1);
 
-  display.fillScreen(GxEPD_WHITE);
-  display.setTextColor(GxEPD_BLACK);
-  
-//  display.fillScreen(GxEPD_BLACK);
-//  display.setTextColor(GxEPD_WHITE);
-  
-  display.setFont(&FreeMonoBold9pt7b); //  display.setFont(f);
-  display.setCursor(0, 0);
-
-  //  display.println(text); // "customTextToPrint"
-
-  TimeNow();
-
-  display.firstPage();
-
-  do
-  {
-    // Serial.println("\n\tePaperPrintValues()\n");
-    
-    display.println();
-
-    DateTime now = rtc.now(); // https://github.com/adafruit/RTClib
-
-//    timeStamp = String(now.hour(), DEC);
-//    timeStamp = timeStamp + String(".") + String(now.minute(), DEC); // String(":") + 
-//    timeStamp = timeStamp + String(".") + String(now.second(), DEC); // ":" + 
-//    timeStamp = timeStamp + String("-") + String(now.day(), DEC);
-//    timeStamp = timeStamp + String("-") + String(now.month(), DEC);
-//    timeStamp = timeStamp + String("-") + String(now.year(), DEC);
-//    Serial.println(String("\n\tTime Stamp : ")+timeStamp+String("\n"));
-    
-    // RTC TIME
-//    display.setTextColor(GxEPD_BLACK); //    display.setTextColor(GxEPD_WHITE);
-    display.print(" Time  ");
-    display.println(timeHMS);
-//    display.print(now.hour(), DEC);
-//    display.print(":");
-//    display.print(now.minute(), DEC);
-//    display.print(":");
-//    display.println(now.second(), DEC);
-
-    display.print(" Date  ");
-    display.println(Date);
-//    display.print(now.day(), DEC);
-//    display.print("-");
-//    display.print(now.month(), DEC);
-//    display.print("-");
-//    display.println(now.year(), DEC);
-
-    display.print(" Day   ");
-    display.println(daysOfTheWeek[now.dayOfTheWeek()]);
-  }
-  while (display.nextPage());
-}
+//void ePaperPrintRTCtime()
+//{ Serial.println("\n\t ePaperPrintRTCtime()\n");
+//  display.setFullWindow();
+//  display.setRotation(1);
+//
+//  display.fillScreen(GxEPD_WHITE);
+//  display.setTextColor(GxEPD_BLACK);
+//  
+////  display.fillScreen(GxEPD_BLACK);
+////  display.setTextColor(GxEPD_WHITE);
+//  
+//  display.setFont(&FreeMonoBold9pt7b); //  display.setFont(f);
+//  display.setCursor(0, 0);
+//
+//  //  display.println(text); // "customTextToPrint"
+//
+////  TimeNow();
+//
+//  display.firstPage();
+//
+//  do
+//  {
+//    // Serial.println("\n\tePaperPrintValues()\n");
+//    
+//    display.println();
+//
+//    DateTime now = rtc.now(); // https://github.com/adafruit/RTClib
+//
+////    timeStamp = String(now.hour(), DEC);
+////    timeStamp = timeStamp + String(".") + String(now.minute(), DEC); // String(":") + 
+////    timeStamp = timeStamp + String(".") + String(now.second(), DEC); // ":" + 
+////    timeStamp = timeStamp + String("-") + String(now.day(), DEC);
+////    timeStamp = timeStamp + String("-") + String(now.month(), DEC);
+////    timeStamp = timeStamp + String("-") + String(now.year(), DEC);
+////    Serial.println(String("\n\tTime Stamp : ")+timeStamp+String("\n"));
+//    
+//    // RTC TIME
+////    display.setTextColor(GxEPD_BLACK); //    display.setTextColor(GxEPD_WHITE);
+//    display.print(" Time  ");
+//    display.println(timeHMS);
+////    display.print(now.hour(), DEC);
+////    display.print(":");
+////    display.print(now.minute(), DEC);
+////    display.print(":");
+////    display.println(now.second(), DEC);
+//
+//    display.print(" Date  ");
+//    display.println(Date);
+////    display.print(now.day(), DEC);
+////    display.print("-");
+////    display.print(now.month(), DEC);
+////    display.print("-");
+////    display.println(now.year(), DEC);
+//
+//    display.print(" Day   ");
+//    display.println(daysOfTheWeek[now.dayOfTheWeek()]);
+//  }
+//  while (display.nextPage());
+//}
 
 /**/

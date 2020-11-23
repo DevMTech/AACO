@@ -63,27 +63,27 @@
 // WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); //disable brownout detector
 
 #ifdef ESP32
-  #include <Arduino.h>
-  #include <WiFi.h>
-  #include <HTTPClient.h>
-  #include <HTTPUpdate.h>
-  #include <ESP32Ping.h> // https://github.com/marian-craciunescu/ESP32Ping
-  //#include <WiFiMulti.h>
-  //WiFiMulti wifiMulti;
-  
-  #define LED_BUILTIN   2 // GPIO02 ESP32
-  #define PFET_3V3_BUS 25 // GPIO25 ESP32
-  #define PFET_POT_DIV 32 // GPIO32 ESP32
-  #define BATTERY_V_IN 35 // GPIO35 ESP32
+#include <Arduino.h>
+#include <WiFi.h>
+#include <HTTPClient.h>
+#include <HTTPUpdate.h>
+#include <ESP32Ping.h> // https://github.com/marian-craciunescu/ESP32Ping
+//#include <WiFiMulti.h>
+//WiFiMulti wifiMulti;
+
+#define LED_BUILTIN   2 // GPIO02 ESP32
+#define PFET_3V3_BUS 25 // GPIO25 ESP32
+#define PFET_POT_DIV 32 // GPIO32 ESP32
+#define BATTERY_V_IN 35 // GPIO35 ESP32
 #endif
 
 #if defined(ESP8266)              // ESP12E - ESP8266cdac
-  #include <ESP8266WiFi.h>
-  #include <ESP8266HTTPClient.h>
-  //#include <WiFiClientSecure.h>
-  //#include <ESP8266WiFiMulti.h>   // Include the Wi-Fi-Multi library
-  //ESP8266WiFiMulti wifiMulti;     // Create an instance of the ESP8266WiFiMulti class, called 'wifiMulti'
-  //#else // ESP32
+#include <ESP8266WiFi.h>
+#include <ESP8266HTTPClient.h>
+//#include <WiFiClientSecure.h>
+//#include <ESP8266WiFiMulti.h>   // Include the Wi-Fi-Multi library
+//ESP8266WiFiMulti wifiMulti;     // Create an instance of the ESP8266WiFiMulti class, called 'wifiMulti'
+//#else // ESP32
 #endif
 
 #include "SSID.h"
@@ -271,11 +271,11 @@ void loopOnce()
 
   // TEST_OLED();
   initialize();
-  
+
   //  digitalWrite(PFET_POT_DIV, LOW); // POWER ON POT DIV
   pinMode(PFET_3V3_BUS, OUTPUT); // TURN ON BUS
   digitalWrite(PFET_3V3_BUS, LOW); // POWER ON 3V3 BUS -> TURN ON SPI/I2C PERIPHERALS
-  delay(1); 
+  delay(1);
 
   batteryLevelRead_setup();
   batteryLevelRead(); // delay(500);
@@ -296,10 +296,10 @@ void loopOnce()
   //  ePaperSetup(); // ePaperPrintValues(); delay(1000);  //  delay(500);
 
   /////////////////// FOR OLED : UNCOMMENT NEXT LINE &  THIS TAB : "SSD1306_OLED_128x64_I2C" /////////////////////
-    SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
-    DRAW_BITMAP_LOGO();
-    print_PARAMS();
-    BLANK_SCREEN();
+  SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
+  DRAW_BITMAP_LOGO();
+  print_PARAMS();
+  BLANK_SCREEN();
 
   digitalWrite(PFET_3V3_BUS, HIGH); // POWER OFF 3V3 BUS -> TURN OFF SPI/I2C PERIPHERALS
   // pinMode(PFET_3V3_BUS, INPUT); // TURN OFF 3V3 BUS
@@ -318,27 +318,27 @@ void loopOnce()
   //if(!bootCount)
   //if (bootCount < 6) // OR USE AN EXTERNAL INTERRUPT TO TRIGGER THE OTA FEATURE
   {
-    OTAsetup(); // OTA VIA SERVER IN ESP32 
+    OTAsetup(); // OTA VIA SERVER IN ESP32
   }
 
-  OTA_HTTP_UPDATER(); // OTA FROM CDAC SERVER 
+  OTA_HTTP_UPDATER(); // OTA FROM CDAC SERVER
 
   //  WEB_SERVER_setup();
   //  WEB_SERVER_loop();
   //  delay(5*60000);
 
-    pinMode(PFET_3V3_BUS, OUTPUT); // TURN ON 3V3 BUS
-    digitalWrite(PFET_3V3_BUS, LOW); // POWER ON 3V3 BUS -> TURN ON SPI/I2C PERIPHERALS
-    delay(5);
+  pinMode(PFET_3V3_BUS, OUTPUT); // TURN ON 3V3 BUS
+  digitalWrite(PFET_3V3_BUS, LOW); // POWER ON 3V3 BUS -> TURN ON SPI/I2C PERIPHERALS
+  delay(5);
 
-    /////////////////// FOR OLED : UNCOMMENT NEXT LINE &  THIS TAB : "SSD1306_OLED_128x64_I2C" /////////////////////
-    SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
-    WIFI_HTTP_STATUS_OLED();
-    BLANK_SCREEN();
+  /////////////////// FOR OLED : UNCOMMENT NEXT LINE &  THIS TAB : "SSD1306_OLED_128x64_I2C" /////////////////////
+  SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
+  WIFI_HTTP_STATUS_OLED();
+  BLANK_SCREEN();
 
-    digitalWrite(PFET_3V3_BUS, HIGH); // POWER OFF 3V3 BUS -> TURN OFF SPI/I2C PERIPHERALS
-    //pinMode(PFET_3V3_BUS, INPUT); // TURN OFF 3V3 BUS
-    //delay(10);
+  digitalWrite(PFET_3V3_BUS, HIGH); // POWER OFF 3V3 BUS -> TURN OFF SPI/I2C PERIPHERALS
+  //pinMode(PFET_3V3_BUS, INPUT); // TURN OFF 3V3 BUS
+  //delay(10);
 
 
   WiFi_OFF();
@@ -408,7 +408,7 @@ void WiFi_OFF()
   else
   { WiFiOnDuration = millis() - WiFiOnDuration;
 
-    WiFi_Status = "DISCONNECTED";
+    WiFi_Status = "DISCONCTD";
     // Serial.println("\n================= WIFI_OFF : WiFi DISCONNECTED ==================\n");
 
     pinMode (LED2, OUTPUT);
@@ -434,9 +434,9 @@ void WiFi_setup()
 
 
   // Configures static IP address
-//  if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) // if (!WiFi.config(local_IP, gateway, subnet))
-//  { Serial.println("STA Failed to configure");
-//  }
+  //  if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) // if (!WiFi.config(local_IP, gateway, subnet))
+  //  { Serial.println("STA Failed to configure");
+  //  }
 
   // Connect to Wi-Fi network with SSID and password
   Serial.print("Connecting to ");
@@ -450,10 +450,10 @@ void WiFi_setup()
   int WiFiConnAttemptCount = 0;
   while (WiFi.status() != WL_CONNECTED && (WiFiConnAttemptCount < 100))
   { WiFiConnAttemptCount++;
-    Serial.print("."); 
+    Serial.print(".");
     delay(50);
   }
-  
+
   WiFiConnRetryAttempt++;
 
   if (WiFi.status() != WL_CONNECTED && (WiFiConnRetryAttempt >= 5))
@@ -462,34 +462,41 @@ void WiFi_setup()
     WiFiConnRetryAttempt = 0;
     ESP.restart();
   }
-  
+
   WiFiConnAttemptDuration = millis() - WiFiConnAttemptDuration;
 
   // Print local IP address and start web server
   Serial.flush();
-  Serial.println("\nConnection successful ...");
-//  Serial.println("\n\n");   
-  Serial.println("\nWiFi connected.");
-  Serial.print("\nIP address: \t"); // Local
-  Serial.println(WiFi.localIP());
-  Serial.print("Gateway IP: \t");
-  Serial.println(WiFi.gatewayIP());
-  Serial.print("Subnet Mask: \t");
-  Serial.println(WiFi.subnetMask());
-  Serial.print("DNS 1: \t\t");
-  Serial.println(WiFi.dnsIP(0));
-  Serial.print("DNS 2: \t\t");
-  Serial.println(WiFi.dnsIP(1));
-  Serial.println("");
-  
-  bool success = Ping.ping("172.217.166.36", 3); // ("www.google.com", 3);
-  if (!success)
-  { Serial.println("\nFailed to Ping www.google.com");   // return;
+  if (WiFi.status() == WL_CONNECTED)
+  {
+    Serial.println("\nConnection successful ...");
+    //  Serial.println("\n\n");
+    Serial.println("\nWiFi connected.");
+    Serial.print("\nIP address: \t"); // Local
+    Serial.println(WiFi.localIP());
+    Serial.print("Gateway IP: \t");
+    Serial.println(WiFi.gatewayIP());
+    Serial.print("Subnet Mask: \t");
+    Serial.println(WiFi.subnetMask());
+    Serial.print("DNS 1: \t\t");
+    Serial.println(WiFi.dnsIP(0));
+    Serial.print("DNS 2: \t\t");
+    Serial.println(WiFi.dnsIP(1));
+    Serial.println("");
+
+    bool success = Ping.ping("172.217.166.36", 3); // ("www.google.com", 3);
+    if (!success)
+    { Serial.println("\nFailed to Ping www.google.com");   // return;
+    }
+    else
+    { Serial.println("\nSuccessfully Pinged www.google.com");
+    }
   }
   else
-  { Serial.println("\nSuccessfully Pinged www.google.com");
+  {
+    Serial.print("\n\nFailed to connect to ");
+    Serial.println(ssid);
   }
-
 
   //  WiFi.begin(ssid, password);
   //  wifiMulti.addAP(ssid, password);
@@ -546,7 +553,7 @@ void WiFi_setup()
     //    digitalWrite (LED2, HIGH); //HIGH = ON //LOW = OFF
   }
   else
-  { WiFi_Status = "DISCONNECTED";
+  { WiFi_Status = "DISCONNCTD";
     Serial.println("\n========================FAILED TO CONNECT TO WiFi==================\n");
     // Serial.println("\n================= WIFI_ON : WiFi DISCONNECTED ==================\n");
 

@@ -20,6 +20,10 @@
 
  ********/
 
+ 
+
+/**/ // REMOVE THIS TO ACTIVATE/DEACTIVATE SSD1306 OLED CODE
+
 
 #include <SPI.h>
 #include <Wire.h>
@@ -282,112 +286,114 @@ void print_PARAMS()
   display.clearDisplay(); // clear display
   //------------------------------------------------------------------------------------------------------------------------------------------//
 
-  /*
-    // display temperature
-    display.setTextSize(1);
-    display.setCursor(0, 0);
-    display.print("HDCTempertr: ");
-    display.setTextSize(2);
-    display.setCursor(0, 10);
-    display.print(HDC1080_temperature);
-    display.print(" ");
-    display.setTextSize(1);
+  
+//    // display temperature
+//    display.setTextSize(1);
+//    display.setCursor(0, 0);
+//    display.print("HDCTempertr: ");
+//    display.setTextSize(2);
+//    display.setCursor(0, 10);
+//    display.print(HDC1080_temperature);
+//    display.print(" ");
+//    display.setTextSize(1);
+//
+//    // To display the º symbol, we use the Code Page 437 font.
+//    // For that, you need to set the cp437 to true as follows:
+//    display.cp437(true);  // https://www.ascii-codes.com/
+//
+//    // Use the write() method to display your chosen character.
+//    // The º symbol corresponds to character 167.
+//    display.write(167);
+//
+//    display.setTextSize(2);
+//    display.print("C");
+//
+//    // display humidity
+//    display.setTextSize(1);
+//    display.setCursor(0, 35);
+//    display.print("HDCHumidity: ");
+//    display.setTextSize(2);
+//    display.setCursor(0, 45);
+//    display.print(HDC1080_humidity);
+//    display.print(" %");
+//
+//    display.display();
+//    delay(OLED_DELAY_1);
+//    display.clearDisplay(); // clear display
+//    //------------------------------------------------------------------------------------------------------------------------------------------//
+//
+//
+//    // display pressure
+//    display.setTextSize(1);
+//    display.setCursor(0, 0);
+//    display.print("Pressure:");
+//    display.setTextSize(2);
+//    display.setCursor(0, 10);
+//    display.print(pressure);
+//    display.print(" hPa");
+//
+//    // display Approx. Altitude
+//    display.setTextSize(1);
+//    display.setCursor(0, 35);
+//    display.print("Altitude:");
+//    display.setTextSize(2);
+//    display.setCursor(0, 45);
+//    display.print(alti);
+//    display.print(" m");
+//
+//    display.display();
+//    delay(OLED_DELAY_1);
+//    display.clearDisplay(); // clear display
+//    //------------------------------------------------------------------------------------------------------------------------------------------//
+//
+//    // display PPM 2.5
+//    display.setTextSize(1);
+//    display.setCursor(0, 0);
+//    display.print("PPM 2.5:");
+//    display.setTextSize(2);
+//    display.setCursor(0, 10);
+//    display.print(pm_2point5);
+//    display.print("PPM");
+//
+//    // display PPM 10
+//    display.setTextSize(1);
+//    display.setCursor(0, 35);
+//    display.print("PPM 10:");
+//    display.setTextSize(2);
+//    display.setCursor(0, 45);
+//    display.print(pm_10);
+//    display.print("PPM");
+//
+//    display.display();
+//    delay(OLED_DELAY_1);
+//    display.clearDisplay(); // clear display
+//    //------------------------------------------------------------------------------------------------------------------------------------------//
+//
+//    // display CO2
+//    display.setTextSize(1);
+//    display.setCursor(0, 0);
+//    display.print("CO2");
+//    display.setTextSize(2);
+//    display.setCursor(0, 10);
+//    display.print(eCO2);
+//    //  display.print(CO2);
+//    display.print(" PPM");
+//
+//    // display VOC
+//    display.setTextSize(1);
+//    display.setCursor(0, 35);
+//    display.print("Gas/VOC:");
+//    display.setTextSize(2);
+//    display.setCursor(0, 45);
+//    display.print(VOC);
+//    display.print(" KOhms");
+//
+//    display.display();
+//    delay(OLED_DELAY_1);
+//    display.clearDisplay(); // clear display
+  
 
-    // To display the º symbol, we use the Code Page 437 font.
-    // For that, you need to set the cp437 to true as follows:
-    display.cp437(true);  // https://www.ascii-codes.com/
-
-    // Use the write() method to display your chosen character.
-    // The º symbol corresponds to character 167.
-    display.write(167);
-
-    display.setTextSize(2);
-    display.print("C");
-
-    // display humidity
-    display.setTextSize(1);
-    display.setCursor(0, 35);
-    display.print("HDCHumidity: ");
-    display.setTextSize(2);
-    display.setCursor(0, 45);
-    display.print(HDC1080_humidity);
-    display.print(" %");
-
-    display.display();
-    delay(OLED_DELAY_1);
-    display.clearDisplay(); // clear display
-    //------------------------------------------------------------------------------------------------------------------------------------------//
-
-
-    // display pressure
-    display.setTextSize(1);
-    display.setCursor(0, 0);
-    display.print("Pressure:");
-    display.setTextSize(2);
-    display.setCursor(0, 10);
-    display.print(pressure);
-    display.print(" hPa");
-
-    // display Approx. Altitude
-    display.setTextSize(1);
-    display.setCursor(0, 35);
-    display.print("Altitude:");
-    display.setTextSize(2);
-    display.setCursor(0, 45);
-    display.print(alti);
-    display.print(" m");
-
-    display.display();
-    delay(OLED_DELAY_1);
-    display.clearDisplay(); // clear display
-    //------------------------------------------------------------------------------------------------------------------------------------------//
-
-    // display PPM 2.5
-    display.setTextSize(1);
-    display.setCursor(0, 0);
-    display.print("PPM 2.5:");
-    display.setTextSize(2);
-    display.setCursor(0, 10);
-    display.print(pm_2point5);
-    display.print("PPM");
-
-    // display PPM 10
-    display.setTextSize(1);
-    display.setCursor(0, 35);
-    display.print("PPM 10:");
-    display.setTextSize(2);
-    display.setCursor(0, 45);
-    display.print(pm_10);
-    display.print("PPM");
-
-    display.display();
-    delay(OLED_DELAY_1);
-    display.clearDisplay(); // clear display
-    //------------------------------------------------------------------------------------------------------------------------------------------//
-
-    // display CO2
-    display.setTextSize(1);
-    display.setCursor(0, 0);
-    display.print("CO2");
-    display.setTextSize(2);
-    display.setCursor(0, 10);
-    display.print(eCO2);
-    //  display.print(CO2);
-    display.print(" PPM");
-
-    // display VOC
-    display.setTextSize(1);
-    display.setCursor(0, 35);
-    display.print("Gas/VOC:");
-    display.setTextSize(2);
-    display.setCursor(0, 45);
-    display.print(VOC);
-    display.print(" KOhms");
-
-    display.display();
-    delay(OLED_DELAY_1);
-    display.clearDisplay(); // clear display
-  */
+  
   //------------------------------------------------------------------------------------------------------------------------------------------//
 
   // display LUX

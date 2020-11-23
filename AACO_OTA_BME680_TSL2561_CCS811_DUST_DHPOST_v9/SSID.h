@@ -11,3 +11,4 @@ RTC_DATA_ATTR char* ssid  = "";   RTC_DATA_ATTR char* password = "";
 
 // Virtual COM Port Drivers - x64 - CDM v2.12.28 WHQL Certified
 // https://www.ftdichip.com/Drivers/VCP.htm
+// https://learn.sparkfun.com/tutorials/how-to-install-ftdi-drivers/all#windows---quick-and-easy

@@ -1,4 +1,4 @@
- // https://learn.adafruit.com/adafruit-bme680-humidity-temperature-barometic-pressure-voc-gas?view=all
+// https://learn.adafruit.com/adafruit-bme680-humidity-temperature-barometic-pressure-voc-gas?view=all
 //   https://randomnerdtutorials.com/esp32-static-fixed-ip-address-arduino-ide/
 //   https://microcontrollerslab.com/esp32-static-fix-ip-address/
 //   https://techtutorialsx.com/2020/04/21/esp32-arduino-set-static-ip-address/

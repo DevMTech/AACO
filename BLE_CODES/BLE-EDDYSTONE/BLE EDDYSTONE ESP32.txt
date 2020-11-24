@@ -1,0 +1,64 @@
+
+	ESP32 ESP-IDF BLE - PCBREFLUX - 87 VIDEOS
+	https://www.youtube.com/playlist?list=PLxJ8_KSR8bp5-F4HVG4QOm4Kt6wQhzsjU
+	
+	ESP32 BLE - Bluetooth Low Energy sending data to phone
+	https://www.youtube.com/watch?v=NZi7ykalZhc
+	https://www.hackster.io/botletics/esp32-ble-android-arduino-ide-awesome-81c67d
+	https://www.youtube.com/playlist?list=PL-3SnJmahyb5mQLq7RgG6HNIUMwXzgDy-
+	
+	ESP32_BLE_beaconscan
+	ESP32 #5: BLE / Bluetooth Eddystone implementation
+	https://www.youtube.com/watch?v=TqAWQNyWHqc
+	
+	ESP32 #73 Arduino Eddystone Beacon Scanner
+	https://www.youtube.com/watch?v=HqX3pZm6dd8
+	
+	ESP32 #72: Arduino Eddystone Beacon
+	https://www.youtube.com/watch?v=2hhy6houBcU
+	
+	https://www.youtube.com/c/pcbreflux/search?query=EDDYSTONE
+	
+	https://github.com/pcbreflux/espressif/tree/master/esp32/arduino/sketchbook/ESP32_BLE_beaconscan
+	https://github.com/pcbreflux/espressif/tree/master/esp32/arduino/sketchbook
+	
+	Choosing UUID, Major, Minor and Eddystone-UID For Beacons
+	https://www.beaconzone.co.uk/choosinguuidmajorminor
+	
+	Intro to Eddystone
+	https://developer.estimote.com/eddystone/#eddystone-uid
+	https://github.com/google/eddystone
+	
+	Eddystone UID format
+	https://developers.google.com/beacons/eddystone
+	https://github.com/google/eddystone/tree/master/eddystone-uid
+	
+	Eddystone-TLM
+	https://github.com/google/eddystone/tree/master/eddystone-tlm
+	
+	What is Eddystone and how can I use it with my beacons?
+	https://community.estimote.com/hc/en-us/articles/206922207-What-is-Eddystone-and-how-can-I-use-it-with-my-beacons-
+	
+	Bluetooth beacons used for proximity and indoor location
+	https://estimote.com/#proximity
+	
+	http://www.martyncurrey.com/hm-10-bluetooth-4ble-modules/
+	
+	How to Parse Bluetooth Beacons (iBeacon and Eddystone) with Arduino 101
+	https://www.andreasjakl.com/parse-bluetooth-beacons-ibeacon-eddystone-arduino-101/
+	
+	https://github.com/pcbreflux/espressif
+	https://github.com/krdlab/esp32-eddystone
+	https://github.com/sandeepmistry
+	https://github.com/mtuxpe/esp32_eddystone
+	
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	Eddystone Beacons
+	https://www.espruino.com/Eddystone
+	
+	
+	iBeacon indoor positioning with ESP32
+	https://blog.shinovent.fi/2018/03/ibeacon-indoor-positioning-with-esp32.html
+	https://github.com/jarkko-hautakorpi/iBeacon-indoor-positioning-demo
+	https://gist.github.com/wybiral/2a96c1d1605af7efa11b690586c4b13e

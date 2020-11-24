@@ -36,7 +36,6 @@ this value should be coherent with the actual size of our key string, which has 
 // https://esp32.com/viewtopic.php?t=4004
 // https://github.com/espressif/arduino-esp32/blob/master/tools/sdk/include/mbedtls/mbedtls/aes.h
 // https://www.devglan.com/online-tools/aes-encryption-decryption
-
 // http://aes.online-domain-tools.com/
 
 void encrypt(char * plainText, char * key, unsigned char * outputBuffer)

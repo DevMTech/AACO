@@ -8,6 +8,9 @@
 //#include <HTTPClient.h>
 //#include <HTTPUpdate.h>
 
+
+// 
+
 void OTA_HTTP_UPDATER() 
 {
   // wait for WiFi connection

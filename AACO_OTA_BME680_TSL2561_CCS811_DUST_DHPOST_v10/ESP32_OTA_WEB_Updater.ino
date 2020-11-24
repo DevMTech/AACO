@@ -11,6 +11,8 @@
 
 */
 
+// http://10.42.0.81/ota
+
 
 // UNCOMMENT TO ENABLE SERIAL PORT DEBUG MESSAGES
 //#define DEBUG_Sprintln(a) (Serial.println(a))
@@ -156,7 +158,7 @@ void OTAsetup(void)
 
   WebOTA();
 
-  for (int i = 0; i < 30000; i++)
+  for (int i = 0; i < 15000; i++)
   {
     //createRandomString();
     server.handleClient();

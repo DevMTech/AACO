@@ -315,18 +315,6 @@ void loopOnce()
 
   HTTP_POST_NOTIF();  //  delay(1500);
 
-  //if(!bootCount)
-  //if (bootCount < 6) // OR USE AN EXTERNAL INTERRUPT TO TRIGGER THE OTA FEATURE
-  {
-    OTAsetup(); // OTA VIA SERVER IN ESP32
-  }
-
-  OTA_HTTP_UPDATER(); // OTA FROM CDAC SERVER
-
-  //  WEB_SERVER_setup();
-  //  WEB_SERVER_loop();
-  //  delay(5*60000);
-
   pinMode(PFET_3V3_BUS, OUTPUT); // TURN ON 3V3 BUS
   digitalWrite(PFET_3V3_BUS, LOW); // POWER ON 3V3 BUS -> TURN ON SPI/I2C PERIPHERALS
   delay(5);
@@ -340,6 +328,20 @@ void loopOnce()
   //pinMode(PFET_3V3_BUS, INPUT); // TURN OFF 3V3 BUS
   //delay(10);
 
+  if (WiFi.status() == WL_CONNECTED)
+  {
+    //if(!bootCount)
+    //if (bootCount < 6) // OR USE AN EXTERNAL INTERRUPT TO TRIGGER THE OTA FEATURE
+    {
+      OTAsetup(); // OTA VIA SERVER IN ESP32
+    }
+
+    OTA_HTTP_UPDATER(); // OTA FROM CDAC SERVER
+
+    //  WEB_SERVER_setup();
+    //  WEB_SERVER_loop();
+    //  delay(5*60000);
+  }
 
   WiFi_OFF();
   //WIFI_STATUS_OLED();

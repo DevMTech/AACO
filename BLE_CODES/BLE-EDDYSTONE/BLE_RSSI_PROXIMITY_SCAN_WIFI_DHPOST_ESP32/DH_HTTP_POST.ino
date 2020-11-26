@@ -65,10 +65,13 @@ void HTTP_POST_NOTIF()
   //        data += "\",\"C\":\""; data += CO2;
   //        data += "\",\"G\":\""; data += GPS;
 
+  // found_BLE_MAC_list = "d4:36:39:c2:28:3c, 24:0a:c4:83:20:c2";
+  
   String data = "{\"notification\": \"sensordata\"";
   data += ",\"timestamp\":\""; // data += timeStamp; // "\"2019-09-11T11:15:34.444Z\""
   data += "\",\"parameters\": {";
   data += "\"BLE_MAC\":\"";  data += found_BLE_MAC_list;
+  // data += "\",\"BLE_MAC\":\"";  data += found_BLE_MAC_list;
   data += "\"}}";
   
   // 2020-08-03T18:25:34

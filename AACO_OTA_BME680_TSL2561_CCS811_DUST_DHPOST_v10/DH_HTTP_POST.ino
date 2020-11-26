@@ -42,6 +42,8 @@ void HTTP_POST_NOTIF()
   // tempC = 22.5; humidity = 52;  lux = 560;  batteryLevel = 3.32;
   // CO2 = 432;  pm_2point5 = 3.51;  pm_10 = 8.5;    // timeStamp = "2020-01-15T10:15:34.444Z";
 
+  
+  
   // start connection and send HTTP header
   String data = "{\"notification\": \"sensordata\"";
   data += ",\"timestamp\":\""; // data += timeStamp; // "\"2019-09-11T11:15:34.444Z\""
@@ -54,6 +56,7 @@ void HTTP_POST_NOTIF()
   data += "\",\"D10\":\""; data += pm_10; //
   data += "\",\"B\":\""; data += batteryLevel; // volt
   data += "\",\"N\":\""; data += (bootCount++); // (count++);
+  data += "\",\"BLE_MAC\":\"";  data += found_BLE_MAC_list;
   data += "\"}}";
 
   //        data += "\"T\":\"";  data += tempC;      //

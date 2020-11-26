@@ -5,9 +5,29 @@
   https://circuitdigest.com/microcontroller-projects/esp32-ble-server-how-to-use-gatt-services-for-battery-level-indication
   https://circuitdigest.com/microcontroller-projects/esp32-ble-client-connecting-to-fitness-band-to-trigger-light
   https://circuitdigest.com/microcontroller-projects/esp32-based-bluetooth-ibeacon
-  
+
 
 */
+
+// #include <Arduino.h>
+#include <WiFi.h>
+#include <HTTPClient.h>
+#include <HTTPUpdate.h>
+//#include <ESP32Ping.h> // https://github.com/marian-craciunescu/ESP32Ping
+
+int httpCode;
+String deviceName = "", deviceDescription, deviceMAC, deviceIP, deviceConfigParams;
+String WiFi_Status = "DISCONNECTED";
+String HTTP_post_status = "FAILURE";
+static uint8_t POST_EVERY_x_mS = 2000; // TO SEND POST NOTIFICATIONS AFTER EVERY 2 SECONDS
+int LED2 = 2; //GPIO2 - ESP32
+unsigned long totalPwrOnDuration = 0, WiFiConnAttemptDuration = 0, WiFiOnDuration = 0, WiFiOffDuration = 0, OTADuration = 0;
+//RTC_DATA_ATTR long int bootCount = 0;
+RTC_DATA_ATTR long int WiFiConnRetryAttempt = 0;
+
+
+
+
 #define LED_BUILTIN 2
 #define ARRSIZE(x) (sizeof(x)/sizeof(x[0]))
 #define ENDIAN_CHANGE_U16(x) ((((x)&0xFF00)>>8) + (((x)&0xFF)<<8))
@@ -18,9 +38,10 @@
 #include <BLEAdvertisedDevice.h>
 
 BLEScan *pBLEScan;
-                              //    JDY-08             ESP32-EDDYSTN          ESTIMOTE
+//    JDY-08             ESP32-EDDYSTN          ESTIMOTE
 String knownBLEAddresses[] = {"d4:36:39:c2:28:3c", "24:0a:c4:83:20:c2", "C8:E7:EC:39:B8:D5"};
 bool device_found[ARRSIZE(knownBLEAddresses)] = {0};
+String found_BLE_MAC_list;
 
 int RSSI_THRESHOLD = -75;
 int scanTime = 5; //In seconds
@@ -28,7 +49,7 @@ int scanTime = 5; //In seconds
 class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks
 {
     void onResult(BLEAdvertisedDevice advertisedDevice)
-    {     
+    {
       const char *foundBLEAdvertisedDevice = advertisedDevice.toString().c_str();
       std::string foundBLEaddr = advertisedDevice.getAddress().toString();
       std::string foundBLEname = advertisedDevice.getName();
@@ -36,15 +57,15 @@ class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks
       const char *foundBLEServiceData = advertisedDevice.getServiceData().c_str();
 
       //std::string foundBLEAdvertisedDevice = advertisedDevice.toString();
-      
-      
+
+
       //std::string foundBLEMfgData = advertisedDevice.getManufacturerData();
       //std::string foundBLEServiceData = advertisedDevice.getServiceData();
-      
+
       int foundBLErssi = advertisedDevice.getRSSI();
       int foundBLETXPower = advertisedDevice.getTXPower();
       //int foundBLEServiceDataCount = advertisedDevice.getServiceDataCount();
-      
+
       BLEScan* foundBLEgetScan = advertisedDevice.getScan();
 
       //puts(foundBLEMfgData);
@@ -53,10 +74,10 @@ class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks
       {
         //char *s2 = knownBLEAddresses[i];//.c_str();
         //if (strcmp(advertisedDevice.getAddress().toString().c_str(), knownBLEAddresses[i].c_str()) == 0)
-        if(!strcmp(foundBLEaddr.c_str(), knownBLEAddresses[i].c_str()))
+        if (!strcmp(foundBLEaddr.c_str(), knownBLEAddresses[i].c_str()))
         { device_found[i] = true;
           //Serial.printf("Advertised Device: %s \n", foundBLEAdvertisedDevice.c_str());
-          Serial.printf("Advertised Device : %s \n", advertisedDevice.toString().c_str());
+          Serial.printf("Advertised Device Data: %s \n", advertisedDevice.toString().c_str());
           //Serial.printf("Advertised Device 2: %s \n", foundBLEAdvertisedDevice);
 
           Serial.printf("\n BLEaddr = %s", foundBLEaddr.c_str());
@@ -67,12 +88,12 @@ class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks
           //Serial.printf("\n ServiceData = %s", foundBLEServiceData);
 
 
-          
-//          Serial.printf("\n MfgData = %s", foundBLEMfgData.c_str());
-//          Serial.printf("\n ServiceData = %s", foundBLEServiceData.c_str());
-          
-          
-          
+
+          //          Serial.printf("\n MfgData = %s", foundBLEMfgData.c_str());
+          //          Serial.printf("\n ServiceData = %s", foundBLEServiceData.c_str());
+
+
+
           //break;
           Serial.printf("\n\n----------------------------------------2-------------------------------------------\n\n");
         }
@@ -117,10 +138,39 @@ void loop()
     else
       digitalWrite(LED_BUILTIN, LOW);
   }
-  
+
   pBLEScan->clearResults();   // delete results fromBLEScan buffer to release memory
 
+  int flag = 0;
+  for (int i = 0; i < ARRSIZE(knownBLEAddresses); i++)
+  {
+    if (device_found[i])
+    { 
+      if(flag)
+      { found_BLE_MAC_list += ", " + knownBLEAddresses[i];
+      }
+      else
+      { found_BLE_MAC_list += knownBLEAddresses[i];      
+      }
+      flag++;
+    }
+    
+    device_found[i] = false;
+  }
+
+  Serial.print("\n\nlist of known_BLE_MACs found : ");
+  Serial.println(found_BLE_MAC_list);
+
   Serial.printf("\n\n----------------------------------------3-------------------------------------------\n\n");
+
+  //WiFi_ON();
+  HTTP_POST_NOTIF();  //  delay(1500);
+  WiFi_OFF();
+  found_BLE_MAC_list = "";
+  
+  delay(5000);
+
+  // ESP.restart();
 
 }
 

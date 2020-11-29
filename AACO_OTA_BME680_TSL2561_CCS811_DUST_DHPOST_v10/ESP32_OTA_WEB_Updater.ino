@@ -35,7 +35,7 @@
 
 
 #define AP_SSID  "ESP32AP"
-const char* host = "esp32"; // http://esp32.local
+const char* hostname = "esp32"; // http://esp32.local
 
 //const char* ssid = "NeMo";                   const char* password = "";
 //String deviceName = "", deviceDescription, deviceConfigParams;
@@ -158,10 +158,12 @@ void OTAsetup(void)
 
   WebOTA();
 
+  Serial.println("\n\n OTA WEBSERVER RUNNING FOR NEXT 15s . . .\n");
+
   for (int i = 0; i < 15000; i++)
   {
     //createRandomString();
-    server.handleClient();
+    server.handleClient(); // OTA WEBSERVER 
     delay(1);
     //randString = "";
     if (i % 5000 == 0)      Serial.println(i);
@@ -183,11 +185,25 @@ void WebOTA()
   //  Serial.println(WiFi.SSID());
 
   // deviceIP = WiFi.localIP().toString().c_str();
+
+
+  if (!MDNS.begin(hostname)) //use mdns for host name resolution
+  { Serial.println("Error setting up MDNS responder!"); // http://esp32.local/ota
+    while (1)    {
+      delay(1000);
+    }
+  }
+  Serial.println("mDNS responder started");
+//  Serial.print("Access the OTA webserver at http://");
+//  Serial.print(hostname);
+//  Serial.print(".local/");
+
+
   Serial.print("\n Visit for FOTA : http://");
   Serial.print(WiFi.localIP()); // (deviceIP); //
   Serial.println("/ota");
 
-  // Serial.println("\n Visit for OTA: http://esp32.local/ota \n"); 
+  // Serial.println("\n Visit for OTA: http://esp32.local/ota \n");
   // http://10.208.34.23/ota
   // http://10.208.22.164/ota
 
@@ -195,15 +211,6 @@ void WebOTA()
   // http://192.168.0.106/ota
   // http://192.168.0.100/binUpload
   // http://esp32.local/ota
-
-
-  if (!MDNS.begin(host)) //use mdns for host name resolution
-  { Serial.println("Error setting up MDNS responder!"); // http://esp32.local/ota
-    while (1)    {
-      delay(1000);
-    }
-  }
-  Serial.println("mDNS responder started");
 
   createRandomString();
 
@@ -244,13 +251,13 @@ void WebOTA()
     long int fileSize = sizeof(upload);
     //Serial.print("fileSize: ");    Serial.print(fileSize);    Serial.println("bytes");
     //    Serial.print("upload: ");    Serial.println(sizeof(upload));
-    
-    
-    
+
+
+
     if (upload.status == UPLOAD_FILE_START)
     { Serial.printf("Update: %s\n", upload.filename.c_str());
       if (!Update.begin(UPDATE_SIZE_UNKNOWN))
-      { 
+      {
         Update.printError(Serial); //start with max available size
       }
     }
@@ -261,7 +268,7 @@ void WebOTA()
     }
     else if (upload.status == UPLOAD_FILE_END)
     { if (Update.end(true)) //true to set the size to the current progress
-      { Serial.printf(" Update Success: %u bytes??\n Rebooting...\n", upload.totalSize); 
+      { Serial.printf(" Update Success: %u bytes??\n Rebooting...\n", upload.totalSize);
       }
       else
       { Update.printError(Serial);

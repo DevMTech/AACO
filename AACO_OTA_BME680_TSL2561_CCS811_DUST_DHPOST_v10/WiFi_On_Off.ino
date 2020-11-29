@@ -1,6 +1,80 @@
 //RTC_DATA_ATTR char* ssid  = "hcdc-pc54";   RTC_DATA_ATTR char* password = "gLz7jl5s";
 //RTC_DATA_ATTR char* ssid  = "cdac";   RTC_DATA_ATTR char* password = "";
 
+
+//#include <WiFiManager.h> // https://github.com/tzapu/WiFiManager
+
+//for LED status
+#include <Ticker.h>
+Ticker ticker;
+
+#ifndef LED_BUILTIN
+#define LED_BUILTIN 2 // ESP32 DOES NOT DEFINE LED_BUILTIN
+#endif
+
+int LED = LED_BUILTIN;
+
+void tick() //toggle state
+{ digitalWrite(LED, !digitalRead(LED)); // set pin to the opposite state
+}
+
+//gets called when WiFiManager enters configuration mode
+void configModeCallback(WiFiManager *myWiFiManager)
+{
+  Serial.println("Entered config mode");
+  Serial.println(WiFi.softAPIP());
+  
+  //if you used auto generated SSID, print it
+  Serial.println(myWiFiManager->getConfigPortalSSID());
+  
+  //entered config mode, make led toggle faster
+  ticker.attach(0.2, tick);
+}
+
+void WiFiManagerSetup()
+{
+  WiFi.mode(WIFI_STA); // explicitly set mode, esp defaults to STA+AP
+  // it is a good practice to make sure your code sets wifi mode how you want it.
+  
+  pinMode(LED, OUTPUT); //set led pin as output
+  // start ticker with 0.5 because we start in AP mode and try to connect
+  ticker.attach(0.5, tick);
+
+  //WiFiManager, Local intialization. Once its business is done, there is no need to keep it around
+  WiFiManager wm;
+
+  // wm.resetSettings(); //reset settings - wipe credentials for testing
+
+  //set callback that gets called when connecting to previous WiFi fails, and enters Access Point mode
+  wm.setAPCallback(configModeCallback);
+
+  bool res;
+
+  // fetches ssid and pass and tries to automatically connect to
+  // WiFi using saved credentials ...
+
+  // if connection fails, it starts an access point with the specified name ( "AutoConnectAP"),
+  // res = wm.autoConnect("AutoConnectAP"); // anonymous ap
+
+  // if empty will auto generate SSID, if password is blank it will be anonymous AP (wm.autoConnect())
+  res = wm.autoConnect(); // auto generated AP name from chipid
+
+  //res = wm.autoConnect("AutoConnectAP", "password"); // password protected AP, password filed should be 8 char. or longer
+  // then goes into a blocking loop awaiting configuration and will return success result
+
+  if (!res)
+  { Serial.println("Failed to connect and hit timeout");
+    ESP.restart(); // reset and try again, or maybe put it to deep sleep
+    delay(1000);
+  }
+  else
+  { Serial.println("Connected to the WiFi :"); // connected to the WiFi
+    ticker.detach();
+    digitalWrite(LED, HIGH); //keep LED on
+  }
+}
+
+
 void WiFi_OFF()
 { WiFi.disconnect(true);
   WiFi.mode(WIFI_OFF); // WiFi.mode( WIFI_MODE_NULL );   // btStart(); // btStop();
@@ -38,7 +112,7 @@ void WiFi_setup()
   Serial.print("\n\nMAC : "); // 84:0D:8E:C3:60:8C ESP32S
   Serial.println(deviceMAC); // (WiFi.macAddress());
 
-  WiFi.mode(WIFI_STA);
+//  WiFi.mode(WIFI_STA);
 
 
   // Configures static IP address
@@ -47,10 +121,11 @@ void WiFi_setup()
   //  }
 
   // Connect to Wi-Fi network with SSID and password
-  Serial.print("Connecting to ");
-  Serial.println(ssid);
-  WiFi.begin(ssid, password);
+//  Serial.print("Connecting to ");
+//  Serial.println(ssid);
+//  WiFi.begin(ssid, password);
 
+  WiFiManagerSetup();
 
   //Serial.println("Connecting Wifi...");
   WiFiConnAttemptDuration += millis(); // Keep track of when we started our attempt to get a WiFi connection
@@ -92,13 +167,13 @@ void WiFi_setup()
     Serial.println(WiFi.dnsIP(1));
     Serial.println("");
 
-//    bool success = Ping.ping("172.217.166.36", 3); // ("www.google.com", 3);
-//    if (!success)
-//    { Serial.println("\nFailed to Ping www.google.com");   // return;
-//    }
-//    else
-//    { Serial.println("\nSuccessfully Pinged www.google.com");
-//    }
+    //    bool success = Ping.ping("172.217.166.36", 3); // ("www.google.com", 3);
+    //    if (!success)
+    //    { Serial.println("\nFailed to Ping www.google.com");   // return;
+    //    }
+    //    else
+    //    { Serial.println("\nSuccessfully Pinged www.google.com");
+    //    }
   }
   else
   {

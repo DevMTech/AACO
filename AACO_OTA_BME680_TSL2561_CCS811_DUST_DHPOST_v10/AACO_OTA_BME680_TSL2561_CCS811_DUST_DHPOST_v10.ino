@@ -71,6 +71,8 @@
 //#include <WiFiMulti.h>
 //WiFiMulti wifiMulti;
 
+#include <WiFiManager.h> // https://github.com/tzapu/WiFiManager
+
 #define LED_BUILTIN   2 // GPIO02 ESP32
 #define PFET_3V3_BUS 25 // GPIO25 ESP32
 #define PFET_POT_DIV 32 // GPIO32 ESP32
@@ -190,6 +192,27 @@ unsigned long totalPwrOnDuration = 0, WiFiConnAttemptDuration = 0, WiFiOnDuratio
 // 24:0A:C4:83:20:C0 38PIN
 // CC:50:E3:A9:4C:D8 32PIN
 
+
+// Method to print the reason by which ESP32 has been awaken from sleep
+void print_wakeup_reason()
+{
+  esp_sleep_wakeup_cause_t wakeup_reason;
+
+  wakeup_reason = esp_sleep_get_wakeup_cause();
+
+  switch(wakeup_reason)
+  {
+    case ESP_SLEEP_WAKEUP_EXT0 : Serial.println("Wakeup caused by external signal using RTC_IO"); break;
+    case ESP_SLEEP_WAKEUP_EXT1 : Serial.println("Wakeup caused by external signal using RTC_CNTL"); break;
+    case ESP_SLEEP_WAKEUP_TIMER : Serial.println("Wakeup caused by timer"); break;
+    case ESP_SLEEP_WAKEUP_TOUCHPAD : Serial.println("Wakeup caused by touchpad"); break;
+    case ESP_SLEEP_WAKEUP_ULP : Serial.println("Wakeup caused by ULP program"); break;
+    default : Serial.printf("Wakeup was not caused by deep sleep: %d\n",wakeup_reason); break;
+  }
+}
+
+
+
 void setup()
 { // WAKE UP FROM DEEPSLEEP
   totalPwrOnDuration = millis();
@@ -208,11 +231,16 @@ void setup()
 
   // WiFi_OFF();  //  WiFi.mode(WIFI_OFF); // WiFi.mode( WIFI_MODE_NULL );   // btStart(); // btStop();
 
-
-
   Serial.begin(BAUD_RATE); delay(100);
 
   Serial.println("\n\n*********************WAKE UP***********************\n\n");
+
+  bootCount++; //Increment boot number and print it every reboot
+  Serial.println("Boot Count: " + String(bootCount));
+
+  print_wakeup_reason(); //Print the wakeup reason for ESP32
+
+  Serial.print("ESP32 SDK: ");  Serial.println(ESP.getSdkVersion());
 
   //Serial.println("\nFIRMWARE_MAJOR_VERSION: " + String(NEW_FIRMWARE_MAJOR_VERSION));
 
@@ -227,12 +255,6 @@ void setup()
     Serial.println("\nFIRMWARE_MINOR_VERSION: " + String(FIRMWARE_MINOR_VERSION));
     Serial.println("\nNEW_FIRMWARE_MINOR_VERSION: " + String(NEW_FIRMWARE_MINOR_VERSION));
   }
-
-
-  bootCount++;
-  Serial.println("Boot Count: " + String(bootCount));
-
-  Serial.print("ESP32 SDK: ");  Serial.println(ESP.getSdkVersion());
 
   //  pinMode(PFET_3V3_BUS, OUTPUT); // TURN ON BUS
   //  digitalWrite(PFET_3V3_BUS, LOW); // POWER ON 3V3 BUS -> TURN ON SPI/I2C PERIPHERALS
@@ -334,7 +356,7 @@ void loopOnce()
     //if(!bootCount)
     //if (bootCount < 6) // OR USE AN EXTERNAL INTERRUPT TO TRIGGER THE OTA FEATURE
     {
-      OTAsetup(); // OTA VIA SERVER IN ESP32
+      OTAsetup(); // OTA VIA WEB SERVER RUNNING IN ESP32
     }
 
     OTA_HTTP_UPDATER(); // OTA FROM CDAC SERVER

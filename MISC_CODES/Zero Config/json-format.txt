@@ -1,0 +1,35 @@
+{
+ "device":{
+           "mac":"11:22:33:44:98",
+           "ip":"127.0.0.1",
+           "name":"Testing Purpose Device",
+           "description":"To test the integration of device with platform"
+ },
+
+ "firmware":{
+           "TargetedApplication":"Testing purpose",
+           "Version_Number":"1.0.0"
+ },
+
+ "actions":[
+               {
+                 "actionid":1,
+				 "key":[1,2,3,4,5],
+                 "values":["1", "2", "3", "4", "5"],               
+                 "description":"Change the Key values"
+               },    
+             ],
+
+  "events":[
+               {
+                 "eventid": 1,
+                 "key": ["ButtonID", "Value", "PressType"],
+                 "values": ["1", "Single Click", [1, 2, 3]],
+                 "Description": "Triggers on event of button press"
+               },
+             ],
+
+  "configuration": { "ssid": "cdac", "pwd": "", "PlatformUrl": "http://10.208.34.54:3300", "ServerUrl":"http://10.208.35.169:3301" }
+}
+
+//char json[] = "{\"Device\": {\"MAC\": \"\",\"IP\": \"\",\"UUID\":\"-\"},\"Networking\": {\"SSID\": \"\",\"Password\": \"\"},\"Configuration\": {\"PlatformURL\": \"url\",\"Button_1\":\"bus\",\"Button_2\":2,\"Button_3\":3,\"Button_4\":4,\"Button_5\":5,\"Button_6\":6,\"Button_7\":7,\"Button_8\":8,\"Button_9\":9,\"Button_10\":10,\"Button_11\":11,\"Button_12\":12,\"Button_13\":13,\"Button_14\":14,\"Button_15\":15,\"Button_16\":16,\"Button_17\":17},\"Firmware\": {\"Application\": \"Tactile\",\"Version\": \"1.0\"},\"Actions\": [{\"Action_id\": 1, \"req\": [\"ButtonID\", \"Value\"] ,\"res\":[\"Status\"],\"Description\": \"Please set the value to publish on button press\"},{\"Action_id\": 2, \"req\": [\"PlatformURL\", \"URL\"] ,\"res\":[\"Status\"],\"Description\": \"Please set the platform URL\"}],\"Events\": [{\"Event_id\": 2,\"req\": [\"ButtonID\", \"Value\", \"PressType\"],\"res\":[\"Status\"],\"Description\": \"Triggers on event of button press\"}]}";

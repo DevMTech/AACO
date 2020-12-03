@@ -97,7 +97,7 @@ void HTTP_POST_NOTIF()
 
     int count = 1;    httpCode = 0;
 
-    while (httpCode != 201 && count <= 5)
+    while (httpCode != 201 && count <= 3)
     { httpCode =  http.POST(data);
       Serial.println("http post attempt: " + String(count));
       count++;

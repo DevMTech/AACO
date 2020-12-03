@@ -67,6 +67,7 @@ void batteryLevelRead()
   //  digitalWrite(PFET_POT_DIV, HIGH); // POWER OFF POT DIV
 
   batteryLevel = batteryRaw * ADC_VOLT_MAX / (4095 * ratio);
+//  batteryLevel = batteryRaw * 3.6 / (4095);
 //    batteryLevel = batteryRaw * ADC_VOLT_MAX / (4095.0f);
 
   Serial.println("Battery Level RAW : " + String(batteryRaw));

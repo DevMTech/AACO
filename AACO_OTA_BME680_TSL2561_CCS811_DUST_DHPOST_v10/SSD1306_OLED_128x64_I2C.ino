@@ -22,7 +22,7 @@
 
  
 
-/**/ // REMOVE THIS TO ACTIVATE/DEACTIVATE SSD1306 OLED CODE
+/* // REMOVE THIS TO ACTIVATE/DEACTIVATE SSD1306 OLED CODE
 
 
 #include <SPI.h>
@@ -201,7 +201,6 @@ void WIFI_HTTP_STATUS_OLED()
     display.display();
     delay(OLED_DELAY_1);
     display.clearDisplay(); // clear display
-
 
   }
 

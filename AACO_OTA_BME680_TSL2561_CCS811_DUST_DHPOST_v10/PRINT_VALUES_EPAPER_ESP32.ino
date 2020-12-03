@@ -1,4 +1,4 @@
-/*
+/**/
 // Display Library example for SPI e-paper panels from Dalian Good Display and boards from Waveshare.
 // Requires HW SPI and Adafruit_GFX. Caution: these e-papers require 3.3V supply AND data lines!
 // Display Library based on Demo Example from Good Display: http://www.e-paper-display.com/download_list/downloadcategoryid=34&isMode=false.html
@@ -32,10 +32,10 @@
 #include <GxEPD2_3C.h> // 3-color e-papers //#include <GxEPD2_BW.h>
 
 
-#if defined(ESP32) 
-// select one and adapt to your mapping, can use full buffer size (full HEIGHT) 
+#if defined(ESP32)
+// select one and adapt to your mapping, can use full buffer size (full HEIGHT)
 
-GxEPD2_3C<GxEPD2_213c, GxEPD2_213c::HEIGHT> display(GxEPD2_213c(SS, 2, 0, 4)); // (SS/CS=5, DC=2, RST=0, BUSY=4)  
+GxEPD2_3C<GxEPD2_213c, GxEPD2_213c::HEIGHT> display(GxEPD2_213c(SS, 2, 0, 4)); // (SS/CS=5, DC=2, RST=0, BUSY=4)
 
 //GxEPD2_3C<GxEPD2_213c, GxEPD2_213c::HEIGHT> display(GxEPD2_213c(27, 12, 0, 14));
 //GxEPD2_3C<GxEPD2_213c, GxEPD2_213c::HEIGHT> display(GxEPD2_213c( SS, 17, 16, 4));
@@ -73,8 +73,8 @@ void ePaperSetup()
   // first update should be full refresh
 
   // ePaperPrintRTCtime(); delay(1000);
-  ePaperPrintValues1(); delay(1000);
-  ePaperPrintValues2(); delay(1000);
+  ePaperPrintValues1(); // delay(1000);
+  ePaperPrintValues2(); // delay(1000);
 
   // helloWorldForDummies();     delay(1000);
   // partial refresh mode can be used to full screen, if display panel hasFastPartialUpdate
@@ -90,10 +90,11 @@ void ePaperSetup()
 }
 
 
-// ePaperPrintValues("customTextToPrint", &FreeMonoBold9pt7b); // function call
-// void ePaperPrintValues(const char text[], const GFXfont* f) // function definition
-void ePaperPrintValues1()
-{ Serial.println("\n\t ePaperPrintValues1()\n");
+void WIFI_HTTP_STATUS_EPAPER()
+{
+  display.init(115200);
+  
+  Serial.println("\n\t WIFI_HTTP_STATUS_EPAPER()\n");
   display.setFullWindow();
   display.setRotation(1);
   display.fillScreen(GxEPD_WHITE);
@@ -105,59 +106,40 @@ void ePaperPrintValues1()
 
   display.firstPage();
 
-  do
-  {
-    // Serial.println("\n\tePaperPrintValues()\n");
-    display.println();
+  do 
+  { display.println();
     
-//    display.setTextColor(GxEPD_BLACK);
-    display.print("Pressure ");
-//    display.setTextColor(GxEPD_RED);
-    display.print(pressure);
-    display.println("hPa");
+    //    display.setTextColor(GxEPD_BLACK);
+    display.print("WiFi   : ");
+    //    display.setTextColor(GxEPD_RED);
+    display.print(WiFi_Status);
+    display.println("");
 
-//    display.setTextColor(GxEPD_BLACK);
-    display.print("Altitude ");
-//    display.setTextColor(GxEPD_RED);
-    display.print(alti);
-    display.println("m");
+    //    display.setTextColor(GxEPD_BLACK);
+    display.print("HTTP POST: ");
+    //    display.setTextColor(GxEPD_RED);
+    display.print(HTTP_post_status);
+    display.println("");
 
-//    display.setTextColor(GxEPD_BLACK);
-    display.print("Gas/VOC  ");
-//    display.setTextColor(GxEPD_RED);
-    display.print(VOC);
-    display.println("KOhms");
+    if (WiFi.status() == WL_CONNECTED)
+    {
+      //    display.setTextColor(GxEPD_BLACK);
+      display.println("Local IP: ");
+      //    display.setTextColor(GxEPD_RED);
+      display.print(deviceIP);
+      display.println("");
+    }
+  }while (display.nextPage());
 
-//    display.setTextColor(GxEPD_BLACK);
-    display.print("PM10Dust ");
-//    display.setTextColor(GxEPD_RED);
-    display.print((int)pm_10);
-    display.println("PPM");
-
-//    display.setTextColor(GxEPD_BLACK);
-//    display.print("Battery R ");
-//    display.setTextColor(GxEPD_RED);
-//    display.print(batteryRaw);
-//    display.println(" ");
-
-//    display.setTextColor(GxEPD_BLACK);
-    display.print("Battery  ");
-//    display.setTextColor(GxEPD_RED);
-    display.print(batteryLevel);
-    display.println("V");
-
-//    display.setTextColor(GxEPD_BLACK);
-//    display.print("Battery % ");
-//    display.setTextColor(GxEPD_RED);
-//    display.print(batteryLevelPercent); // (int)
-//    display.println("%");
-    
-  }
-  while (display.nextPage());
+  delay(2000);
 }
 
+
+
 void ePaperPrintValues2()
-{ Serial.println("\n\t ePaperPrintValues2()\n");
+{ display.init(115200);
+  
+  Serial.println("\n\t ePaperPrintValues2()\n");
   display.setFullWindow();
   display.setRotation(1);
   display.fillScreen(GxEPD_WHITE);
@@ -175,40 +157,46 @@ void ePaperPrintValues2()
 
     display.println();
     display.print("Temperature ");
-//    display.setTextColor(GxEPD_RED);
-    //  display.setTextColor(display.epd2.hasColor ? GxEPD_RED : GxEPD_BLACK);
-    //    double val = 22.05;    String valString = String(val);
+    //display.setTextColor(GxEPD_RED);
+    //display.setTextColor(display.epd2.hasColor ? GxEPD_RED : GxEPD_BLACK);
+    //double val = 22.05;    String valString = String(val);
     display.print(tempC);
     display.println("*C");
 
-//    display.setTextColor(GxEPD_BLACK);
+
+    //display.setTextColor(GxEPD_BLACK);
     display.print("RelHumidity ");
-//    display.setTextColor(GxEPD_RED);
-    display.print((int)humidity);
+    //display.setTextColor(GxEPD_RED);
+    display.print(humidity); // (int)
     display.println("%");
 
-//    display.setTextColor(GxEPD_BLACK);
-    display.print("Light Int.  ");
-//    display.setTextColor(GxEPD_RED);
+    
+    //display.setTextColor(GxEPD_BLACK);
+    display.print("Light Int. ");
+    //display.setTextColor(GxEPD_RED);
+    //display.print(lux);
     display.print((int)lux);
+    //floatToString =  String(lux, 2);
+    //display.print(floatToString);
     display.println("Lux");
 
-//    display.setTextColor(GxEPD_BLACK);  
-    display.print("CO2 Conc. ");
-//    display.setTextColor(GxEPD_RED);
+
+    // display.setTextColor(GxEPD_BLACK);
+    display.print("CO2 Conc.  ");
+    // display.setTextColor(GxEPD_RED);
     display.print(eCO2);
     display.println("PPM");
 
-//    display.setTextColor(GxEPD_BLACK);
-//    display.print("CO2 Conc. ");
-//    display.setTextColor(GxEPD_RED);
-//    display.print(CO2);
-//    display.println("PPM");
+    //    display.setTextColor(GxEPD_BLACK);
+    //    display.print("CO2 Conc. ");
+    //    display.setTextColor(GxEPD_RED);
+    //    display.print(CO2);
+    //    display.println("PPM");
 
-//    display.setTextColor(GxEPD_BLACK);
-    display.print("PM2.5Dust   ");
-    // display.print("PM2.5 "); // PM2.5 
-//    display.setTextColor(GxEPD_RED);
+    // display.setTextColor(GxEPD_BLACK);
+    display.print("PM2.5Dust  ");
+    // display.print("PM2.5 "); // PM2.5
+    // display.setTextColor(GxEPD_RED);
     display.print((int)pm_2point5);
     display.println("PPM ");
 
@@ -217,10 +205,81 @@ void ePaperPrintValues2()
     //  display.setTextColor(GxEPD_RED);
     //  display.print(pm_10);
     //  display.println("PPM");
-  }
-  while (display.nextPage());
+    
+  }while (display.nextPage());
+
+  delay(1000);
 }
 
+
+// ePaperPrintValues("customTextToPrint", &FreeMonoBold9pt7b); // function call
+// void ePaperPrintValues(const char text[], const GFXfont* f) // function definition
+void ePaperPrintValues1()
+{ display.init(115200);
+  
+  Serial.println("\n\t ePaperPrintValues1()\n");
+  display.setFullWindow();
+  display.setRotation(1);
+  display.fillScreen(GxEPD_WHITE);
+  display.setTextColor(GxEPD_BLACK);
+  display.setFont(&FreeMonoBold9pt7b); //  display.setFont(f);
+  display.setCursor(0, 0);
+
+  //  display.println(text); // "customTextToPrint"
+
+  display.firstPage();
+
+  do
+  {
+    // Serial.println("\n\tePaperPrintValues()\n");
+    display.println();
+
+    //    display.setTextColor(GxEPD_BLACK);
+    display.print("Pressure ");
+    //    display.setTextColor(GxEPD_RED);
+    display.print(pressure);
+    display.println("hPa");
+
+    //    display.setTextColor(GxEPD_BLACK);
+    display.print("Altitude ");
+    //    display.setTextColor(GxEPD_RED);
+    display.print(alti);
+    display.println("m");
+
+    //    display.setTextColor(GxEPD_BLACK);
+    display.print("Gas/VOC  ");
+    //    display.setTextColor(GxEPD_RED);
+    display.print(VOC);
+    display.println("KOhms");
+
+    //    display.setTextColor(GxEPD_BLACK);
+    display.print("PM10Dust ");
+    //    display.setTextColor(GxEPD_RED);
+    display.print((int)pm_10);
+    display.println("PPM");
+
+    //    display.setTextColor(GxEPD_BLACK);
+    //    display.print("Battery R ");
+    //    display.setTextColor(GxEPD_RED);
+    //    display.print(batteryRaw);
+    //    display.println(" ");
+
+    //    display.setTextColor(GxEPD_BLACK);
+    display.print("Battery  ");
+    //    display.setTextColor(GxEPD_RED);
+    display.print(batteryLevel);
+    display.println("V");
+
+    //    display.setTextColor(GxEPD_BLACK);
+    //    display.print("Battery % ");
+    //    display.setTextColor(GxEPD_RED);
+    //    display.print(batteryLevelPercent); // (int)
+    //    display.println("%");
+
+  }while (display.nextPage());
+
+  delay(1000);
+}
 
 
 //void ePaperPrintRTCtime()
@@ -230,10 +289,10 @@ void ePaperPrintValues2()
 //
 //  display.fillScreen(GxEPD_WHITE);
 //  display.setTextColor(GxEPD_BLACK);
-//  
+//
 ////  display.fillScreen(GxEPD_BLACK);
 ////  display.setTextColor(GxEPD_WHITE);
-//  
+//
 //  display.setFont(&FreeMonoBold9pt7b); //  display.setFont(f);
 //  display.setCursor(0, 0);
 //
@@ -246,19 +305,19 @@ void ePaperPrintValues2()
 //  do
 //  {
 //    // Serial.println("\n\tePaperPrintValues()\n");
-//    
+//
 //    display.println();
 //
 //    DateTime now = rtc.now(); // https://github.com/adafruit/RTClib
 //
 ////    timeStamp = String(now.hour(), DEC);
-////    timeStamp = timeStamp + String(".") + String(now.minute(), DEC); // String(":") + 
-////    timeStamp = timeStamp + String(".") + String(now.second(), DEC); // ":" + 
+////    timeStamp = timeStamp + String(".") + String(now.minute(), DEC); // String(":") +
+////    timeStamp = timeStamp + String(".") + String(now.second(), DEC); // ":" +
 ////    timeStamp = timeStamp + String("-") + String(now.day(), DEC);
 ////    timeStamp = timeStamp + String("-") + String(now.month(), DEC);
 ////    timeStamp = timeStamp + String("-") + String(now.year(), DEC);
 ////    Serial.println(String("\n\tTime Stamp : ")+timeStamp+String("\n"));
-//    
+//
 //    // RTC TIME
 ////    display.setTextColor(GxEPD_BLACK); //    display.setTextColor(GxEPD_WHITE);
 //    display.print(" Time  ");

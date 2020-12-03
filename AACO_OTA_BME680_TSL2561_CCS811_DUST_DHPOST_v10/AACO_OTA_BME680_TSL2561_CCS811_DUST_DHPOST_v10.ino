@@ -179,6 +179,7 @@ uint16_t eCO2, tVOC; // estimated total Volatile Organic Compunds // errstat, ra
 float batteryRaw = 0.0, batteryLevel = 0.0, batteryLevelPercent = 0.0;
 String timeStamp, timeHMS, Date;
 String found_BLE_MAC_list;
+//String floatToString;
 
 int httpCode;
 String deviceName = "", deviceDescription, deviceMAC, deviceIP, deviceConfigParams;
@@ -316,13 +317,14 @@ void loopOnce()
   // TimeNow();   delay(50);
 
   /////////////////// FOR EPAPER : UNCOMMENT NEXT LINE &  THIS TAB :  "PRINT_VALUES_EPAPER_ESP32" /////////////////////
+  
   //  ePaperSetup(); // ePaperPrintValues(); delay(1000);  //  delay(500);
 
   /////////////////// FOR OLED : UNCOMMENT NEXT LINE &  THIS TAB : "SSD1306_OLED_128x64_I2C" /////////////////////
-  SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
-  DRAW_BITMAP_LOGO();
-  print_PARAMS();
-  BLANK_SCREEN();
+//  SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
+//  DRAW_BITMAP_LOGO();
+//  print_PARAMS();
+//  BLANK_SCREEN();
 
   digitalWrite(PFET_3V3_BUS, HIGH); // POWER OFF 3V3 BUS -> TURN OFF SPI/I2C PERIPHERALS
   // pinMode(PFET_3V3_BUS, INPUT); // TURN OFF 3V3 BUS
@@ -342,10 +344,14 @@ void loopOnce()
   digitalWrite(PFET_3V3_BUS, LOW); // POWER ON 3V3 BUS -> TURN ON SPI/I2C PERIPHERALS
   delay(5);
 
+  /////////////////// FOR EPAPER : UNCOMMENT NEXT LINE &  THIS TAB :  "PRINT_VALUES_EPAPER_ESP32" /////////////////////
+  WIFI_HTTP_STATUS_EPAPER();
+  ePaperPrintValues2();
+  
   /////////////////// FOR OLED : UNCOMMENT NEXT LINE &  THIS TAB : "SSD1306_OLED_128x64_I2C" /////////////////////
-  SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
-  WIFI_HTTP_STATUS_OLED();
-  BLANK_SCREEN();
+//  SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
+//  WIFI_HTTP_STATUS_OLED();
+//  BLANK_SCREEN();
 
   digitalWrite(PFET_3V3_BUS, HIGH); // POWER OFF 3V3 BUS -> TURN OFF SPI/I2C PERIPHERALS
   //pinMode(PFET_3V3_BUS, INPUT); // TURN OFF 3V3 BUS

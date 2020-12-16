@@ -95,6 +95,9 @@
 #include <esp_wifi.h>
 #include <esp_bt.h>
 
+#define OLED  // UNCOMMENT TO ENABLE
+//#define EPAPER   // UNCOMMENT TO ENABLE
+
 #define WIFI_TIMEOUT 1000 // 1second in milliseconds
 //#define DEEP_SLEEP_TIME 10 // seconds
 
@@ -123,6 +126,8 @@
 //#define DEBUG_Sprint2ln(a, b)
 //#define DEBUG_Sprint2(a, b)
 //#define BAUD_RATE 9600 // USED BY SENSOR ON UART0 //static const uint8_t
+
+String SOFT_AP_SSID;
 
 // IP             // GATEWAY/BROADCAST  // NETMASK/SUB-NET
 //10.208.35.169   // 10.208.35.255      // 255.255.254.0      // 10.208.0.11  // 10.208.11.16  // CENTOS
@@ -201,14 +206,14 @@ void print_wakeup_reason()
 
   wakeup_reason = esp_sleep_get_wakeup_cause();
 
-  switch(wakeup_reason)
+  switch (wakeup_reason)
   {
     case ESP_SLEEP_WAKEUP_EXT0 : Serial.println("Wakeup caused by external signal using RTC_IO"); break;
     case ESP_SLEEP_WAKEUP_EXT1 : Serial.println("Wakeup caused by external signal using RTC_CNTL"); break;
     case ESP_SLEEP_WAKEUP_TIMER : Serial.println("Wakeup caused by timer"); break;
     case ESP_SLEEP_WAKEUP_TOUCHPAD : Serial.println("Wakeup caused by touchpad"); break;
     case ESP_SLEEP_WAKEUP_ULP : Serial.println("Wakeup caused by ULP program"); break;
-    default : Serial.printf("Wakeup was not caused by deep sleep: %d\n",wakeup_reason); break;
+    default : Serial.printf("Wakeup was not caused by deep sleep: %d\n", wakeup_reason); break;
   }
 }
 
@@ -235,7 +240,11 @@ void setup()
   Serial.begin(BAUD_RATE); delay(100);
 
   Serial.println("\n\n*********************WAKE UP***********************\n\n");
-
+  
+  
+  if(!bootCount)
+  { WiFiManagerSetup();
+  }
   bootCount++; //Increment boot number and print it every reboot
   Serial.println("Boot Count: " + String(bootCount));
 
@@ -296,6 +305,7 @@ void loopOnce()
   // TEST_OLED();
   initialize();
 
+  Serial.println("\n POWERING ON 3V3 BUS -> TURNING ON SPI/I2C PERIPHERALS ");
   //  digitalWrite(PFET_POT_DIV, LOW); // POWER ON POT DIV
   pinMode(PFET_3V3_BUS, OUTPUT); // TURN ON BUS
   digitalWrite(PFET_3V3_BUS, LOW); // POWER ON 3V3 BUS -> TURN ON SPI/I2C PERIPHERALS
@@ -316,16 +326,20 @@ void loopOnce()
 
   // TimeNow();   delay(50);
 
+#ifdef EPAPER
   /////////////////// FOR EPAPER : UNCOMMENT NEXT LINE &  THIS TAB :  "PRINT_VALUES_EPAPER_ESP32" /////////////////////
-  
-  //  ePaperSetup(); // ePaperPrintValues(); delay(1000);  //  delay(500);
+  ePaperSetup(); // ePaperPrintValues(); delay(1000);  //  delay(500);
+#endif
 
+#ifdef OLED
   /////////////////// FOR OLED : UNCOMMENT NEXT LINE &  THIS TAB : "SSD1306_OLED_128x64_I2C" /////////////////////
-//  SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
-//  DRAW_BITMAP_LOGO();
-//  print_PARAMS();
-//  BLANK_SCREEN();
+  SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
+  DRAW_BITMAP_LOGO();
+  print_PARAMS();
+  BLANK_SCREEN();
+#endif
 
+  Serial.println("\n POWERING OFF 3V3 BUS -> TURNING OFF SPI/I2C PERIPHERALS \n");
   digitalWrite(PFET_3V3_BUS, HIGH); // POWER OFF 3V3 BUS -> TURN OFF SPI/I2C PERIPHERALS
   // pinMode(PFET_3V3_BUS, INPUT); // TURN OFF 3V3 BUS
   delay(5);
@@ -340,19 +354,25 @@ void loopOnce()
 
   HTTP_POST_NOTIF();  //  delay(1500);
 
+  Serial.println("\n POWERING ON 3V3 BUS -> TURNING ON SPI/I2C PERIPHERALS ");
   pinMode(PFET_3V3_BUS, OUTPUT); // TURN ON 3V3 BUS
   digitalWrite(PFET_3V3_BUS, LOW); // POWER ON 3V3 BUS -> TURN ON SPI/I2C PERIPHERALS
   delay(5);
 
+#ifdef EPAPER
   /////////////////// FOR EPAPER : UNCOMMENT NEXT LINE &  THIS TAB :  "PRINT_VALUES_EPAPER_ESP32" /////////////////////
   WIFI_HTTP_STATUS_EPAPER();
   ePaperPrintValues2();
-  
-  /////////////////// FOR OLED : UNCOMMENT NEXT LINE &  THIS TAB : "SSD1306_OLED_128x64_I2C" /////////////////////
-//  SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
-//  WIFI_HTTP_STATUS_OLED();
-//  BLANK_SCREEN();
+#endif
 
+#ifdef OLED
+  /////////////////// FOR OLED : UNCOMMENT NEXT LINE &  THIS TAB : "SSD1306_OLED_128x64_I2C" /////////////////////
+  SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
+  WIFI_HTTP_STATUS_OLED();
+  BLANK_SCREEN();
+#endif
+
+  Serial.println("\n POWERING OFF 3V3 BUS -> TURNING OFF SPI/I2C PERIPHERALS \n ");
   digitalWrite(PFET_3V3_BUS, HIGH); // POWER OFF 3V3 BUS -> TURN OFF SPI/I2C PERIPHERALS
   //pinMode(PFET_3V3_BUS, INPUT); // TURN OFF 3V3 BUS
   //delay(10);
@@ -365,7 +385,7 @@ void loopOnce()
       OTAsetup(); // OTA VIA WEB SERVER RUNNING IN ESP32
     }
 
-    OTA_HTTP_UPDATER(); // OTA FROM CDAC SERVER
+    // OTA_HTTP_UPDATER(); // OTA FROM CDAC SERVER
 
     //  WEB_SERVER_setup();
     //  WEB_SERVER_loop();

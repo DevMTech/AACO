@@ -12,6 +12,8 @@
 //const char* mqtt_server = "10.42.0.1";
 
 const char* ssid = "cdac";      const char* password = "";
+
+// Add your MQTT Broker IP address, example:
 //const char* mqtt_server = "10.208.35.169";
 const char* mqtt_server = "10.208.35.150";
 
@@ -25,6 +27,8 @@ const char* PUB_TOPIC = "vats/museum123"; // "ATS/ESP";
 WiFiClient espClient;
 PubSubClient client(espClient);
 
+long lastMsg = 0;
+
 //================================================================
 
 static BLEAddress *pServerAddress;
@@ -36,14 +40,17 @@ String Name;
 
 int scanTime = 5; //In seconds
 int i;
+
 // "c8:fd:19:4a:be:1d"; // JDY-08 COIN CELL // "985dad2314bd" "98:5d:ad:23:14:bd"
 String knownAddresses[] = {"c8:fd:19:4a:be:1d","c8:fd:19:9c:85:98", "c8:fd:19:4a:f7:72", "c8:fd:19:4a:f7:46"};
 //String knownAddresses[] = {"BLE1:c8:fd:19:9c:85:98","BLE2:c8:fd:19:4a:f7:46","BLE3:c8:fd:19:4a:f7:72"};
 
 unsigned long entry;
 
-class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks {
-    void onResult(BLEAdvertisedDevice Device) {
+class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks 
+{
+    void onResult(BLEAdvertisedDevice Device) 
+    {
 
       pServerAddress = new BLEAddress(Device.getAddress());
       bool known = false;
@@ -118,7 +125,8 @@ class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks {
     }
 };
 
-void setup() {
+void setup() 
+{
   Serial.begin(115200);
   Serial.println("Scanning...");
 
@@ -136,7 +144,9 @@ void setup() {
   delay(1000);
   
 }
-void setup_wifi() {
+
+void setup_wifi() 
+{
 
   delay(10);
   // We start by connecting to a WiFi network
@@ -146,7 +156,8 @@ void setup_wifi() {
 
   WiFi.begin(ssid, password);
 
-  while (WiFi.status() != WL_CONNECTED) {
+  while (WiFi.status() != WL_CONNECTED) 
+  {
     delay(500);
     Serial.print(".");
   }
@@ -158,25 +169,38 @@ void setup_wifi() {
   Serial.println(WiFi.macAddress());
 }
 
-void callback(char* topic, byte* payload, unsigned int length) {
+void callback(char* topic, byte* payload, unsigned int length) 
+{
   Serial.print("Message arrived [");
   Serial.print(topic);
-  Serial.print("] ");
-  for (int i = 0; i < length; i++) {
+  Serial.println("] ");
+
+  Serial.print("Message: ");
+  String messageTemp;
+  for (int i = 0; i < length; i++) 
+  { messageTemp += (char)payload[i];
     Serial.print((char)payload[i]);
   }
+
+  if (String(topic) == SUB_TOPIC) // "esp32/output") 
+  {
+    Serial.print("The notification is ");
+    Serial.println(messageTemp);
+  }
+  
   Serial.println();
 }
 
 void reconnect() {
   // Loop until we're reconnected
-  while (!client.connected()) {
+  while (!client.connected()) 
+  {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
     if (client.connect("ESP32Client")) 
     {
       Serial.println("connected");      
-      client.subscribe(SUB_TOPIC);
+      client.subscribe(SUB_TOPIC); // Subscribe
     } 
     else 
     {
@@ -195,9 +219,30 @@ void loop() {
   pBLEScan->clearResults();   // delete results fromBLEScan buffer to release memory
   delay(5000);
 
- /* if (!client.connected()) 
+ if (!client.connected()) 
   {    reconnect();
   }
   client.loop();
-  delay(1000);*/
+  delay(1000);
+
+  long now = millis();
+  if (now - lastMsg > 5000) 
+  {
+    lastMsg = now;
+    
+    
+    float scanStatus = 10; //DUMMY -> MODIFY   
+    
+    // Convert the value to a char array
+    char scanStatusString[8];       //DUMMY -> MODIFY
+    dtostrf(scanStatus, 1, 2, scanStatusString); //DUMMY -> MODIFY
+
+    
+    Serial.print("BLE_scan_status : ");
+    Serial.println(scanStatusString);
+
+    
+    client.publish(PUB_TOPIC, scanStatusString);
+  }
+  
 }

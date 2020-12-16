@@ -1,9 +1,15 @@
 /******************************************CONFIGURE THESE PARAMETERS***************************************************/
 
-String accessTokenS = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTkyNDg4NTgwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.uNqldVfNzxl3aL_kb9UvxmUHjLMsYpbRt7w3so0O3ig";
-String DH_DEVICE_ID = "b-9-2"; // "AACO163"; // "device2"; //  DEVICE ID
+// ACCESS 2029-12-31
+String accessTokenS = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTg5MzQzMjU0MDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.HQN9Fb7mMhAu2AJVhej4x1-wYT_JMY1i1VDnVDKY9u0";
 
-String DH_SERVER_IP = "10.208.34.163"; // "10.42.0.1"; // "10.208.34.242"; // "192.168.122.1"; // "10.42.0.1"; //  "10.208.37.221"; // "10.208.35.79"; // ifconfig
+// REFRESH 2029-12-31 eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTg5MzQzMjU0MDAwMCwidCI6MCwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.WqHgb-2-yV7jlXDu_Dhs9YB7k4UJOm8OX-gAUGgGYJs
+
+// eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTkyNDg4NTgwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.uNqldVfNzxl3aL_kb9UvxmUHjLMsYpbRt7w3so0O3ig";
+
+String DH_DEVICE_ID = "e50d6085-2aba-48e9-b1c3-73c673e414be"; // "b-9-2"; // "AACO163"; // "device2"; //  DEVICE ID
+
+String DH_SERVER_IP = "10.208.34.200"; // "10.208.34.163"; // "10.42.0.1"; // "10.208.34.242"; // "192.168.122.1"; // "10.42.0.1"; //  "10.208.37.221"; // "10.208.35.79"; // ifconfig
 String URL = "http://" + DH_SERVER_IP + ":80/api/rest/device/" + DH_DEVICE_ID + "/notification"; //HTTP DEVICE NAME: ESP_AFMS_01
 
 /******************************************CONFIGURE THESE PARAMETERS***************************************************/
@@ -15,7 +21,7 @@ void HTTP_POST_NOTIF()
 {
   HTTP_post_status = "FAILURE";
 
-  Serial.println("\n\nDH_DEVICE_ID :" + DH_DEVICE_ID); //String());
+  Serial.println("\n\nDH_DEVICE_ID : " + DH_DEVICE_ID); //String());
   // Serial.println("DH_SERVER_IP :" + DH_SERVER_IP);
 
   //int httpTime = millis();
@@ -27,7 +33,7 @@ void HTTP_POST_NOTIF()
   // URL = "http://" + DH_SERVER_IP + ":80/api/rest/device/" + DH_DEVICE_ID + "/notification"; //HTTP DEVICE NAME: ESP_AFMS_01
   // URL = "https://playground.devicehive.com/api/rest/device/" + DH_DEVICE_ID + "/notification";
 
-  Serial.println("DH_DEVICE_URL :" + URL) ;
+  Serial.println("DH_DEVICE_URL : " + URL) ;
 
   String TokenBearer = accessTokenS; // "Bearer " +
   http.begin(URL); //HTTP USER NAME: Dev
@@ -42,8 +48,8 @@ void HTTP_POST_NOTIF()
   // tempC = 22.5; humidity = 52;  lux = 560;  batteryLevel = 3.32;
   // CO2 = 432;  pm_2point5 = 3.51;  pm_10 = 8.5;    // timeStamp = "2020-01-15T10:15:34.444Z";
 
-  
-  
+
+
   // start connection and send HTTP header
   String data = "{\"notification\": \"sensordata\"";
   data += ",\"timestamp\":\""; // data += timeStamp; // "\"2019-09-11T11:15:34.444Z\""
@@ -105,21 +111,23 @@ void HTTP_POST_NOTIF()
 
     if (httpCode > 0) // httpCode will be negative on error
     { Serial.printf("[HTTP] Response Code: %d\n", httpCode); // HTTP header has been send and Server response header has been handled
-      HTTP_post_status = "SUCCESS";
 
-      if (httpCode == HTTP_CODE_OK) // file found at server
-      { Serial.println("HTTP_CODE_OK");
+      if (httpCode == 201)//HTTP_CODE_OK) // file found at server
+      { Serial.println("HTTP_POST_SUCCESS"); // Serial.println("HTTP_CODE_OK");
+        HTTP_post_status = "SUCCESS";
       }
+      else
+      { HTTP_post_status = "FAILURE";
+        Serial.println("[HTTP] POST... failed!");
+        //Serial.printf(" Error: %s\n", http.errorToString(httpCode).c_str());
+      }
+
       String payload = http.getString();
-      Serial.println(payload);
+      Serial.println(" Payload : " + payload); 
     }
-    else
-    { Serial.printf("[HTTP] POST... failed, error: %s\n", http.errorToString(httpCode).c_str());
-      String payload = http.getString();
-      Serial.println(payload);
-      HTTP_post_status = "FAILURE";
-    }
+
     http.end();
+    
   }
   else
   { Serial.println("\n==========NOT CONNECTED TO WiFi - TRYING TO CONNECT==================\n");

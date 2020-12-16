@@ -1,0 +1,158 @@
+	
+	MQTT - ESP32
+
+// https://www.npmjs.com/package/mqtt
+// https://www.npmjs.com/package/mosca
+
+
+Creating rdbms-image_hazelcast_1 ... done
+Creating rdbms-image_postgres_1  ... done
+Creating rdbms-image_zookeeper_1 ... done
+Creating rdbms-image_redis_1     ... done
+Creating rdbms-image_kafka_1     ... done
+Creating rdbms-image_wsproxy_1   ... done
+Creating rdbms-image_dh_backend_1 ... done
+Creating rdbms-image_dh_auth_1    ... done
+Creating rdbms-image_dh_frontend_1 ... done
+Creating rdbms-image_mqtt_broker2_1 ... done
+Creating rdbms-image_mqtt_broker1_1 ... done
+Creating rdbms-image_dh_proxy_1     ... done
+
+
+1) MQTT Server IP - mqtt://10.208.34.163:1883
+2) Pub Topic & Sub Topic - 'dh/notification/84/10/a-10-3/sensordata'
+3) Token for Authentication - eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTYwOTM1MzAwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.J5ivLupuJ8ZggldOmoprFuN6z_SKOgY4m-jYzWxHQeQ
+4) Device ID - a-10-3   // {museumname}-{devicetypeid}-{serialno}
+
+netwrokid - 84
+devicetypeid - 9(for aaco) 10(for ime)
+device id - a-9-3(for aaco) a-10-3(for ime)
+
+1) MQTT Server IP - mqtt://10.208.34.163:1883
+2) Pub Topic & Sub Topic - 'dh/notification/84/10/a-10-3/sensordata'
+3) Token for Authentication - eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTYwOTM1MzAwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.J5ivLupuJ8ZggldOmoprFuN6z_SKOgY4m-jYzWxHQeQ
+4) Device ID - a-10-3
+
+netwrokid - 84
+devicetypeid - 9(for aaco) 10(for ime)
+device id - a-9-3(for aaco) a-10-3(for ime)
+
+	https://docs.devicehive.com/docs/mqtt-api-reference
+
+	https://docs.devicehive.com/docs/get-started
+
+i am assuming the data formats as below
+{ "temp": "27.46", "humi": "65.83", "lux": "545.70", "C": "432.00", "D": "3.51", "D10": "18.50", "B": "4.46", "N": "5" }
+{"yaw":34,"pitch":42,"roll":28}
+Kindly inform me/update in ur logic to match
+
+
+U just have to chk the connection, no need to post data. There are devicehive api's to verify connection.
+
+The following is an api for ur quick reference. 
+GET http://192.168.50.175/api/rest/info
+It should return 
+{"apiVersion":"3.5.0","serverTimestamp":"2020-08-28T04:27:03.762","webSocketServerUrl":"ws://192.168.50.175/api/websocket"}
+
+ref dh documentation for more details 
+
+this service doesn't require any authentication or extra details. 
+
+
+// http://10.208.34.163/api/swagger.html?url=http://10.208.34.163:80/api/rest/swagger.json#!/DeviceNotification/insert
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+
+
+
+
+
+
+OTA UPDATE - HTTP
+
+i have set up the update service on 
+http://10.208.34.163:3000/updater
+
+ensure ur http header param 'x-ESP8266-version' is v3
+
+also one of u can put a "chk.bin" file in following path using scp
+kaushal@10.208.34.163:~/workspace/ict4ne/backup/bakend/statics/updates
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+/**
+* httpUpdate.ino
+*
+* Created on: 27.11.2015
+*
+*/
+
+#include <Arduino.h>
+
+#include <ESP8266WiFi.h>
+#include <ESP8266mDNS.h>
+
+#include <ESP8266HTTPClient.h>
+#include <ESP8266httpUpdate.h>
+
+#define USE_SERIAL Serial
+
+//ESP8266WiFiMulti WiFiMulti;
+const char* ssid = "";
+const char* password = "";
+
+void setup() {
+
+USE_SERIAL.begin(115200);
+// USE_SERIAL.setDebugOutput(true);
+
+USE_SERIAL.println();
+USE_SERIAL.println();
+USE_SERIAL.println();
+
+Serial.println(ssid);
+ESPhttpUpdate.rebootOnUpdate(false);
+WiFi.begin(ssid, password);
+
+while (WiFi.status() != WL_CONNECTED) {
+delay(500);
+Serial.print(".");
+}
+
+Serial.println("");
+Serial.println("WiFi connected");
+Serial.println("IP address: ");
+Serial.println(WiFi.localIP());
+}
+
+void loop() {
+// wait for WiFi connection
+//if((WiFiMulti.run() == WL_CONNECTED)) {
+USE_SERIAL.println("connected");
+t_httpUpdate_return ret = ESPhttpUpdate.update("http://10.208.34.163:3000/updater");
+//t_httpUpdate_return ret = ESPhttpUpdate.update("https://server/file.bin");
+USE_SERIAL.println("ret "+ret);
+switch(ret) {
+case HTTP_UPDATE_FAILED:
+USE_SERIAL.printf("HTTP_UPDATE_FAILD Error (%d): %s", ESPhttpUpdate.getLastError(), ESPhttpUpdate.getLastErrorString().c_str());
+break;
+
+case HTTP_UPDATE_NO_UPDATES:
+USE_SERIAL.println("HTTP_UPDATE_NO_UPDATES");
+break;
+
+case HTTP_UPDATE_OK:
+USE_SERIAL.println("HTTP_UPDATE_OK");
+ESP.restart();
+break;
+}
+//}
+}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

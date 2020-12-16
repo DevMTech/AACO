@@ -20,9 +20,9 @@
 
  ********/
 
- 
 
-/* // REMOVE THIS TO ACTIVATE/DEACTIVATE SSD1306 OLED CODE
+
+/**/ // REMOVE THIS TO ACTIVATE/DEACTIVATE SSD1306 OLED CODE
 
 
 #include <SPI.h>
@@ -45,8 +45,9 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 #define CDAC_LOGO_HEIGHT   64
 #define CDAC_LOGO_WIDTH    128
 
-int OLED_DELAY_1 = 2000;
-int OLED_DELAY_2 = 1000;
+int OLED_DELAY_1 = 1000;
+int OLED_DELAY_2 = 2000;
+
 
 static const unsigned char PROGMEM CDAC_logo_bmp[] = //CDAC LOGO
 { // 'CDAC LOGO 1', 128x64px
@@ -158,7 +159,7 @@ void DRAW_BITMAP_LOGO() // http://javl.github.io/image2cpp/
   display.drawBitmap(0, 0,  CDAC_logo_bmp, CDAC_LOGO_WIDTH, CDAC_LOGO_HEIGHT, BLACK, WHITE);
   // (x-coordinate, y-coordinate, bitmap array, width, height, color)
   display.display();
-  delay(OLED_DELAY_2);
+  delay(OLED_DELAY_1);
   display.clearDisplay(); // clear display
 }
 
@@ -183,7 +184,7 @@ void WIFI_HTTP_STATUS_OLED()
   display.print(HTTP_post_status);
 
   display.display();
-  delay(OLED_DELAY_1);
+  delay(OLED_DELAY_2);
   display.clearDisplay(); // clear display
 
   if (WiFi.status() == WL_CONNECTED)
@@ -199,10 +200,64 @@ void WIFI_HTTP_STATUS_OLED()
     display.print(deviceIP);;
 
     display.display();
-    delay(OLED_DELAY_1);
+    delay(OLED_DELAY_2);
     display.clearDisplay(); // clear display
 
   }
+
+}
+
+void WIFI_SSID_CONFIG_OLED()
+{ Serial.println("\n  ENTERING ->  WIFI_SSID_CONFIG_AP_OLED \n");
+
+  Serial.println("\n POWERING ON 3V3 BUS -> TURNING ON SPI/I2C PERIPHERALS ");
+  //  digitalWrite(PFET_POT_DIV, LOW); // POWER ON POT DIV
+  pinMode(PFET_3V3_BUS, OUTPUT); // TURN ON BUS
+  digitalWrite(PFET_3V3_BUS, LOW); // POWER ON 3V3 BUS -> TURN ON SPI/I2C PERIPHERALS
+  delay(5);
+
+  display.clearDisplay(); // clear display
+  // delay(100);
+  // display WiFi_Status
+  display.setTextSize(1);
+  display.setCursor(0, 0);
+  display.print("WiFiConfig");
+  display.setTextSize(1);
+  display.setCursor(0, 10);
+  display.print("Connect to AP");
+  display.setTextSize(2);
+  display.setCursor(0, 30);
+  display.print(SOFT_AP_SSID);
+  //  display.print(" lx");
+
+  //  display.setTextSize(1);
+  //  display.setCursor(0, 35);
+  //  display.print("HTTP POST");
+  //  display.setTextSize(2);
+  //  display.setCursor(0, 45);
+  //  display.print(HTTP_post_status);
+
+  display.display();
+  delay(OLED_DELAY_2);
+  display.clearDisplay(); // clear display
+
+  //  if (WiFi.status() == WL_CONNECTED)
+  //  {
+  //    //    display.setTextSize(2);
+  //    //    display.setCursor(0, 0);
+  //    //    display.print(deviceIP);
+  //    display.setTextSize(1);
+  //    display.setCursor(0, 0);
+  //    display.print("Local IP");;
+  //    display.setTextSize(2);
+  //    display.setCursor(0, 20);
+  //    display.print(deviceIP);;
+  //
+  //    display.display();
+  //    delay(OLED_DELAY_2);
+  //    display.clearDisplay(); // clear display
+  //
+  //  }
 
 }
 
@@ -220,7 +275,7 @@ void TEST_OLED()
   //  display.print(" lx");
 
   display.display();
-  delay(OLED_DELAY_2);
+  delay(OLED_DELAY_1);
   display.clearDisplay(); // clear display
 }
 
@@ -240,7 +295,7 @@ void print_PARAMS()
   //  display.print(" lx");
 
   display.display();
-  delay(OLED_DELAY_2);
+  delay(OLED_DELAY_1);
   display.clearDisplay(); // clear display
 
   //  static float t = 0.00, h = 0.00;
@@ -281,118 +336,118 @@ void print_PARAMS()
   display.print(" %");
 
   display.display();
-  delay(OLED_DELAY_1);
+  delay(OLED_DELAY_2);
   display.clearDisplay(); // clear display
   //------------------------------------------------------------------------------------------------------------------------------------------//
 
-  
-//    // display temperature
-//    display.setTextSize(1);
-//    display.setCursor(0, 0);
-//    display.print("HDCTempertr: ");
-//    display.setTextSize(2);
-//    display.setCursor(0, 10);
-//    display.print(HDC1080_temperature);
-//    display.print(" ");
-//    display.setTextSize(1);
-//
-//    // To display the º symbol, we use the Code Page 437 font.
-//    // For that, you need to set the cp437 to true as follows:
-//    display.cp437(true);  // https://www.ascii-codes.com/
-//
-//    // Use the write() method to display your chosen character.
-//    // The º symbol corresponds to character 167.
-//    display.write(167);
-//
-//    display.setTextSize(2);
-//    display.print("C");
-//
-//    // display humidity
-//    display.setTextSize(1);
-//    display.setCursor(0, 35);
-//    display.print("HDCHumidity: ");
-//    display.setTextSize(2);
-//    display.setCursor(0, 45);
-//    display.print(HDC1080_humidity);
-//    display.print(" %");
-//
-//    display.display();
-//    delay(OLED_DELAY_1);
-//    display.clearDisplay(); // clear display
-//    //------------------------------------------------------------------------------------------------------------------------------------------//
-//
-//
-//    // display pressure
-//    display.setTextSize(1);
-//    display.setCursor(0, 0);
-//    display.print("Pressure:");
-//    display.setTextSize(2);
-//    display.setCursor(0, 10);
-//    display.print(pressure);
-//    display.print(" hPa");
-//
-//    // display Approx. Altitude
-//    display.setTextSize(1);
-//    display.setCursor(0, 35);
-//    display.print("Altitude:");
-//    display.setTextSize(2);
-//    display.setCursor(0, 45);
-//    display.print(alti);
-//    display.print(" m");
-//
-//    display.display();
-//    delay(OLED_DELAY_1);
-//    display.clearDisplay(); // clear display
-//    //------------------------------------------------------------------------------------------------------------------------------------------//
-//
-//    // display PPM 2.5
-//    display.setTextSize(1);
-//    display.setCursor(0, 0);
-//    display.print("PPM 2.5:");
-//    display.setTextSize(2);
-//    display.setCursor(0, 10);
-//    display.print(pm_2point5);
-//    display.print("PPM");
-//
-//    // display PPM 10
-//    display.setTextSize(1);
-//    display.setCursor(0, 35);
-//    display.print("PPM 10:");
-//    display.setTextSize(2);
-//    display.setCursor(0, 45);
-//    display.print(pm_10);
-//    display.print("PPM");
-//
-//    display.display();
-//    delay(OLED_DELAY_1);
-//    display.clearDisplay(); // clear display
-//    //------------------------------------------------------------------------------------------------------------------------------------------//
-//
-//    // display CO2
-//    display.setTextSize(1);
-//    display.setCursor(0, 0);
-//    display.print("CO2");
-//    display.setTextSize(2);
-//    display.setCursor(0, 10);
-//    display.print(eCO2);
-//    //  display.print(CO2);
-//    display.print(" PPM");
-//
-//    // display VOC
-//    display.setTextSize(1);
-//    display.setCursor(0, 35);
-//    display.print("Gas/VOC:");
-//    display.setTextSize(2);
-//    display.setCursor(0, 45);
-//    display.print(VOC);
-//    display.print(" KOhms");
-//
-//    display.display();
-//    delay(OLED_DELAY_1);
-//    display.clearDisplay(); // clear display
-  
 
-  
+  //    // display temperature
+  //    display.setTextSize(1);
+  //    display.setCursor(0, 0);
+  //    display.print("HDCTempertr: ");
+  //    display.setTextSize(2);
+  //    display.setCursor(0, 10);
+  //    display.print(HDC1080_temperature);
+  //    display.print(" ");
+  //    display.setTextSize(1);
+  //
+  //    // To display the º symbol, we use the Code Page 437 font.
+  //    // For that, you need to set the cp437 to true as follows:
+  //    display.cp437(true);  // https://www.ascii-codes.com/
+  //
+  //    // Use the write() method to display your chosen character.
+  //    // The º symbol corresponds to character 167.
+  //    display.write(167);
+  //
+  //    display.setTextSize(2);
+  //    display.print("C");
+  //
+  //    // display humidity
+  //    display.setTextSize(1);
+  //    display.setCursor(0, 35);
+  //    display.print("HDCHumidity: ");
+  //    display.setTextSize(2);
+  //    display.setCursor(0, 45);
+  //    display.print(HDC1080_humidity);
+  //    display.print(" %");
+  //
+  //    display.display();
+  //    delay(OLED_DELAY_2);
+  //    display.clearDisplay(); // clear display
+  //    //------------------------------------------------------------------------------------------------------------------------------------------//
+  //
+  //
+  //    // display pressure
+  //    display.setTextSize(1);
+  //    display.setCursor(0, 0);
+  //    display.print("Pressure:");
+  //    display.setTextSize(2);
+  //    display.setCursor(0, 10);
+  //    display.print(pressure);
+  //    display.print(" hPa");
+  //
+  //    // display Approx. Altitude
+  //    display.setTextSize(1);
+  //    display.setCursor(0, 35);
+  //    display.print("Altitude:");
+  //    display.setTextSize(2);
+  //    display.setCursor(0, 45);
+  //    display.print(alti);
+  //    display.print(" m");
+  //
+  //    display.display();
+  //    delay(OLED_DELAY_2);
+  //    display.clearDisplay(); // clear display
+  //    //------------------------------------------------------------------------------------------------------------------------------------------//
+  //
+  //    // display PPM 2.5
+  //    display.setTextSize(1);
+  //    display.setCursor(0, 0);
+  //    display.print("PPM 2.5:");
+  //    display.setTextSize(2);
+  //    display.setCursor(0, 10);
+  //    display.print(pm_2point5);
+  //    display.print("PPM");
+  //
+  //    // display PPM 10
+  //    display.setTextSize(1);
+  //    display.setCursor(0, 35);
+  //    display.print("PPM 10:");
+  //    display.setTextSize(2);
+  //    display.setCursor(0, 45);
+  //    display.print(pm_10);
+  //    display.print("PPM");
+  //
+  //    display.display();
+  //    delay(OLED_DELAY_2);
+  //    display.clearDisplay(); // clear display
+  //    //------------------------------------------------------------------------------------------------------------------------------------------//
+  //
+  //    // display CO2
+  //    display.setTextSize(1);
+  //    display.setCursor(0, 0);
+  //    display.print("CO2");
+  //    display.setTextSize(2);
+  //    display.setCursor(0, 10);
+  //    display.print(eCO2);
+  //    //  display.print(CO2);
+  //    display.print(" PPM");
+  //
+  //    // display VOC
+  //    display.setTextSize(1);
+  //    display.setCursor(0, 35);
+  //    display.print("Gas/VOC:");
+  //    display.setTextSize(2);
+  //    display.setCursor(0, 45);
+  //    display.print(VOC);
+  //    display.print(" KOhms");
+  //
+  //    display.display();
+  //    delay(OLED_DELAY_2);
+  //    display.clearDisplay(); // clear display
+
+
+
   //------------------------------------------------------------------------------------------------------------------------------------------//
 
   // display LUX
@@ -430,7 +485,7 @@ void print_PARAMS()
   display.print(" V");
 
   display.display();
-  delay(OLED_DELAY_1);
+  delay(OLED_DELAY_2);
   display.clearDisplay(); // clear display
 
   //  // display Latitude
@@ -495,7 +550,7 @@ void BLANK_SCREEN()
 //  display.setCursor(0, 40);
 //  display.print("   TIME");
 //  display.display();
-//  delay(OLED_DELAY_2);
+//  delay(OLED_DELAY_1);
 //
 //  display.clearDisplay();
 //  display.setTextSize(2);
@@ -528,7 +583,7 @@ void BLANK_SCREEN()
 //  display.println(daysOfTheWeek[now.dayOfTheWeek()]);
 //
 //  display.display();
-//  delay(OLED_DELAY_1);
+//  delay(OLED_DELAY_2);
 //  display.clearDisplay();
 //}
 
@@ -637,4 +692,4 @@ void BLANK_SCREEN()
   display.display();
   delay(2000);
   }
-/**/
+  /**/

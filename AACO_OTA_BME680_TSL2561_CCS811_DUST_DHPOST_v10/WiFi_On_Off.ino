@@ -23,10 +23,18 @@ void configModeCallback(WiFiManager *myWiFiManager)
 {
   Serial.println("Entered config mode");
   Serial.println(WiFi.softAPIP());
-  
+
+  SOFT_AP_SSID = myWiFiManager->getConfigPortalSSID();
+
   //if you used auto generated SSID, print it
-  Serial.println(myWiFiManager->getConfigPortalSSID());
-  
+  Serial.print("Connect to SSID to config WiFi : ");
+  //Serial.println(myWiFiManager->getConfigPortalSSID());
+  Serial.println(SOFT_AP_SSID);
+
+#ifdef OLED
+  WIFI_SSID_CONFIG_OLED();
+#endif
+
   //entered config mode, make led toggle faster
   ticker.attach(0.2, tick);
 }
@@ -35,7 +43,7 @@ void WiFiManagerSetup()
 {
   WiFi.mode(WIFI_STA); // explicitly set mode, esp defaults to STA+AP
   // it is a good practice to make sure your code sets wifi mode how you want it.
-  
+
   pinMode(LED, OUTPUT); //set led pin as output
   // start ticker with 0.5 because we start in AP mode and try to connect
   ticker.attach(0.5, tick);
@@ -71,6 +79,11 @@ void WiFiManagerSetup()
   { Serial.println("Connected to the WiFi :"); // connected to the WiFi
     ticker.detach();
     digitalWrite(LED, HIGH); //keep LED on
+
+    Serial.println("\n POWERING OFF 3V3 BUS -> TURNING OFF SPI/I2C PERIPHERALS \n");
+    digitalWrite(PFET_3V3_BUS, HIGH); // POWER OFF 3V3 BUS -> TURN OFF SPI/I2C PERIPHERALS
+    // pinMode(PFET_3V3_BUS, INPUT); // TURN OFF 3V3 BUS
+    delay(5);
   }
 }
 
@@ -112,7 +125,7 @@ void WiFi_setup()
   Serial.print("\n\nMAC : "); // 84:0D:8E:C3:60:8C ESP32S
   Serial.println(deviceMAC); // (WiFi.macAddress());
 
-//  WiFi.mode(WIFI_STA);
+  //  WiFi.mode(WIFI_STA);
 
 
   // Configures static IP address
@@ -121,11 +134,14 @@ void WiFi_setup()
   //  }
 
   // Connect to Wi-Fi network with SSID and password
-//  Serial.print("Connecting to ");
-//  Serial.println(ssid);
-//  WiFi.begin(ssid, password);
+  //  Serial.print("Connecting to ");
+  //  Serial.println(ssid);
+  //  WiFi.begin(ssid, password);
 
-  WiFiManagerSetup();
+  //  if(bootCount==1)
+  //  {    WiFiManagerSetup();
+  //  }
+
 
   //Serial.println("Connecting Wifi...");
   WiFiConnAttemptDuration += millis(); // Keep track of when we started our attempt to get a WiFi connection
@@ -138,9 +154,10 @@ void WiFi_setup()
   }
 
   WiFiConnRetryAttempt++;
-
-  if (WiFi.status() != WL_CONNECTED && (WiFiConnRetryAttempt >= 5))
-  { Serial.println("Restarting ESP32 ... in 100ms");
+  Serial.println("\n WiFi Conn Retry Attempt : " + String(WiFiConnRetryAttempt));
+  
+  if (WiFi.status() != WL_CONNECTED && (WiFiConnRetryAttempt >= 2))
+  { Serial.println("\n=========================================== Restarting ESP32 ... in 100ms =========================================== \n\n");
     delay(100);
     WiFiConnRetryAttempt = 0;
     ESP.restart();

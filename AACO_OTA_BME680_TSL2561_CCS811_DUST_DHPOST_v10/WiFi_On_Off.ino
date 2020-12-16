@@ -35,6 +35,10 @@ void configModeCallback(WiFiManager *myWiFiManager)
   WIFI_SSID_CONFIG_OLED();
 #endif
 
+#ifdef EPAPER
+  WIFI_SSID_CONFIG_EPAPER();
+#endif   
+
   //entered config mode, make led toggle faster
   ticker.attach(0.2, tick);
 }

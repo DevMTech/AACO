@@ -25,6 +25,8 @@
 /**/ // REMOVE THIS TO ACTIVATE/DEACTIVATE SSD1306 OLED CODE
 
 
+#ifdef OLED
+
 #include <SPI.h>
 #include <Wire.h>
 
@@ -218,46 +220,20 @@ void WIFI_SSID_CONFIG_OLED()
 
   display.clearDisplay(); // clear display
   // delay(100);
-  // display WiFi_Status
+  // display WiFi_Config SSID
   display.setTextSize(1);
   display.setCursor(0, 0);
-  display.print("WiFiConfig");
+  display.print("To set WiFi");
   display.setTextSize(1);
   display.setCursor(0, 10);
   display.print("Connect to AP");
   display.setTextSize(2);
   display.setCursor(0, 30);
   display.print(SOFT_AP_SSID);
-  //  display.print(" lx");
-
-  //  display.setTextSize(1);
-  //  display.setCursor(0, 35);
-  //  display.print("HTTP POST");
-  //  display.setTextSize(2);
-  //  display.setCursor(0, 45);
-  //  display.print(HTTP_post_status);
 
   display.display();
   delay(OLED_DELAY_2);
   display.clearDisplay(); // clear display
-
-  //  if (WiFi.status() == WL_CONNECTED)
-  //  {
-  //    //    display.setTextSize(2);
-  //    //    display.setCursor(0, 0);
-  //    //    display.print(deviceIP);
-  //    display.setTextSize(1);
-  //    display.setCursor(0, 0);
-  //    display.print("Local IP");;
-  //    display.setTextSize(2);
-  //    display.setCursor(0, 20);
-  //    display.print(deviceIP);;
-  //
-  //    display.display();
-  //    delay(OLED_DELAY_2);
-  //    display.clearDisplay(); // clear display
-  //
-  //  }
 
 }
 
@@ -538,6 +514,8 @@ void BLANK_SCREEN()
   delay(20);
 }
 
+
+
 //void SHOW_TIME()
 //{
 //  DateTime now = rtc.now();
@@ -588,7 +566,7 @@ void BLANK_SCREEN()
 //}
 
 
-
+#endif
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

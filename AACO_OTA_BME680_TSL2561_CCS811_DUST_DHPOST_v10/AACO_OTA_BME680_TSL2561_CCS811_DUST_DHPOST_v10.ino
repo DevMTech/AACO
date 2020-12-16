@@ -62,7 +62,7 @@
 //#include "soc/rtc_cntl_reg.h"
 // WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); //disable brownout detector
 
-#ifdef ESP32
+// #ifdef ESP32
 #include <Arduino.h>
 #include <WiFi.h>
 #include <HTTPClient.h>
@@ -77,16 +77,16 @@
 #define PFET_3V3_BUS 25 // GPIO25 ESP32
 #define PFET_POT_DIV 32 // GPIO32 ESP32
 #define BATTERY_V_IN 35 // GPIO35 ESP32
-#endif
+// #endif
 
-#if defined(ESP8266)              // ESP12E - ESP8266cdac
-#include <ESP8266WiFi.h>
-#include <ESP8266HTTPClient.h>
-//#include <WiFiClientSecure.h>
-//#include <ESP8266WiFiMulti.h>   // Include the Wi-Fi-Multi library
-//ESP8266WiFiMulti wifiMulti;     // Create an instance of the ESP8266WiFiMulti class, called 'wifiMulti'
-//#else // ESP32
-#endif
+// #if defined(ESP8266)              // ESP12E - ESP8266cdac
+// #include <ESP8266WiFi.h>
+// #include <ESP8266HTTPClient.h>
+// //#include <WiFiClientSecure.h>
+// //#include <ESP8266WiFiMulti.h>   // Include the Wi-Fi-Multi library
+// //ESP8266WiFiMulti wifiMulti;     // Create an instance of the ESP8266WiFiMulti class, called 'wifiMulti'
+// //#else // ESP32
+// #endif
 
 #include "SSID.h"
 
@@ -95,8 +95,8 @@
 #include <esp_wifi.h>
 #include <esp_bt.h>
 
-#define OLED  // UNCOMMENT TO ENABLE
-//#define EPAPER   // UNCOMMENT TO ENABLE
+//#define OLED  // UNCOMMENT TO ENABLE
+#define EPAPER   // UNCOMMENT TO ENABLE
 
 #define WIFI_TIMEOUT 1000 // 1second in milliseconds
 //#define DEEP_SLEEP_TIME 10 // seconds

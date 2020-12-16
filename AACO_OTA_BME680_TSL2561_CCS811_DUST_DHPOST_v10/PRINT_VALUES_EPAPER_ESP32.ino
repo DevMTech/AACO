@@ -1,4 +1,4 @@
-/*
+/**/
 // Display Library example for SPI e-paper panels from Dalian Good Display and boards from Waveshare.
 // Requires HW SPI and Adafruit_GFX. Caution: these e-papers require 3.3V supply AND data lines!
 // Display Library based on Demo Example from Good Display: http://www.e-paper-display.com/download_list/downloadcategoryid=34&isMode=false.html
@@ -23,6 +23,8 @@
 // BUSY -> 4, RST -> 0, DC -> 2, CS -> SS(5), CLK -> SCK(18), DIN -> MOSI(23), GND -> GND, 3.3V -> 3.3V
 // for use with Board: "ESP32 Dev Module":
 
+
+#ifdef EPAPER
 
 // base class GxEPD2_GFX can be used to pass references or pointers to the display instance as parameter, uses ~1.2k more code
 // enable or disable GxEPD2_GFX base class
@@ -93,7 +95,7 @@ void ePaperSetup()
 void WIFI_HTTP_STATUS_EPAPER()
 {
   display.init(115200);
-  
+
   Serial.println("\n\t WIFI_HTTP_STATUS_EPAPER()\n");
   display.setFullWindow();
   display.setRotation(1);
@@ -106,9 +108,9 @@ void WIFI_HTTP_STATUS_EPAPER()
 
   display.firstPage();
 
-  do 
+  do
   { display.println();
-    
+
     //    display.setTextColor(GxEPD_BLACK);
     display.print("WiFi   : ");
     //    display.setTextColor(GxEPD_RED);
@@ -129,16 +131,50 @@ void WIFI_HTTP_STATUS_EPAPER()
       display.print(deviceIP);
       display.println("");
     }
-  }while (display.nextPage());
+  } while (display.nextPage());
 
   delay(2000);
 }
 
+void WIFI_SSID_CONFIG_EPAPER()
+{ Serial.println("\n  ENTERING ->  WIFI_SSID_CONFIG_AP_EPAPER \n");
 
+  display.init(115200);
+
+  display.setFullWindow();
+  display.setRotation(1);
+  display.fillScreen(GxEPD_WHITE);
+  display.setTextColor(GxEPD_BLACK);
+  display.setFont(&FreeMonoBold9pt7b); //  display.setFont(f);
+  display.setCursor(0, 0);
+
+  //  display.println(text); // "customTextToPrint"
+
+  display.firstPage();
+
+  do
+  { display.println();
+
+    //    display.setTextColor(GxEPD_BLACK);
+    display.println("To set WiFi");
+    display.println("Connect to AP :");
+    //    display.setTextColor(GxEPD_RED);    
+    //display.println("");
+
+    //    display.setTextColor(GxEPD_BLACK);
+    display.println(" ");
+    display.setTextColor(GxEPD_RED);
+    display.print(SOFT_AP_SSID);
+    display.println("");
+
+  } while (display.nextPage());
+
+  delay(2000);
+}
 
 void ePaperPrintValues2()
 { display.init(115200);
-  
+
   Serial.println("\n\t ePaperPrintValues2()\n");
   display.setFullWindow();
   display.setRotation(1);
@@ -170,7 +206,7 @@ void ePaperPrintValues2()
     display.print(humidity); // (int)
     display.println("%");
 
-    
+
     //display.setTextColor(GxEPD_BLACK);
     display.print("Light Int. ");
     //display.setTextColor(GxEPD_RED);
@@ -205,8 +241,8 @@ void ePaperPrintValues2()
     //  display.setTextColor(GxEPD_RED);
     //  display.print(pm_10);
     //  display.println("PPM");
-    
-  }while (display.nextPage());
+
+  } while (display.nextPage());
 
   delay(1000);
 }
@@ -216,7 +252,7 @@ void ePaperPrintValues2()
 // void ePaperPrintValues(const char text[], const GFXfont* f) // function definition
 void ePaperPrintValues1()
 { display.init(115200);
-  
+
   Serial.println("\n\t ePaperPrintValues1()\n");
   display.setFullWindow();
   display.setRotation(1);
@@ -276,7 +312,7 @@ void ePaperPrintValues1()
     //    display.print(batteryLevelPercent); // (int)
     //    display.println("%");
 
-  }while (display.nextPage());
+  } while (display.nextPage());
 
   delay(1000);
 }
@@ -341,5 +377,7 @@ void ePaperPrintValues1()
 //  }
 //  while (display.nextPage());
 //}
+
+#endif
 
 /**/

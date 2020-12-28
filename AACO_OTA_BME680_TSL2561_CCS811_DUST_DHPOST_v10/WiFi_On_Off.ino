@@ -16,6 +16,10 @@ int LED = LED_BUILTIN;
 
 void tick() //toggle state
 { digitalWrite(LED, !digitalRead(LED)); // set pin to the opposite state
+
+#ifdef BUZZER
+  digitalWrite(BUZZER, !(digitalRead(BUZZER)));
+#endif
 }
 
 //gets called when WiFiManager enters configuration mode
@@ -37,7 +41,14 @@ void configModeCallback(WiFiManager *myWiFiManager)
 
 #ifdef EPAPER
   WIFI_SSID_CONFIG_EPAPER();
-#endif   
+#endif
+
+#ifdef BUZZER
+  pinMode(BUZZER, OUTPUT);   // BUZ ON
+  //digitalWrite(BUZZER, HIGH); delay(50);
+  //digitalWrite(BUZZER, !(digitalRead(BUZZER))); delay(500);
+  //pinMode(BUZZER, INPUT); // BUZ OFF
+#endif
 
   //entered config mode, make led toggle faster
   ticker.attach(0.2, tick);
@@ -59,6 +70,8 @@ void WiFiManagerSetup()
 
   //set callback that gets called when connecting to previous WiFi fails, and enters Access Point mode
   wm.setAPCallback(configModeCallback);
+
+
 
   bool res;
 
@@ -84,6 +97,15 @@ void WiFiManagerSetup()
     ticker.detach();
     digitalWrite(LED, HIGH); //keep LED on
 
+    #ifdef EPAPER     
+        EPAPER_BLANK_SCREEN();
+    #endif
+        
+    #ifdef BUZZER    
+        digitalWrite(BUZZER, LOW);
+        //pinMode(BUZZER, INPUT); // BUZ OFF
+    #endif
+    
     Serial.println("\n POWERING OFF 3V3 BUS -> TURNING OFF SPI/I2C PERIPHERALS \n");
     digitalWrite(PFET_3V3_BUS, HIGH); // POWER OFF 3V3 BUS -> TURN OFF SPI/I2C PERIPHERALS
     // pinMode(PFET_3V3_BUS, INPUT); // TURN OFF 3V3 BUS
@@ -159,7 +181,7 @@ void WiFi_setup()
 
   WiFiConnRetryAttempt++;
   Serial.println("\n WiFi Conn Retry Attempt : " + String(WiFiConnRetryAttempt));
-  
+
   if (WiFi.status() != WL_CONNECTED && (WiFiConnRetryAttempt >= 2))
   { Serial.println("\n=========================================== Restarting ESP32 ... in 100ms =========================================== \n\n");
     delay(100);
@@ -244,6 +266,8 @@ void WiFi_setup()
 
     //  if((int)batteryLevelPercent < 20)
 
+#ifdef BUZZER 
+//#ifdef LED2
     //pinMode(BUZZER, OUTPUT);   // BUZ ON
     //pinMode (LED2, OUTPUT);
     //digitalWrite (LED2, HIGH); //HIGH = ON //LOW = OFF
@@ -255,6 +279,8 @@ void WiFi_setup()
     //    }
     //    pinMode(BUZZER, INPUT); // BUZ OFF
     //    digitalWrite (LED2, HIGH); //HIGH = ON //LOW = OFF
+#endif
+    
   }
   else
   { WiFi_Status = "DISCONNCTD";

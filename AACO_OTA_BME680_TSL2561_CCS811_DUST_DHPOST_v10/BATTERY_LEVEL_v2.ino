@@ -45,7 +45,7 @@ float ratio = R2 / (R1 + R2);
 
 void batteryLevelRead_setup() // batteryLevelRead()
 {
-  pinMode(BUZZER, INPUT); // BUZ OFF // pinMode(BUZZER, OUTPUT); // BUZ ON
+  //pinMode(BUZZER, INPUT); // BUZ OFF // pinMode(BUZZER, OUTPUT); // BUZ ON
   pinMode(BATTERY_V_IN, INPUT);  // GPIO35 ESP32
   //  pinMode(PFET_POT_DIV, INPUT); // OFF // GPIO32 ESP32
   //  digitalWrite(PFET_POT_DIV, HIGH); // POWER OFF POT DIV
@@ -85,13 +85,13 @@ void batteryLevelRead()
 
   //  delay(100);
 
-
+#ifdef BUZZER
   //  if((int)batteryLevelPercent < 20)
   //  { pinMode(BUZZER, OUTPUT);   // BUZ ON
   //    digitalWrite(BUZZER, !(digitalRead(BUZZER))); delay(500);
   //    pinMode(BUZZER, INPUT); // BUZ OFF
   //  }
-
+#endif
 
 }
 

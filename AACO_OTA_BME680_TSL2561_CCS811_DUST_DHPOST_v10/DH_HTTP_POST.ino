@@ -101,17 +101,18 @@ void HTTP_POST_NOTIF()
     Serial.print("\n[HTTP-POST] IP address:\t");    Serial.println(WiFi.localIP());
     Serial.print("[HTTP-POST] Connected to ");    Serial.println(WiFi.SSID());
 
-    int count = 1;    httpCode = 0;
+    int count = 0;    httpCode = 0;
 
-    while (httpCode != 201 && count <= 3)
-    { httpCode =  http.POST(data);
+    //while (httpCode != 201 && count <= 2)
+    { count++;
       Serial.println("http post attempt: " + String(count));
-      count++;
+      httpCode =  http.POST(data);
     }
 
-    if (httpCode > 0) // httpCode will be negative on error
-    { Serial.printf("[HTTP] Response Code: %d\n", httpCode); // HTTP header has been send and Server response header has been handled
+    Serial.printf("[HTTP] Response Code: %d\n", httpCode); // HTTP header has been send and Server response header has been handled
 
+    if (httpCode > 0) // httpCode will be negative on error
+    {
       if (httpCode == 201)//HTTP_CODE_OK) // file found at server
       { Serial.println("HTTP_POST_SUCCESS"); // Serial.println("HTTP_CODE_OK");
         HTTP_post_status = "SUCCESS";
@@ -120,14 +121,23 @@ void HTTP_POST_NOTIF()
       { HTTP_post_status = "FAILURE";
         Serial.println("[HTTP] POST... failed!");
         //Serial.printf(" Error: %s\n", http.errorToString(httpCode).c_str());
+
+#ifdef BUZZER
+        pinMode(BUZZER, OUTPUT);   // BUZ ON
+        for (int i = 0; i < 5; i++)
+        { digitalWrite(BUZZER, !(digitalRead(BUZZER))); delay(200);
+        }
+        pinMode(BUZZER, INPUT); // BUZ OFF
+#endif       
+ 
       }
 
       String payload = http.getString();
-      Serial.println(" Payload : " + payload); 
+      Serial.println(" Payload : " + payload);
     }
 
     http.end();
-    
+
   }
   else
   { Serial.println("\n==========NOT CONNECTED TO WiFi - TRYING TO CONNECT==================\n");

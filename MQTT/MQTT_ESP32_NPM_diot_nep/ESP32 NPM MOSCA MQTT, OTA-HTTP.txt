@@ -4,6 +4,28 @@
 // https://www.npmjs.com/package/mqtt
 // https://www.npmjs.com/package/mosca
 
+	dh portal admin login :	
+	http://10.208.34.200/admin/
+	http://10.208.34.200/admin/login -> dev / password1
+	http://10.208.34.200/admin/admin/device/e50d6085-2aba-48e9-b1c3-73c673e414be
+	
+	DEVICE HIVE MQTT API DOCUMENTATION
+	https://docs.devicehive.com/docs/mqtt-api-reference
+	
+	http://10.208.34.200/api/swagger.html?url=http://10.208.34.200:80/api/rest/swagger.json
+	
+	http://10.208.34.200//auth/swagger.html?url=http://http://10.208.34.200/:80/auth/rest/swagger.json
+	
+	// http://10.208.34.200:8090/dh/rest/swagger.json
+	
+
+
+	
+	http://10.208.35.88:4200/admin/artefact
+ 
+	http://10.208.34.200:4200/admin/artefact
+ 
+
 
 Creating rdbms-image_hazelcast_1 ... done
 Creating rdbms-image_postgres_1  ... done
@@ -22,20 +44,12 @@ Creating rdbms-image_dh_proxy_1     ... done
 1) MQTT Server IP - mqtt://10.208.34.163:1883
 2) Pub Topic & Sub Topic - 'dh/notification/84/10/a-10-3/sensordata'
 3) Token for Authentication - eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTYwOTM1MzAwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.J5ivLupuJ8ZggldOmoprFuN6z_SKOgY4m-jYzWxHQeQ
-4) Device ID - a-10-3   // {museumname}-{devicetypeid}-{serialno}
+4) Device ID - a-9-3   // {museumname}-{devicetypeid}-{serialno}
 
-netwrokid - 84
+networkid - 1
 devicetypeid - 9(for aaco) 10(for ime)
 device id - a-9-3(for aaco) a-10-3(for ime)
 
-1) MQTT Server IP - mqtt://10.208.34.163:1883
-2) Pub Topic & Sub Topic - 'dh/notification/84/10/a-10-3/sensordata'
-3) Token for Authentication - eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTYwOTM1MzAwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.J5ivLupuJ8ZggldOmoprFuN6z_SKOgY4m-jYzWxHQeQ
-4) Device ID - a-10-3
-
-netwrokid - 84
-devicetypeid - 9(for aaco) 10(for ime)
-device id - a-9-3(for aaco) a-10-3(for ime)
 
 	https://docs.devicehive.com/docs/mqtt-api-reference
 

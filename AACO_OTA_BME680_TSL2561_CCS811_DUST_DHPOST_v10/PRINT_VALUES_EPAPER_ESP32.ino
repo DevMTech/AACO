@@ -24,7 +24,10 @@
 // for use with Board: "ESP32 Dev Module":
 
 
+
 #ifdef EPAPER
+
+int EPAPER_DELAY_1 = 100;
 
 // base class GxEPD2_GFX can be used to pass references or pointers to the display instance as parameter, uses ~1.2k more code
 // enable or disable GxEPD2_GFX base class
@@ -65,32 +68,33 @@ GxEPD2_3C<GxEPD2_213c, GxEPD2_213c::HEIGHT> display(GxEPD2_213c(SS, 2, 0, 4)); /
 
 // #include <RTClib.h> // https://github.com/adafruit/RTClib
 
-void ePaperSetup()
+
+void EPAPER_BLANK_SCREEN()
 {
-  //  Serial.begin(115200); delay(100);
-
-  Serial.println("\n ePaperSetup()");
-
   display.init(115200);
-  // first update should be full refresh
 
-  // ePaperPrintRTCtime(); delay(1000);
-  ePaperPrintValues1(); // delay(1000);
-  ePaperPrintValues2(); // delay(1000);
+  Serial.println("\n\t EPAPER_BLANK_SCREEN()\n");
+  display.setFullWindow();
+  display.setRotation(1);
+  display.fillScreen(GxEPD_WHITE); //(GxEPD_BLACK); //
+  display.setTextColor(GxEPD_BLACK);
+  //display.setFont(&FreeMonoBold9pt7b); //  display.setFont(f);
+  display.setCursor(0, 0);
 
-  // helloWorldForDummies();     delay(1000);
-  // partial refresh mode can be used to full screen, if display panel hasFastPartialUpdate
-  // helloFullScreenPartialMode();   delay(1000);
-  // deepSleepTest();
+  display.firstPage();
 
-  //  Serial.print("MOSI ");  Serial.println(MOSI);
-  //  Serial.print("MISO ");  Serial.println(MISO);
-  //  Serial.print("SCK ");  Serial.println(SCK);
-  //  Serial.print("SS ");  Serial.println(SS);
+do
+{ 
+//    display.println();  
+//    display.println("");
+//    display.println("");
+//    display.println("");
+//    display.println("");
+//    display.println("");
+} while (display.nextPage());
 
-  Serial.println("EPAPER setup done");
+  delay(EPAPER_DELAY_1);
 }
-
 
 void WIFI_HTTP_STATUS_EPAPER()
 {
@@ -99,8 +103,8 @@ void WIFI_HTTP_STATUS_EPAPER()
   Serial.println("\n\t WIFI_HTTP_STATUS_EPAPER()\n");
   display.setFullWindow();
   display.setRotation(1);
-  display.fillScreen(GxEPD_WHITE);
-  display.setTextColor(GxEPD_BLACK);
+  display.fillScreen(GxEPD_WHITE); // (GxEPD_BLACK); //
+  display.setTextColor(GxEPD_BLACK); // (GxEPD_WHITE);//
   display.setFont(&FreeMonoBold9pt7b); //  display.setFont(f);
   display.setCursor(0, 0);
 
@@ -111,11 +115,20 @@ void WIFI_HTTP_STATUS_EPAPER()
   do
   { display.println();
 
-    //    display.setTextColor(GxEPD_BLACK);
-    display.print("WiFi   : ");
-    //    display.setTextColor(GxEPD_RED);
-    display.print(WiFi_Status);
-    display.println("");
+    //    //    display.setTextColor(GxEPD_BLACK);
+    //    display.print("WiFi   : ");
+    //    //    display.setTextColor(GxEPD_RED);
+    //    display.print(WiFi_Status);
+    //    display.println("");
+
+    //if (WiFi.status() == WL_CONNECTED)
+    {
+      //    display.setTextColor(GxEPD_BLACK);
+      display.println("Local IP: ");
+      //    display.setTextColor(GxEPD_RED);
+      display.println(deviceIP);
+      display.println("");
+    }
 
     //    display.setTextColor(GxEPD_BLACK);
     display.print("HTTP POST: ");
@@ -123,17 +136,16 @@ void WIFI_HTTP_STATUS_EPAPER()
     display.print(HTTP_post_status);
     display.println("");
 
-    if (WiFi.status() == WL_CONNECTED)
-    {
-      //    display.setTextColor(GxEPD_BLACK);
-      display.println("Local IP: ");
-      //    display.setTextColor(GxEPD_RED);
-      display.print(deviceIP);
-      display.println("");
-    }
+    //    display.setTextColor(GxEPD_BLACK);
+    display.print("HTTP Respns: ");
+    //    display.setTextColor(GxEPD_RED);
+    display.print(httpCode);
+    display.println("");
+
+
   } while (display.nextPage());
 
-  delay(2000);
+  delay(EPAPER_DELAY_1); // delay(2000);
 }
 
 void WIFI_SSID_CONFIG_EPAPER()
@@ -158,7 +170,7 @@ void WIFI_SSID_CONFIG_EPAPER()
     //    display.setTextColor(GxEPD_BLACK);
     display.println("To set WiFi");
     display.println("Connect to AP :");
-    //    display.setTextColor(GxEPD_RED);    
+    //    display.setTextColor(GxEPD_RED);
     //display.println("");
 
     //    display.setTextColor(GxEPD_BLACK);
@@ -169,13 +181,13 @@ void WIFI_SSID_CONFIG_EPAPER()
 
   } while (display.nextPage());
 
-  delay(2000);
+  delay(EPAPER_DELAY_1); // delay(2000);
 }
 
-void ePaperPrintValues2()
+void ePaperPrintValues1()
 { display.init(115200);
 
-  Serial.println("\n\t ePaperPrintValues2()\n");
+  Serial.println("\n\t ePaperPrintValues1()\n");
   display.setFullWindow();
   display.setRotation(1);
   display.fillScreen(GxEPD_WHITE);
@@ -244,16 +256,16 @@ void ePaperPrintValues2()
 
   } while (display.nextPage());
 
-  delay(1000);
+  delay(EPAPER_DELAY_1); // delay(1000);
 }
 
 
 // ePaperPrintValues("customTextToPrint", &FreeMonoBold9pt7b); // function call
 // void ePaperPrintValues(const char text[], const GFXfont* f) // function definition
-void ePaperPrintValues1()
+void ePaperPrintValues2()
 { display.init(115200);
 
-  Serial.println("\n\t ePaperPrintValues1()\n");
+  Serial.println("\n\t ePaperPrintValues2()\n");
   display.setFullWindow();
   display.setRotation(1);
   display.fillScreen(GxEPD_WHITE);
@@ -314,9 +326,36 @@ void ePaperPrintValues1()
 
   } while (display.nextPage());
 
-  delay(1000);
+  delay(EPAPER_DELAY_1); // delay(1000);
 }
 
+
+
+//void ePaperSetup()
+//{
+//  //  Serial.begin(115200); delay(100);
+//
+//  Serial.println("\n ePaperSetup()");
+//
+//  display.init(115200);
+//  // first update should be full refresh
+//
+//  // ePaperPrintRTCtime(); delay(1000);
+//  // ePaperPrintValues1(); // delay(1000);
+//  // ePaperPrintValues2(); // delay(1000);
+//
+//  // helloWorldForDummies();     delay(1000);
+//  // partial refresh mode can be used to full screen, if display panel hasFastPartialUpdate
+//  // helloFullScreenPartialMode();   delay(1000);
+//  // deepSleepTest();
+//
+//    Serial.print("MOSI ");  Serial.println(MOSI);
+//    Serial.print("MISO ");  Serial.println(MISO);
+//    Serial.print("SCK ");  Serial.println(SCK);
+//    Serial.print("SS ");  Serial.println(SS);
+//
+//  Serial.println("EPAPER setup done");
+//}
 
 //void ePaperPrintRTCtime()
 //{ Serial.println("\n\t ePaperPrintRTCtime()\n");

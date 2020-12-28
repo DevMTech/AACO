@@ -170,26 +170,34 @@ void WIFI_HTTP_STATUS_OLED()
   display.clearDisplay(); // clear display
   // delay(100);
   // display WiFi_Status
+//  display.setTextSize(1);
+//  display.setCursor(0, 0);
+//  display.print("WiFi");
+//  display.setTextSize(2);
+//  display.setCursor(0, 10);
+//  display.print(WiFi_Status);
+  //  display.print(" lx");
+  
   display.setTextSize(1);
   display.setCursor(0, 0);
-  display.print("WiFi");
+  display.print("HTTP POST");
   display.setTextSize(2);
   display.setCursor(0, 10);
-  display.print(WiFi_Status);
-  //  display.print(" lx");
+  display.print(HTTP_post_status);
 
   display.setTextSize(1);
   display.setCursor(0, 35);
-  display.print("HTTP POST");
+  display.print("HTTP Code");
   display.setTextSize(2);
   display.setCursor(0, 45);
-  display.print(HTTP_post_status);
+  display.print(httpCode);
 
   display.display();
   delay(OLED_DELAY_2);
   display.clearDisplay(); // clear display
 
-  if (WiFi.status() == WL_CONNECTED)
+  //if (WiFi.status() == WL_CONNECTED)
+  if(HTTP_post_status == "SUCCESS")
   {
     //    display.setTextSize(2);
     //    display.setCursor(0, 0);
@@ -497,7 +505,7 @@ void print_PARAMS()
   // display.clearDisplay(); // clear display
 }
 
-void BLANK_SCREEN()
+void OLED_BLANK_SCREEN()
 {
   display.clearDisplay(); // clear display
   display.setTextSize(1);

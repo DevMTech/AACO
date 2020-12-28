@@ -77,6 +77,10 @@
 #define PFET_3V3_BUS 25 // GPIO25 ESP32
 #define PFET_POT_DIV 32 // GPIO32 ESP32
 #define BATTERY_V_IN 35 // GPIO35 ESP32
+//#define OLED  // UNCOMMENT TO ENABLE
+#define EPAPER   // UNCOMMENT TO ENABLE
+//#define BUZZER 12 // GPIO12 ESP32
+
 // #endif
 
 // #if defined(ESP8266)              // ESP12E - ESP8266cdac
@@ -95,8 +99,7 @@
 #include <esp_wifi.h>
 #include <esp_bt.h>
 
-//#define OLED  // UNCOMMENT TO ENABLE
-#define EPAPER   // UNCOMMENT TO ENABLE
+
 
 #define WIFI_TIMEOUT 1000 // 1second in milliseconds
 //#define DEEP_SLEEP_TIME 10 // seconds
@@ -106,7 +109,7 @@
 #define TIME_TO_SLEEP_S  5         //Time ESP32 sleep duration (in seconds)
 #define TIME_TO_SLEEP_M  5 * 60L   //Time ESP32 sleep duration (in minutes)
 
-#define BUZZER 12 // GPIO12 ESP32
+
 
 //#include <Adafruit_Sensor.h>
 //#include "Adafruit_BME680.h"
@@ -230,6 +233,7 @@ void setup()
 
   pinMode(SDA_PIN, INPUT_PULLUP);
   pinMode(SCL_PIN, INPUT_PULLUP);
+  //pinMode(BUZZER, INPUT); // BUZ OFF
 
   //  pinMode(PFET_3V3_BUS, OUTPUT); // TURN ON BUS
   //  pinMode(PFET_3V3_BUS, INPUT);  // TURN OFF BUS
@@ -240,9 +244,9 @@ void setup()
   Serial.begin(BAUD_RATE); delay(100);
 
   Serial.println("\n\n*********************WAKE UP***********************\n\n");
-  
-  
-  if(!bootCount)
+
+
+  if (!bootCount)
   { WiFiManagerSetup();
   }
   bootCount++; //Increment boot number and print it every reboot
@@ -282,7 +286,7 @@ void setup()
   /////////////////// FOR OLED : UNCOMMENT NEXT LINE &  THIS TAB : "SSD1306_OLED_128x64_I2C" /////////////////////
   //  SSD1306_128x64_setup();  // DRAW_BITMAP_LOGO(); // print_PARAMS();
   //  DRAW_BITMAP_LOGO();
-  //  BLANK_SCREEN();
+  //  OLED_BLANK_SCREEN();
 
   Serial.println("\n\n*********************START UP DONE***********************\n\n");
 
@@ -326,17 +330,13 @@ void loopOnce()
 
   // TimeNow();   delay(50);
 
-#ifdef EPAPER
-  /////////////////// FOR EPAPER : UNCOMMENT NEXT LINE &  THIS TAB :  "PRINT_VALUES_EPAPER_ESP32" /////////////////////
-  ePaperSetup(); // ePaperPrintValues(); delay(1000);  //  delay(500);
-#endif
 
 #ifdef OLED
   /////////////////// FOR OLED : UNCOMMENT NEXT LINE &  THIS TAB : "SSD1306_OLED_128x64_I2C" /////////////////////
   SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
   DRAW_BITMAP_LOGO();
   print_PARAMS();
-  BLANK_SCREEN();
+  OLED_BLANK_SCREEN();
 #endif
 
   Serial.println("\n POWERING OFF 3V3 BUS -> TURNING OFF SPI/I2C PERIPHERALS \n");
@@ -354,35 +354,12 @@ void loopOnce()
 
   HTTP_POST_NOTIF();  //  delay(1500);
 
-  Serial.println("\n POWERING ON 3V3 BUS -> TURNING ON SPI/I2C PERIPHERALS ");
-  pinMode(PFET_3V3_BUS, OUTPUT); // TURN ON 3V3 BUS
-  digitalWrite(PFET_3V3_BUS, LOW); // POWER ON 3V3 BUS -> TURN ON SPI/I2C PERIPHERALS
-  delay(5);
-
-#ifdef EPAPER
-  /////////////////// FOR EPAPER : UNCOMMENT NEXT LINE &  THIS TAB :  "PRINT_VALUES_EPAPER_ESP32" /////////////////////
-  WIFI_HTTP_STATUS_EPAPER();
-  ePaperPrintValues2();
-#endif
-
-#ifdef OLED
-  /////////////////// FOR OLED : UNCOMMENT NEXT LINE &  THIS TAB : "SSD1306_OLED_128x64_I2C" /////////////////////
-  SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
-  WIFI_HTTP_STATUS_OLED();
-  BLANK_SCREEN();
-#endif
-
-  Serial.println("\n POWERING OFF 3V3 BUS -> TURNING OFF SPI/I2C PERIPHERALS \n ");
-  digitalWrite(PFET_3V3_BUS, HIGH); // POWER OFF 3V3 BUS -> TURN OFF SPI/I2C PERIPHERALS
-  //pinMode(PFET_3V3_BUS, INPUT); // TURN OFF 3V3 BUS
-  //delay(10);
-
   if (WiFi.status() == WL_CONNECTED)
   {
     //if(!bootCount)
     //if (bootCount < 6) // OR USE AN EXTERNAL INTERRUPT TO TRIGGER THE OTA FEATURE
     {
-      OTAsetup(); // OTA VIA WEB SERVER RUNNING IN ESP32
+      //  OTAsetup(); // OTA VIA WEB SERVER RUNNING IN ESP32
     }
 
     // OTA_HTTP_UPDATER(); // OTA FROM CDAC SERVER
@@ -395,6 +372,32 @@ void loopOnce()
   WiFi_OFF();
   //WIFI_STATUS_OLED();
 
+  
+
+  Serial.println("\n POWERING ON 3V3 BUS -> TURNING ON SPI/I2C PERIPHERALS ");
+  pinMode(PFET_3V3_BUS, OUTPUT); // TURN ON 3V3 BUS
+  digitalWrite(PFET_3V3_BUS, LOW); // POWER ON 3V3 BUS -> TURN ON SPI/I2C PERIPHERALS
+  delay(5);
+
+#ifdef EPAPER
+  /////////////////// FOR EPAPER : UNCOMMENT NEXT LINE &  THIS TAB :  "PRINT_VALUES_EPAPER_ESP32" /////////////////////
+  WIFI_HTTP_STATUS_EPAPER();
+  ePaperPrintValues1(); 
+#endif
+
+#ifdef OLED
+  /////////////////// FOR OLED : UNCOMMENT NEXT LINE &  THIS TAB : "SSD1306_OLED_128x64_I2C" /////////////////////
+  SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
+  WIFI_HTTP_STATUS_OLED();
+  OLED_BLANK_SCREEN();
+#endif
+
+  Serial.println("\n POWERING OFF 3V3 BUS -> TURNING OFF SPI/I2C PERIPHERALS \n ");
+  digitalWrite(PFET_3V3_BUS, HIGH); // POWER OFF 3V3 BUS -> TURN OFF SPI/I2C PERIPHERALS
+  //pinMode(PFET_3V3_BUS, INPUT); // TURN OFF 3V3 BUS
+  //delay(10);
+
+  
 
   //  digitalWrite(PFET_LATCH_NPN, LOW); // ESP32 OFF
   //  pinMode(PFET_3V3_BUS, INPUT); // TURN OFF BUS

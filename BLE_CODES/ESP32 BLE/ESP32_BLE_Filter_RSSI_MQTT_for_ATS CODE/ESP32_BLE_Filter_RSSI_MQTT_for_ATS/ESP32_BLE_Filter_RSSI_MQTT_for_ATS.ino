@@ -9,7 +9,7 @@
 
 // Update these with values suitable for your network.
 //const char* ssid = "CdacIoT";      const char* password = "cdac1234";
-//const char* mqtt_server = "10.42.0.1";
+//const char* mqtt_server = 10.208.34.200"; // "10.42.0.1";
 
 const char* ssid = "cdac";      const char* password = "";
 
@@ -231,18 +231,13 @@ void loop() {
     lastMsg = now;
     
     
-    float scanStatus = 10; //DUMMY -> MODIFY   
-    
-    // Convert the value to a char array
-    char scanStatusString[8];       //DUMMY -> MODIFY
-    dtostrf(scanStatus, 1, 2, scanStatusString); //DUMMY -> MODIFY
-
-    
-    Serial.print("BLE_scan_status : ");
-    Serial.println(scanStatusString);
-
-    
-    client.publish(PUB_TOPIC, scanStatusString);
+//    float scanStatus = 10; //DUMMY -> MODIFY    
+//    // Convert the value to a char array
+//    char scanStatusString[8];       //DUMMY -> MODIFY
+//    dtostrf(scanStatus, 1, 2, scanStatusString); //DUMMY -> MODIFY    
+//    Serial.print("BLE_scan_status : ");
+//    Serial.println(scanStatusString);    
+//    client.publish(PUB_TOPIC, scanStatusString);
   }
   
 }

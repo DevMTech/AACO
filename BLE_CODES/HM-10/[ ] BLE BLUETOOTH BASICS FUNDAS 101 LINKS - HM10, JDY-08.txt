@@ -1,0 +1,1802 @@
+
+
+PARTICLE ARGON BLUETOOTH TUTORIAL - Bluetooth LE (BLE)
+https://docs.particle.io/tutorials/device-os/bluetooth-le/
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+Proximity and RSSI
+https://www.bluetooth.com/blog/proximity-and-rssi/
+
+IBeacon using HM10 BLE module - Distance / Proximity
+https://elementztechblog.wordpress.com/2017/03/23/ibeacon-using-hm10-ble-module/
+	D:\WIN8 FILES\[ BLE ] - MESH, 5, 5.1 - 2019 - VIDEOS - 6GB - B\[] HM10, JDY08 - BLE\] HM-10-as-iBeacon - BlueLuminance.pdf
+		
+IBeacon using HM10 BLE module
+https://elementztechblog.wordpress.com/2017/03/23/ibeacon-using-hm10-ble-module/
+Locate Beacon - iBeacon Locator App
+https://play.google.com/store/apps/details?id=com.radiusnetworks.locate
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+ micahpearlman / zero-tiny-ble  - EAGLE PCB 
+ AVR ATTiny85 microcontroller and a Bluetooth 4.0 (Bluetooth Low Energy or BLE) radio.
+	https://github.com/micahpearlman/zero-tiny-ble
+	https://kichman.github.io/JDY-08/
+	https://ladvien.com/HM10/
+
+------------------------------------------------------------------------------------------------------------------------------------------
+	
+	HM-10 Bluetooth 4 BLE Modules
+	http://www.martyncurrey.com/hm-10-bluetooth-4ble-modules/
+	Arduino, HM-10 and App Inventor 2
+	http://www.martyncurrey.com/arduino-hm-10-and-app-inventor-2/
+	Arduino, HM-10 and App Inventor 2: Adding a slider
+	http://www.martyncurrey.com/arduino-hm-10-and-app-inventor-2-adding-a-slider/
+	
+	Bluetooth Interfacing with HM-10
+	http://fab.cba.mit.edu/classes/863.15/doc/tutorials/programming/bluetooth.html
+	
+	Bluetooth LE: Using CC-41A (HM-10 Clone)
+	https://www.hackster.io/achindra/bluetooth-le-using-cc-41a-hm-10-clone-d8708e
+	
+	Reflashing JDY-08 with HM-10 BLE firmware
+	https://github.com/handiko/JDY-08-Reflash
+	
+	HM10 FIRMWARE UPGRADE -> HM-10 HMSoft CC2541 V709 firmware upgrade file.........[2020-06]
+	http://www.jnhuamao.cn/download_rom_en.asp
+	http://www.jnhuamao.cn/index_en.asp	
+	http://www.jnhuamao.cn/bluetooth.asp
+	https://techienoise.blogspot.com/2016/02/upgrading-firmware-to-hm-10-cc2541-ble.html
+	https://github.com/suryasundarraj/hm-10-firmware
+
+------------------------------------------------------------------------------------------------------------------------------------------
+	
+	JDY-08 : bluetooth 4.0 module - CCDEBUGGER - CC2541
+	https://www.iot-experiments.com/jdy-08/
+	https://www.obddiag.net/ble-adventures.html
+	How to Develop Bluetooth Low Energy Stack TI CC2541 Custom Profile
+	https://www.thegeekstuff.com/2014/07/ti-ble-custom-profile/
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+HM-10/nRF24L01 + CR2477 (3V) button cell battery  ---> ESP32 (BLE)
+Coin cell – Lithium – CR2032 – 225mAh, CR2477 – 1000mAh
+
+*ESP32-BLE SORTED!!!!  arduino-esp32 + kolban + lucadentella + esp-idf*
+
+ESP32+MESH+PROFILES+MQTT
+
+MYSQL, MQTT, WEBSOCKETS, C++, 
+JDY-08-Reflash-BATTERY-Profile-FINDME-Scan-Response, 
+LDO, HM-10, ESP32-BLE-MESH, ESP-01-CONFIG, RSSI,   
+
+
+ESP32 BLE - Memory consumption of bluetooth is enormous
+https://esp32.com/viewtopic.php?t=3139
+
+https://www.bluetooth.com/specifications/
+https://www.bluetooth.com/bluetooth-resources/?tags=asset-tracking&types=paper
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+Ellisys Bluetooth Video Series
+	https://www.youtube.com/playlist?list=PLYj4Cw17Aw7ypuXt7mDFWAyy6P661TD48
+
+============================================================================================================================================
+
+https://embeddedcentric.com/lesson-2-ble-profiles-services-characteristics-device-roles-and-network-topology/
+https://embeddedcentric.com/simultaneous-ble-connections/
+
+
+BLE Bluetooth Profiles
+SPP, A2DP, AVRCP, HFP, HSP, PBAP, IAP, GAP, SDP, L2CAP, RFCOMM, GATT, IAP1, IAP2, MAP
+
+ https://www.rfwireless-world.com/Terminology/Bluetooth-profiles-list.html
+HSP		Headset Profile
+HFP 	Hands-Free Protocol 
+PBAP 	Phone Book Access Protocol 
+A2DP  	Advanced Audio Distribution Profile
+AVRCP   Audio/Visual Remote Control Profile
+SPP 	Serial Port Protocol
+MAP
+
+Available connection types are A2DP, AVRCP, MAP, HFP, PBAP, SPP and BLE.
+ https://learn.sparkfun.com/tutorials/understanding-the-bc127-bluetooth-module/bc127-profiles
+
+============================================================================================================================================
+ http://monkeycanz.com/hrf_faq/what-are-bluetooth-a2dp-avrcp-hfp-hsp-protocols/
+ https://www.usa.philips.com/c-f/XC000008687/what-is-a-bluetooth-profile-hsp,-hsp,-a2dp,-avrcp
+What is a Bluetooth profile HSP, HSP, A2DP, AVRCP?
+
+What is a Bluetooth profile?
+When two Bluetooth devices establish a connection, they learn about the protocols that the partner device offers. Only devices that share the same protocols can exchange data, just as two humans have to agree on a common language to have a meaningful conversation.
+
+While Bluetooth defines the physical wireless connection between devices, a Bluetooth profile establishes the commands and functionality that these devices can exchange using Bluetooth technology.
+
+HSP (Handset Profile) and HFP (Hands Free Profile) Bluetooth profiles are those required for typical, mono Bluetooth headset operations; A2DP and AVRCP are important for stereo headsets.
+
+What profiles are important for Bluetooth headsets?
+HSP (Handset Profile) – provides the basic functionalities needed for communication between a handset (cell phone) and a headset.
+
+HFP (Hands Free Profile) – has somewhat extended functionality to HSP and was originally intended to control a cell phone from a stationary, in-car, hands-free unit.
+
+A2DP (Advanced Audio Distribution Profile) – allows the transmitting of stereo audio signals (with much better quality than the mono encoding used for HSP and HFP).
+
+AVRCP (Audio / Video Remote Control Profile) –is used for sending commands (e.g. Skip Forward, Pause, Play) from a controller (e.g. stereo headset) to a target device (e.g. PC with Media Player).
+
+https://www.bluetooth.com/specifications/profiles-overview/
+
+
+
+Bluetooth packet sniffer
+https://www.rfwireless-world.com/Terminology/bluetooth-sniffer.html
+
+
+============================================================================================================================================
+
+
+//"50:8c:b1:40:16:47"; // JDY-08 ZERO PCB 
+//"c8:fd:19:4a:be:1d"; // JDY-08 COIN CELL // "98:5d:ad:23:14:bd";  "985dad2314bd" 
+//"c8:fd:19:4a:f7:72"; // BLE3 (HM10) MAC (BLE_SERVER_TAG)
+//"30:ae:a4:7a:dc:16"  // ESP32 DEVKITV1 BLK
+//"24:0A:C4:83:20:C2"  // ESP32 38 PIN NARROW - BB 2 ROW EMPTY
+
+String BLE_Tag_Addrs_to_Scan[] = {"c8:fd:19:4a:be:1d","c8:fd:19:4a:f7:72","30:ae:a4:7a:dc:16","50:8c:b1:40:16:47"}; 
+
+// ESP32-AACO-01
+// 31/12/2029
+// 7WSIoIabwyDKyfCXK1q7FkbIQcBIR76coQoQ
+// eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTg5MzM0OTgwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.sItE0U1EkkIKikvr2bjwnG6u09TfiE2T3R0lLSiZ2fE
+// eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTg5MzM0OTgwMDAwMCwidCI6MCwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.tX0b1fBHAxSwDxV33M6JEf6RyBKA6qPfY0_0JJyK2Uo                       
+
+//"WmpZLPaEYEZruXHSBSbajvlTHstEWqPFXjFd"; // CORRECT ID
+//String accessTokenExpDate30_11_19 = "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTUsMTYsMTddLCJlIjoxNTc1MDUyMjAwMDAwLCJ0IjoxLCJ1IjozLCJuIjpbIjIiXSwiZHQiOlsiOSJdfX0.g5gFdZmFKhHTuewyo-8UPLGCbDdIPDyQzDovtJAzq3A";
+//String accessTokenS = accessTokenExpDate30_11_19;         
+//String refreshTokenExpDate30_11_19 = "eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTUsMTYsMTddLCJlIjoxNTc1MDUyMjAwMDAwLCJ0IjowLCJ1IjozLCJuIjpbIjIiXSwiZHQiOlsiOSJdfX0.HHH0k__hojNgWwBB4wFajy1gC_RZ7iEtF-d1iubwcvk"; 
+
+============================================================================================================================================
+
+Inside Bluetooth Low Energy Second Edition by Naresh Gupta
+https://issuu.com/nadirchine/docs/inside_bluetooth_low_energy_-_2nd_e
+
+APPLICATIONS OF BLE
+--------------------
+FINDING & ALERTS
+
+PROXIMITY & PRESENCE DETECTION
+
+HEALTHCARE, SPORTS, SHOPPING MALLS(Offers, Loyalty, Coupons, Payments), IOT-HOME AUTOMATION, WAREHOUSE, SHIPPING FACILITY, ACCESS CONTROL
+
+
+
+BLE - COMPETING TECHS - WPAN: ZIGBEE, NFC, ANT+
+
+IEEE802.15 - IEEE802 Working Group that specifies WPA Standards 
+IEEE802.15.1 -> BLE
+
+BLUETOOTH BR - Basic Rate - 721Kbps
+BLUETOOTH 2.0+ EDR - Enhanced Data Rate - 2.1Mbps
+BLUETOOTH 3.0+ HS - High Speed - 24Mbps - Alternate MAC/PHY (AMP)
+BLUETOOTH 4.0 LE - max. 305Kbps - Practically much less to save power  - packet size 27 bytes
+BLUETOOTH 4.2 LE - max. 800Kbps - packet size 251 bytes
+
+2.4GHz ISM Band
+
+FHSS - Freq. Hopping Spread Spectrum 
+	 - hops from one freq. to another from a set of 79 channels(freq.s) 
+	 - each channel is 1MHz wide
+	 - protects against interference due to microwave (present in 2.4GHz band)
+	 
+TDD - Time Division Duplex 
+
+Core Protocols: L2CAP, SDP, Link Manager
+Adopted Protocols: RFCOMM, IrOBEX(IrDA), HID Profile
+
+discoverable - inquiry(M) -> inquiry scan(S) -> inquiry response(S) -> discover
+connectable - paging(M) -> page scan(S) -> S responses msg. -> M response msg. -> connect -> Piconet formed (1 Master & upto 7 active Slaves)
+disconnect - either Master or Slave can disconnect 
+
+DEVICE THAT INITIATES PAGING BECOMES MASTER AFTER CONNECTION ESTABLISHMENT.
+IF ROLE SWITCH PROCEDURE IS INITIATED DURING CONNECTION ESTABLISHMENT, THEN THE REVERSE OF ABOVE HAPPENS.
+EITHER OF MASTER & SLAVE CAN DISCONNECT THE CONNECTION
+
+LINK SUPERVISION: 
+LINK MANAGER - PHYSICAL LINK LOST - OUT OF RANGE/BATTERY POWER LOW/RESET 
+			- POLL(M) - NULL(S) - HEART BEAT PACKETS
+			- SUPERVISION TIMER - TIME OUT - LM OF BOTH SIDES INFORMS HOSTS ABOUT LINK LOSS
+
+BD_ADDR - Bluetooth Device Address
+AM_ADDR - Active Member Address
+PM_ADDR - Parked Member Address 
+
+PARKED STATE CAN BE USED WHEN MORE THAN 7 SLAVES NEED TO CONNECT TO A SINGLE MASTER.
+ALL SLAVES OTHER THAN THE 7 ACTIVE SLAVES STAY IN PARKED STATE, 
+THE PARKED SLAVES PERIODICALLY BECOME ACTIVE SLAVES & VICE VERSA 
+
+Piconet - smallest unit of Bluetooth Communication (1 Master & upto 7 Slaves) 
+		- 2 or more devices sharing the physical channel 
+		- a Piconet is defined by the Master's BD_ADDR (Freq. Hopping pattern)& its Clock (sync clk)
+		
+Scatternet 	- 2 or more Piconets - one Slave shared between two Piconets to form Scatternet 
+			- Shared device participates in the 2 piconets in TDM manner
+			- the shared device puts itself in lower power mode in 1st piconet 
+				before moving to the 2nd piconet & vice versa
+  			- a device can be Master in one Piconet & Slave in another Piconet
+			- a device can be Master in only one Piconet (each Piconet requires BD_ADDR & Clock of a unique Master)
+
+Device that initiates connection = Master
+LE - DOESN'T ALLOW ROLE SWITCH
+BR/EDR - Role switch (Slave to Master) can happen during connection establishment or any time afterwards
+Either of Master & Slave can initiate a role switch
+
+LINK CONTROLLER STATES:
+STANDBY
+CONNECTION
+PARK
+
+
+
+Power Class	- Max. Output POWER(higher power = longer range)
+	1		-	100mW
+	2    	- 	2.4mW
+	3		- 	1mW
+	
+Point-to-Point & Point-to-Multi-Point Connection	
+
+Packet can be only of 1, 3, or 5 slots in length (each slot is 625 microseconds)
+Master sends packets in ODD slots only
+Slaves send response packets in EVEN slots only
+
+Wide Band Speech (WBS) - 50-7000Hz - naturalness of speech - 16KHz Nyquist sampling rate - 3G-BLE headset
+
+LINK SUPERVISION - POLL(M), NULL(S) - HEART BEAT - CHECK IF WITHIN RANGE OR NOT
+
+LINK MANAGER - LINK SETUP & CONTROL
+HOST CONTROLLER INTERFACE (HCI) - HOST(PC) FROM ONE VENDOR CAN WORK WITH CONTROLLER(BLE DONGLE) FROM ANOTHER VENDOR
+
+LINK MANAGER PROTOCOL - COMMUNICATION B/W LINK MANAGERS OF TWO DEVICES - OVER ACL-C 
+LOGICAL LINKS:
+LC		LINK CONTROL - LOW LEVEL LINK CONTROL INFO
+ACL-C	ACL-CONTROL  - CONTROL INFO B/W LINK MANAGER LAYERS OF MASTER & SLAVES 
+ACL-U	ACL-USER 	 - USER DATA B/W L2CAP LAYERS (FILE TRANSFER, MUSIC STREAMING)
+SCO-S				 - USER DATA ON SCO LOGICAL TRANSPORT	(8KHz)
+eSCO-S				 - USER DATA ON eSCO LOGICAL TRANSPORT - VOICE CALL (16KHz WBS)
+
+ACL data packets - Asynchronous data field
+SCO/eSCO data packets - Synchronous data field
+DV - A/sync
+
+BR  - ACCESS CODE | HEADER | 			  PAYLOAD			  |
+EDR - ACCESS CODE | HEADER | GUARD | SYNC | PAYLOAD | TRAILER |
+
+3DH5
+
+2EV3
+
+A2DP
+
+BR+EDR 
+ALL TX BEGIN WITH ACCESS CODE -> ONLY MANDATORY PART OF PACKET
+ALL PACKETS SEND ON THE SAME PHYSICAL CHANNEL HAVE THE SAME ACCESS CODE
+
+DEVICE ACCESS CODE DAC - PRE-COOENTION PHASE - DEVICE TRYING TO CONNECT
+
+CHANNEL ACCESS CODE CAC - CHECK IF RECEIVED PACKET BELONGS TO THE PICONET OF THE SLAVE DEVICE OR NOT  
+					PREFIXED TO ALL PACKETS EXCHANGED BETWEEN DEVICES IN THE SAME PICONET
+
+INQUIRY ACCESS CODE IAC - INQUIRY PHASE - FIND OUT OTHER BLE DEVICES IN VICINITY
+
+
+============================================================================================================================================
+
+BluetoothSerial  -  Bluetooth SPP
+
+Bluetooth SPP (Serial Port Profile) is intended to replace RS-232 cables 
+(or other serial communication interfaces). SPP is excellent for sending 
+and receiving bursts of data/information between two devices.
+
+Bluetooth LE (also known as Bluetooth Smart or Bluetooth 4.0) is a significant 
+release of the Bluetooth standard designed to optimize energy consumption and 
+speed to work with extremely low power applications. Bluetooth Low Energy (BLE) 
+also simplifies the user experience by circumventing the typical process of 
+having to pair through the host device's Bluetooth settings before the 
+application — with BLE the user need only pair through the application itself. 
+However, this improvement does not come without some drawbacks; BLE sacrifices 
+range to achieve faster speeds (up to 10 times faster than other Bluetooth 
+profiles) and decreased energy consumption.
+---------------------------------------------------------------------------------------------------------------------
+The Bluetooth protocol stack is split into two parts: 
+a “controller stack” and a “host stack”. 
+The controller stack contains the PHY, Baseband, Link Controller, Link
+Manager, Device Manager, HCI and other modules, and is used for the hardware interface
+management and link management. 
+The host stack contains L2CAP, SMP, SDP, ATT, GATT, GAP and various profiles, 
+and functions as an interface to the application layer, thus facilitating the application 
+layer to access the Bluetooth system. 
+The Bluetooth Host can be implemented on the same device as the Controller, 
+or on different devices.
+
+There are four GAP roles defined for a BLE device:
+• Broadcaster: A broadcaster is a device that sends advertising packets, so it can be
+discovered by the observers. This device can only advertise, but cannot be connected.
+
+• Observer: An observer is a device that scans for broadcasters and reports this
+information to an application. This device can only send scan requests, but cannot be
+connected.
+
+• Peripheral: A peripheral is a device that advertises by using connectable advertising
+packets and becomes a slave once it gets connected.
+
+• Central: A central is a device that initiates connections to peripherals and becomes a
+master once a physical link is established.
+
+BT/BLE MAX ACL CONNECTIONS (1~7): sets the maximum number of ACL connections.
+
+ACL : Asynchronous Connection-Less
+https://www.silextechnology.com/unwired/basics-of-asynchronous-connection-less-acl-bluetooth-communication-protocol
+
+A. BROADCASTING USING PUBLIC ADDRESS
+=================================
+When a public address is used for broadcasting, the own_addr_type of
+esp_ble_adv_params_t must be set to BLE_ADDR_TYPE_PUBLIC.
+
+1 esp_ble_gap_set_device_name
+
+2 esp_ble_gap_config_adv_data -> esp_gap_ble_adv_data_set_complete_evt
+
+esp_ble_gap_start_advertising to start broadcast 
+sets the own_addr_type parameter to ble_addr_type_public
+3 esp_ble_gap_start_advertising -> esp_gap_ble_adv_start_complete_evt
+
+SCANNING
+========
+1 esp_gap_ble_scan_result_evt
+
+B. BROADCASTING USING RESOLVABLE ADDRESS
+=====================================
+When a resolvable address is used for broadcasting, the underlying protocol stack updates
+the broadcast address every 15 minutes, and the own_addr_type of esp_ble_adv_params_t
+must be set to BLE_ADDR_TYPE_RANDOM. 
+
+1 esp_ble_gap_set_device_name
+2 esp_ble_gap_config_local_privacy
+3 esp_ble_gap_config_adv_data -> esp_gap_ble_adv_data_set_complete_evt
+
+esp_ble_gap_start_advertising to start broadcast 
+sets the own_addr_type parameter to ble_addr_type_random
+4 esp_ble_gap_start_advertising -> esp_gap_ble_adv_start_complete_evt
+
+SCANNING
+========
+1 esp_gap_ble_scan_result_evt
+
+
+C. BROADCASTING USING A STATIC RANDOM ADDRESS
+==========================================
+When a static random address is used for broadcasting, the own_addr_type of the
+esp_ble_adv_params_t must be set to BLE_ADDR_TYPE_RANDOM, which is similar to the case
+of broadcasting using a resolvable address. 
+
+1 esp_ble_gap_set_device_name
+2 esp_ble_gap_set_rand_addr -> esp_gap_ble_set_static_rand_addr_evt
+3 esp_ble_gap_config_adv_data -> esp_gap_ble_adv_data_set_complete_evt
+
+esp_ble_gap_start_advertising to start broadcast 
+sets the own_addr_type parameter to ble_addr_type_random
+4 esp_ble_gap_start_advertising -> esp_gap_ble_adv_start_complete_evt
+
+SCANNING
+========
+1 esp_gap_ble_scan_result_evt
+
+BLE Modes
+Five modes are defined for the BLE broadcasts: 
+1. Connectable Scannable Undirected mode,
+2. High Duty Cycle Directed mode, 
+3. Scannable Undirected mode, 
+4. Non-connectable Undirected mode, and 
+5. Connectable Low Duty Cycle Directed mode.
+
+============================================================================================================================================
+
+A Basic Introduction to BLE Security
+====================================
+			----------------------------------------------------------------------------------------
+			| https://www.digikey.com/eewiki/display/Wireless/A+Basic+Introduction+to+BLE+Security |
+			----------------------------------------------------------------------------------------
+
+[] Practical Internet of Things Security - 2016
+
+Bluetooth-LE
+Bluetooth-LE is based on the Bluetooth Core Specification Version (4.2) and
+specifies a number of modes that provide options for authenticated or
+unauthenticated pairing, data integrity protections, and link encryption.
+
+Specifically, Bluetooth-LE supports the following security concepts
+(reference: Bluetooth Specification, Version 4.2):
+	• Pairing: Devices create one or more shared secret keys
+	• Bonding: The act of storing the keys created during pairing for use in
+		subsequent connections; this forms a trusted device pair
+	• Device authentication: Verification that the paired devices have trusted keys
+	• Encryption: Scrambling of plaintext message data into ciphertext data
+	• Message integrity: Protects against tampering with data
+
+
+Bluetooth-LE provides four options for device association:
+
+Numeric comparison
+The user is shown a six-digit number and enters YES if the numbers
+are the same on both devices. Note that with Bluetooth 4.2 the six-digit
+number is not associated with the encryption operations between the two
+devices.
+
+Just works 
+Designed for devices that do not include a display. Uses the same model
+as numeric comparison however the user is not shown a number.
+
+Out of band 
+Allows use of another protocol for secure pairing. Often combined with
+near-field communications (NFC) to allow for secure pairing. In this
+case, the NFC protocol would be used to exchange the device Bluetooth
+addresses and cryptographic information.
+
+Passkey entry 
+Allows a six-character passkey to be entered on one device and displayed
+on another for confirmation.
+
+
+Bluetooth-LE makes use of a number of keys that are used together to provide
+the requested security services. The following table provides a view into the
+cryptographic keys that play a role in Bluetooth-LE security.
+
+
+Temporary key (TK) 
+Determined by the type of Bluetooth pairing used, the TK can
+be different lengths. It is used as an input to the cipher-based
+derivation of the short-term key (STK).
+
+Short-term key (STK) 
+STK is used for secure distribution of key material and is based
+on the TK and a set of random values provided by each device
+participating in the pairing process.
+
+Long-term key (LTK) 
+The LTK is used to generate a 128-bit key employed for linklayer encryption.
+
+Connection signature resolving key (CSRK)
+The CSRK is used for signing data at the ATT layer.
+
+Identity resolving key (IRK)
+The IRK is used to generate a private address based on a device
+public address. This provides a mechanism for device identity
+and privacy protection.
+
+Bluetooth-LE supports cryptographically signed data through the use of the CSRK.
+The CSRK is used to apply a signature to a Bluetooth-LE protocol data unit (PDU).
+The signature is a MAC that is generated by the signing algorithm and a counter
+that increments for each PDU sent. The addition of the counter provides additional
+replay protections.
+
+Bluetooth-LE also supports the ability to provide privacy protections for devices.
+This requires the use of the IRK which is used to generate a special private address
+for the device. There are two options available for privacy support, one where
+the device generates the private address and one where the Bluetooth controller
+generates the address.
+
+===================================================================================================================================================
+
+Reading Beacon Advertisements
+=============================
+https://www.allaboutcircuits.com/projects/build-an-arduino-uno-multi-node-ble-humidity-and-temperature-sensor-monitor/
+
+To monitor temperature and humidity, we need to 
+1) receive a beacon advertisement transmission, 
+2) identify which solar beacon the advertisement came from, and 
+3) read the temperature and humidity values embedded in the advertisement.
+
+loop()
+1) sends the “AT+DISI?” to request a scan, 
+2) calls ReadScan() to get the response string, then 
+3) calls SearchScan to process the response string.
+
+FIND ME PROFILE - THEORY
+========================
+
+BLE - SHORT CONNECTION PROTOCOL
+DEVICES ADVERTISE, ESTABLISH CONECTION, EXCHANGE DATA, AND DISCONNECT (TURN OFF RADIO & GO TO DEEP SLEEP)
+ADVERTISING POWER(dBm) AND ADVT. RATE(slow rate in GAP setting) CAN BE CHANGED TO REDUCE POWER Consumption
+REDUCE TRANSMISSION FREQUENCY TO REDUCE POWER 
+
+GAP - HOW DEVICES CONNECT 
+	- CONFIG CONNECTION PARAMETERS
+	- WHAT TO ADVERTISE: NAME, RSSI, SERVICE UUID etc.
+GATT - HOW THEY EXCHANGE DATA
+
+
+
+GAP PERIPHERAL	GAP CENTRAL
+GATT Server		GATT Client 
+HAS DATA		READS/WRITES DATA
+BLE TAG 		SMARTPHONE
+BROADCASTER		OBSERVER
+
+
+GATT DATABASE HOLDS P, S, C DATA
+PROFILE
+SERVICE
+CHARACTERISITCS
+
+ALL BLE PERIPHERALS ARE REQUIRED TO IMPLEMENT A GAP & A GATT SERVICE 
+
+"FIND ME" PROFILE HAS "IMMEDIATE ALERT" SERVICE (IAS) 
+WHICH CONTAINS AN "ALERT LEVEL" CHARACTERISTIC (high/mild/none)
+
+ADD "BATTERY" SERVICE TO "FIND ME TARGET" IN "FIND ME" PROFILE
+"BATTERY" SERVICE HAS A "BATTERY LEVEL" CHARACTERISTICS
+
+SMARTPHONE(GAP CENTRAL) WRITES "ALERT LEVEL" VALUE TO TAG(GAP PERIPHERAL)
+SMARTPHONE(GAP CENTRAL) READS "BATTERY LEVEL" VALUE FROM TAG(GAP PERIPHERAL)
+
+ADD A CUSTOM Service
+====================
+TO THE GATT SERVER (BLE TAG) "CUSTOM SERVICE" CAN BE ADDED UNDER PROFILES, 
+WHEN RELEVANT SERVICE IS NOT PROVIDED BY BLE STACK
+GIVE THE CUSTOM SERVICE A 16-BIT UUID, THEN ADD "CUSTOM" CHARACTERISTIC TO THE SERVICE
+NEXT ADD "DESCRIPTOR" PROPERTIES (CCCD) to the CUSTOM CHAR. - R/W/N etc. turn on notifications
+
+CCCD - Client Characteristic Configuration Descriptor 
+
+The CCCD is written by the GATT CLIENT (SMARTPHONE/CLIENT) 
+TO ENABLE GATT SERVER (BLE TAG/PERIPHERAL) TO SEND NOTIFICATIONS 
+OF DATA BEING CHANGED
+
+https://www.youtube.com/playlist?list=PLIOkqhZiy83F2ZCIpmOIFnnOR2FdWW8JK
+
+FIND ME PROFILE - PROXIMITY
+===========================
+PSoC 6 BLE – Find Me Profile (Target)
+https://iotexpert.com/2018/02/12/psoc-6-ble-find-me-profile-target/
+
+Find Me Profile (FMP) example code and demo setup
+https://www.silabs.com/community/wireless/bluetooth/knowledge-base.entry.html/2015/08/06/find_me_profile_fmp-sEIo
+
+PSoC 4 BLE 101: 1-6 Find Me Profile with BLE
+https://www.youtube.com/playlist?list=PLIOkqhZiy83F2ZCIpmOIFnnOR2FdWW8JK
+
+A Hands-On Look at Cypressâ€™ BLE Find Me Application
+https://www.designnews.com/content/hands-on-look-cypress-ble-find-me-application/125314414633145
+
+FMP	Find Me Profile	1.0	Active	21 Jun 2011	N/A
+https://www.bluetooth.com/specifications/gatt/
+
+PSoC 6 101: Lesson 3-1 Introduction to BLE
+https://www.youtube.com/watch?v=iadKi7GnJwE
+https://www.youtube.com/playlist?list=PLIOkqhZiy83H81AhLcjwIKkB9w07JQZS6
+
+============================================================================================================================================
+
+http://www.martyncurrey.com/hm-10-bluetooth-4ble-modules/
+
+	
+BLE3 C8:FD:19:4A:F7:72
+Unknown Service
+0000ffe0-0000-1000-8000-00805f9b34fb
+PRIMARY SERVICE
+Unknown Characteristic
+0000ffe1-0000-1000-8000-00805f9b34fb
+Properties: NOTIFY, READ, WRITE NO RESPONSE
+
+BLE is designed for low energy applications and achieves this 
+by using infrequent small packets of data. 
+It is not really designed for continuous connections and 
+large amounts of data. 
+For this, Bluetooth Classic is a better choice. 
+In essence, BLE achieves its low power consumption by 
+not being connected very often, unlike Bluetooth Classic 
+which maintains a constant connection.
+
+There are 2 ways BLE devices can talk to each other; 
+Broadcaster + Observer, and, Central + Peripheral. 
+The HM-10 can use both methods.
+
+    With Broadcaster + Observer there isn’t a standard connection, 
+	the Broadcaster, usually some kind of sensor, sends out periodic signals 
+	(advertising packets) which the Observer listens for. 
+	The Broadcaster does not normally know if anything is listening or not.
+	
+    The Central + Peripheral scenario is more like (but not exactly the same) 
+	as the classic connection. 
+	When the Central (master) device finds a Peripheral (slave) device 
+	it wants to connect to it initiates a connection and takes on 
+	the master role managing the connection and timings.
+
+
+All the services on the HM-10 are predefined except one. 
+This is a custom service that has one custom characteristic. 
+Predefined services and characteristics are ones where 
+the UUID and the name are set by the Bluetooth governing body. 
+For example, the characteristic 0x2A00 is the device name and when 
+a device has this characteristic it should always be the device name.
+
+The custom characteristic can hold up to 20 characters, 
+this means to send a string longer than 20 characters the 
+HM-10 splits the data in to 20 character segments and 
+sends each one in turn until none are left.
+
+
+Characteristics are where the values are, 
+some are READ, some are WRITE, and some are READ and WRITE.
+
+The HM-10 uses the custom characteristic to send and receive 
+the data it receives over the serial UART interface. 
+It works by setting the value of the custom characteristic to 
+the value of the data to be transmitted. It then sends out a 
+notification to the remote device to say there is new data available.
+
+SERVICE 1: GAP
+GENERIC ACCESS 0x1800 UUID: 00001800-0000-1000-8000-00805F9B34FB
+				DEVICE NAME									0x2A00			R
+				APPEARANCE									0x2A01			R
+				PERIPHERAL PRIVACY FLAG						0x2A02			R/W
+				RECONNECTION ADDRESS						0x2A03			R/W
+				PERIPHERAL PREFERRED CONNECTION PARAMETERS	0x2A04 			R
+				
+SERVICE 2: GATT
+GENERIC ATTRIBUTE 0x1801 UUID: 00001801-0000-1000-8000-00805F9B34FB
+				SERVICE CHANGED  							0x2A05          I
+
+SERVICE 3: CUSTOM
+CUSTOM SERVICE 	0xFFE0	UUID: 0000FFE0-0000-1000-8000-00805F9B34FB
+				CUSTOM CHARACTERISTIC						0xFFE1			R/W/N
+
+
+Let’s assume the BLE device of an audio player. Initially when 
+you pair it with your phone, your phone identifies it as an audio 
+device and also displays the battery level on the status bar. 
+So, for this to happen the audio player has to somehow tell your 
+phone that it is willing to share the battery level and the 
+percentage of charge it has in it battery. This is done by using 
+the UUID, there is a specific UUID which tells that the BLE device 
+is going to provide details about battery level this UUID which 
+tells the type of service is called Service UUID, again there 
+could be so many parameters that has to be exchanged for 
+completing a service like the value of battery is on such 
+parameter, each parameter will have its own UUID and these are 
+called the Characteristic UUID. The common function performed 
+by a characteristic is Read, Write, Notify and Indicate.
+
+
+BLE Descriptor: The Descriptor is an optional attribute that i
+s present inside the Characteristic. A Descriptor normally 
+specifies how to access a Characteristic.
+
+GATT Services
+https://www.bluetooth.com/specifications/gatt/services/
+
+GATT Characteristics
+https://www.bluetooth.com/specifications/gatt/characteristics/
+
+GATT Descriptors
+https://www.bluetooth.com/specifications/gatt/descriptors/
+
+AD (Advertising Data) Types: Assigned numbers and GAP
+EIR Data Type, Advertising Data Type (AD Type) and OOB Data Type Definitions
+https://www.bluetooth.com/specifications/assigned-numbers/generic-access-profile/
+
+V4 UUID Generator
+https://www.uuidgenerator.net/
+
+FLAGS
+/**@defgroup BLE_GAP_ADV_FLAGS GAP Advertisement Flags
+ * @{ */
+#define BLE_GAP_ADV_FLAG_LE_LIMITED_DISC_MODE         (0x01)   /**< LE Limited Discoverable Mode. */
+#define BLE_GAP_ADV_FLAG_LE_GENERAL_DISC_MODE         (0x02)   /**< LE General Discoverable Mode. */
+#define BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED         (0x04)   /**< BR/EDR not supported. */
+#define BLE_GAP_ADV_FLAG_LE_BR_EDR_CONTROLLER         (0x08)   /**< Simultaneous LE and BR/EDR, Controller. */
+#define BLE_GAP_ADV_FLAG_LE_BR_EDR_HOST               (0x10)   /**< Simultaneous LE and BR/EDR, Host. */
+#define BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE   (BLE_GAP_ADV_FLAG_LE_LIMITED_DISC_MODE | BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED)   
+															   /**< LE Limited Discoverable Mode, BR/EDR not supported. */
+#define BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE   (BLE_GAP_ADV_FLAG_LE_GENERAL_DISC_MODE | BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED)   
+															   /**< LE General Discoverable Mode, BR/EDR not supported. */
+/**@} */
+
+Bluetooth Pairing - PART 1 -4 - BLUETOOTH.COM
+https://www.bluetooth.com/blog/bluetooth-pairing-part-1-pairing-feature-exchange/
+https://www.bluetooth.com/blog/bluetooth-pairing-part-2-key-generation-methods/
+https://www.bluetooth.com/blog/bluetooth-pairing-passkey-entry/
+https://www.bluetooth.com/blog/bluetooth-pairing-part-4/
+
+Defining Bluetooth Mesh Models
+https://www.bluetooth.com/blog/defining-bluetooth-mesh-models/
+
+Note: AT commands only work when the HM-10 is not connected. 
+After a connection is made the commands are treated as data. 
+“AT” is the exception, the “AT” command breaks the connection.
+
+HM-11 which is operationally the same as the HM-10 
+but has a smaller footprint with fewer pins broken out
+
+
+If you update from v700 onwards remember the default UART baud rate changed to 115200.
+Note that in V700 onwards:
+– the default baud rate change to 115200.
+– accepts commands with and without line endings.
+– better compatibility for other BLE modules. See the readme file that comes with the download.
+
+
+	HM10 FIRMWARE UPGRADE
+	http://www.jnhuamao.cn/index_en.asp
+
+There are 2 versions of the HM-10; the HM-10C and the HM-10S.
+The HM-10S has USB connection pads along the bottom and has 34 pads.
+The HM-10C does not have USB connection pads along the bottom and has 26 pads.
+There may be other differences (such as the type of crystal used) 
+due to the date of manufacture. Operationally the two are the same though.
+
+HM-10 Basic specs
+
+    +2.5v to +3.3v
+    Requires up to 50mA
+    Uses around 9mA when in an active state
+    Use 50-200uA when asleep
+    RF power: -23dbm, -6dbm, 0dbm, 6dbm
+    Bluetooth version 4.0 BLE
+    Default baud rate pre firmware V700 is 9600
+    Default baud rate firmware V700 and up is 115200
+    Default PIN is 000000
+    Default name is HMSoft
+    Based on the CC2540 or the CC2541 chip
+
+The latest HM-10s all appear to have the CC2541 chip.
+CC2541 is the same as the CC2540 except CC2541 is lower power and has a shorter range.
+
+HM-10 is Bluetooth version 4.0 only. 
+It cannot connect to Bluetooth 2/2.1 modules such as the HC-06 and HC-05.
+The HM-10 breakout board includes a 3.3v power regulator that makes them 5V compatible.
+The RX pin is is still 3.3v and when using a 5v Arduino you should covert 
+the Arduino’s 5v TX to 3.3v for the HM-10 RX. 
+
+Pin 	Description
+STATE   Connection status
+		LOW when not connected. HIGH when connected
+VCC 	Power in. 3.6v to 6v
+GND 	Common ground
+TXD 	Serial UART transmit
+RXD 	Serial UART receive
+BRK 	Break pin. When there is an active connection, 
+		bringing the BRK pin LOW breaks the connection
+
+ON BOARD LED
+The behavior of the LED can be changed using the PIO1 command.
+“AT+PIO10″ – 	Default setting. 
+				When not connected the LED blinks 500ms on, 500ms off. 
+				When connected the LED is solid on.
+				
+“AT+PIO11″ – 	When not connected the LED is off. 
+				When connected the LED is solid on.
+
+STATE PIN
+The STATE pin is LOW when there is no connection and 
+			goes HIGH when a connections is established.
+			
+BRK Pin
+
+The BRK pin allows you to cancel a connection. 
+When there is an active connection, bringing the BRK pin 
+momentarily LOW breaks the connection. 
+When there is no connection making the BRK HIGH or LOW has no effect. 
+Although not strictly required, pulling the BRK pin HIGH for normal use 
+will stop the pin from floating.
+
+Fakes
+One of the easiest ways to spot the non-HM-10s was the lack of a crystal, 
+unfortunately you can now buy actual HM-10s without the crystal so 
+the confusion is likely to get worse.		
+
+The Bluetooth used in modules like HC-05 is a version of the 
+classic Bluetooth called Bluetooth SSP (Serial Port Protocol), 
+meaning the Bluetooth follows the standard serial protocol 
+which makes it easier to send and receive data without much overhead.
+
+
+	AT+MODE1: PIO2,3 = O/P; PIO4-B = I/P, ADC
+	AT+MODE2: PIO2-B = O/P
+	
+Scan paramaters:
+scan interval: 	0x50 = 80
+scan window: 	0x30 = 48
+scan duration	10s
+
+  
+ *  http://archive.fabacademy.org/archives/2016/fablabdigiscope/students/456/W19_project_development.html
+ *  http://fab.cba.mit.edu/classes/863.15/doc/tutorials/programming/bluetooth.html 
+ *  http://archive.fabacademy.org/archives/2016/fablabdigiscope/students/456/project_summary.html
+ *  https://www.hackster.io/achindra/bluetooth-le-using-cc-41a-hm-10-clone-d8708e
+ *  https://www.hackster.io/mayooghgirish/arduino-bluetooth-basic-tutorial-d8b737
+ 
+ *  https://arduinoinfo.mywikis.net/wiki/BlueTooth-HC05-HC06-Modules-How-To
+ *  http://wiki.sunfounder.cc/index.php?title=Bluetooth_4.0_HM-10_Master_Slave_Module
+ 
+ *  https://evothings.com/control-an-led-using-hm-10-ble-module-an-arduino-and-a-mobile-app/   
+    12345678901234567890
+    1234567890123456789011111
+    MY NAME IS DEBAJYOTI MAITRA
+    DEBAJYOTI MAITRA
+    ONLY LAST 20 CHARACTERS
+    VCC to 5V
+    GND to GND
+    TXD to pin D10
+    RXD to pin D11
+
+  AT+VERR?
+  AT+VERS?
+  AT+ADDR?
+  AT+BAUD0
+  AT+BAUD?
+  
+            BLE_BAUD
+  0 -------- 9600
+  1 -------- 19200
+  2 -------- 38400
+  3 -------- 57600
+  4 -------- 115200
+  5 -------- 4800
+  6 -------- 2400
+  7 -------- 1200 // Do not recommend using the baud rate.
+  8 -------- 230400
+  Default: 0(9600)
+
+  Note: after the switch to the 1200, module will no longer support 
+  the configurations of the AT command, and press the PIO0 under standby, 
+  module can restore the factory Settings.
+  Do not recommend using the baud rate.
+  After setting the baud rate, modules should be on electricity, 
+  new set parameters can take effect.
+
+  AT+CONN[para1]   // [para1] bluetooth address: 0017EA0943AE
+  AT+CLEAR
+  AT+MODE?
+  Para: the range of 0 ~ 2. 0 represents passthrough mode, 
+  on behalf of the PIO acquisition + remote control + 1 passthrough, 
+  2 representative passthrough + remote control mode.The default is 0.
+  
+  AT+PASS123456
+  AT+PASS?  // Para1 range is 000000 ~ 999999, the default is 000000.
+  
+  
+  AT+RENEW  // Restore Factory Settings
+  
+  AT+ROLE[para1]  // AT+ROLE0 --> SLAVE // AT+ROLE1 --> MASTER
+  AT+RESET        // RESTART MODULE AFTER CHANGING ROLE
+  
+  AT+ROLE? returns either 0 or 1.
+            0 = Slave or Peripheral
+            1 = Master or Central.
+            The default setting is 0 (Slave). 
+            
+  AT+IMME?  //   Query the start mode
+  AT+IMME? returns either 0 or 1.
+  0 = Connect immediately (assuming a previous connection has been applied
+  1 = Wait for a connection command before connecting (AT+START, AT+CONN, AT+CONNL
+  The default setting is 0 (connect on start).
+
+  AT+IMMEx   // Set the start up mode   
+  AT+IMME0 sets auto connect on start*
+  AT+IMME1 sets manual connection mode
+  AT+IMMEx is often used together with AT+ROLEx
+  AT+IMMEx mat require a reset before the changes take place. 
+  AT+RESET        // RESTART MODULE AFTER CHANGING START UP MODE
+  
+ *AT+IMME0 --> If there are no previous connections, HM-10s will auto-connect 
+  to any other HM-10 available (normally the one with the 
+  strongest signal). The HM-10 (by default) remembers the 
+  address of the last module it was connected to and if there 
+  is stored a previous connection this will take priority when 
+  the HM-10 is retrying to auto-connect.
+
+  ROLE  IMME
+  0     0     AUTO-DISCOVERABLE MODE (PERIPHERAL)
+              Connect immediately
+              
+  0     1     COMMAND-DISCOVERABLE MODE (PERIPHERAL)
+              stops the HM-10 from auto-connecting 
+              waits for CONNECTION COMMANDS
+              AT+START required 
+  
+  1     0     AUTO-SCAN-CONNECT MODE (CENTRAL)
+              Connect immediately
+  
+  1     1     COMMAND-SCAN-CONNECT MODE (CENTRAL)
+              stops the HM-10 from auto-connecting 
+              waits for CONNECTION COMMANDS
+
+  AT+IMME1    stops the HM-10 from auto-connecting
+  AT+ROLE1    puts the HM-10 in to Central mode
+  
+  AT+RESET
+  //DISCOVER ONLY SLAVE/PERIPHERAL DEVICES: AT+DISC?
+  AT+DISC?  //  OK+DISCS  OK+DISCSOK+DIS0:C8FD199C8598
+            //  OK+DISCE --> E shows that the scan has Ended
+  
+  AT+DISI?  //  OK+DISIS    OK+DISCE
+            //  OK+DISC:00000000:00000000000000000000000000000000:0000000000:1291EC5518B7:-089
+  AT+DISA?
+
+  AT+CONNx --> Connect to device discovered during scanning 
+              and saved at index 'x' 
+              1st slave device mac is saved at index '0'
+  AT+CON<SlaveMAC>
+  AT+CONC8FD199C8598  // OK+CONNA 
+          --> connection with slave with MAC C8FD199C8598 is successful
+  AT+CONNL
+  AT+START
+              
+  AT+TCON     forget device being scanned after timeout & re-scan
+    
+  AT+SAVE     check if device address saved or not
+  
+  AT+NOTI0 –-> turn off notifications
+  AT+NOTI1 –-> turn on notifications 
+  AT+NOTI?          
+  
+  AT+CHAR?    // 0xFFE1
+  AT+UUID?    // 0xFFE0
+
+  AT+SLEEP  // WAKE UP BY SENDING 1024 CHAR. STRING USING UART
+  AT+PWRM1 // AUTO-SLEEP UPON POWER-UP MODE
+
+  
+AT commands only work when the HM-10 is not connected. 
+After a connection is made the commands are treated as data. 
+“AT” is the exception, the “AT” command breaks the connection.
+
+    Wiring the HM-10 to the Arduino Uno/Pro Mini board should go as follows:
+ Pro Mini   
+Arduino  | HM-10
+D2 (RX)  | TX
+D3 (TX)  | RX
+GND      | GND
+3.3V     | VCC
+D4       | EN (Optional)
+
+==============================================================================================================
+Introduction to CC2541
+https://www.pocketmagic.net/introduction-to-cc2541/
+https://www.iot-experiments.com/jdy-08/
+https://www.obddiag.net/ble-adventures.html
+
+--------------------------------------------------------------------------------------------------------
+
+STEPS TO FLASH HM-10 FIRMWARE TO JDY-08 : 		https://github.com/handiko/JDY-08-Reflash
+=======================================
+1. Program the Arduino UNO with the CCLoader.ino sketch.
+
+2. Connect the JDY-08 module into the Arduino. BE CAUTIOUS, JDY-08 is a 3.3V device, 
+Connect the VCC JDY-08 pin1 to the 3.3V pin on the Arduino. 
+I manage to be able to program the CC2541 at 5V level, but it is NOT RECOMMENDED.
+
+3. Check the COM Port number used by the Arduino. Let say it is COM9. Note down the 9.
+
+4. Open CMD, navigate to the JDY-08-Reflash/CCLoader/Exe folder. 
+There are the CCLoader.exe and the CC2541hm10v540.bin. 
+The CCLoader.exe and the .bin file must be in the same folder.
+
+5. Still on the CMD, type CCLoader.exe 9 CC2541hm10v540.bin 0 
+Number 9 is the COM port number and 
+0 means that we are using Arduino UNO board. 
+
+Testing the JDY-08 with HM-10 Firmware
+
+To test the BLE module whether is was successfuly programed with the HM-10 firmware, 
+we can run some simple AT commands to check if the module still alive 
+and check the firmware version.
+
+    Wire your module to the Arduino UNO as the picture below. Be carefull, 
+	don't forget to power the JDY-08 from 3.3V power source, wire some 
+	jumper to connect the P16 (JDY-08 UART TX) to the Arduino UNO D8, 
+	and the P17 (JDY-08 UART RX) to the Arduino UNO D9 thru resistors voltage divider. 
+
+--------------------------------------------------------------------------------------------------------
+
+IBeacon using HM10 BLE module
+https://elementztechblog.wordpress.com/2017/03/23/ibeacon-using-hm10-ble-module/
+
+Bluetooth BLE Adventures - HM-10, JDY-08/10 - CC2541
+https://www.obddiag.net/ble-adventures.html
+https://madhurendra.com/cheap-ble-jdy-08/
+http://westsideelectronics.com/arduino-android-data-streaming-jdy-08/
+
+
+	HM10 FIRMWARE UPGRADE
+	http://www.jnhuamao.cn/index_en.asp
+
+HM-10 REVISITED !!!
+http://www.martyncurrey.com/hm-10-bluetooth-4ble-modules/
+https://www.thegeekstuff.com/2014/07/ti-ble-custom-profile/
+http://fab.cba.mit.edu/classes/863.15/doc/tutorials/programming/bluetooth.html
+https://ladvien.com/HM10/
+https://ladvien.com/tags/#BLE
+http://archive.fabacademy.org/archives/2016/fablabdigiscope/students/456/W19_project_development.html
+http://blog.blecentral.com/2015/05/13/hm-10-central-ibeacon/
+http://blog.blecentral.com/2015/05/05/hm-10-peripheral/
+
+The complete cross-platform nRF development tutorial
+https://www.novelbits.io/cross-platform-nrf-development-tutorial/
+https://www.novelbits.io/
+
+Bluetooth GATT: How to Design Custom Services & Characteristics [MIDI device use case] 
+https://www.novelbits.io/bluetooth-gatt-services-characteristics/
+https://www.midi.org/specifications/item/bluetooth-le-midi
+
+============================================================================================================================================
+
+JDY 08 CC2541 
+=============
+JDY-08 Bluetooth - kichMan
+JDY-08 Bluetooth transparent transmission module, with resource for KiCAD
+	
+	kichMan/JDY-08 -> AT COMMANDS
+	https://kichman.github.io/JDY-08/
+	https://github.com/kichMan/JDY-08
+	
+	
+
+	
+	JDY-08 CC2541 BLE LINKS
+	JDY-08 : bluetooth 4.0 module
+	https://www.iot-experiments.com/jdy-08/
+	
+	Reflashing JDY-08 with HM-10 BLE firmware
+	https://handiko.github.io/JDY-08-Reflash/
+	https://github.com/handiko/JDY-08-Reflash
+	
+	iBeacon using a JDY-08 BLE module
+	https://github.com/handiko/iBeacon
+
+	
+	How to stream data from Arduino to Android with the JDY-08
+	http://westsideelectronics.com/arduino-android-data-streaming-jdy-08/
+
+--------------------------------------------------------------------------------------------------------
+
+*JDY-08 : CC2541 24-PIN bluetooth 4.0 module - CC Debugger*
+===========================================================
+https://github.com/handiko/JDY-08-Reflash
+
+JDY-08 : bluetooth 4.0 module
+https://www.iot-experiments.com/jdy-08/
+
+JDY-08 Bluetooth LE Module - Datasheet, Fritzing part
+https://forum.arduino.cc/index.php?topic=432074.0
+
+Bluetooth BLE Adventures - HM-10, JDY-08/10 - CC2541
+https://www.obddiag.net/ble-adventures.html
+https://madhurendra.com/cheap-ble-jdy-08/
+http://westsideelectronics.com/arduino-android-data-streaming-jdy-08/
+https://aykevl.nl/2017/05/jdy-08
+
+https://usermanual.wiki/City-Hong-Teng-Yu-Da-Electronic-Technology/JDY-08
+
+
+Testing and Getting To Know the JDY-08 Bluetooth SOC from ICStation
+https://www.youtube.com/watch?v=g4TkesvggaE
+The JDY-08 Bluetooth BLE Module - Talk to me!
+https://www.youtube.com/watch?v=y5tC_9rTPeM
+Soldering esp8266 based recording light and JDY-08 bluetooth breakout
+https://www.youtube.com/watch?v=r_g3Zb8F69c
+
+How to Flash the Firmware on Clone HM-10 BLE Module using Arduino Uno
+https://circuitdigest.com/microcontroller-projects/how-to-flash-the-firmware-on-cloned-hm-10-ble-module-using-arduino-uno
+HOW TO: Flash the HM-10 firmware on to CC41-A / CC2541 - Bluetooth 4.0
+https://www.youtube.com/watch?v=ez3491-v8Og
+
+TI BLE-Stack User’s Guide - BLE4.2
+http://dev.ti.com/tirex/content/simplelink_cc2640r2_sdk_1_50_00_58/docs/blestack/ble_user_guide/html/ble-stack-3.x-guide/index.html
+
+CC DEBUGGER
+===========
+https://www.waveshare.com/wiki/CC_Debugger
+https://e2e.ti.com/
+http://www.ti.com/tool/BLE-STACK?DCMP=wbu-blestack&HQS=ble-stack
+
+HM-10 Bluetooth 4 BLE Modules - CCDEBUGGER - TI SmartRF
+https://obddiag.net/ble-adventures.html
+
+The CC Debugger is primarily used for debugging and programming the flash on 
+CCxxxx 8051-based System-on-Chip (SoC) devices from Texas Instruments. 
+CC Debugger also supports CCxxxx RF transceivers. In addition, CC Debugger is 
+used for configuring the CC85xx devices with PurePath Wireless Configurator.
+
+Specifications of CC Debugger, LPC Debuggers & Programmers :
+
+    Performance
+
+    Compatible with the original TI CC Debugger
+    Supported OSs:Windows 2000, Windows xp sp2/sp3, Windows Vista 32bit, Windows 7 32bit
+    Target voltage: 1.2V ~ 3.6V
+    Capable of powering the target board from the debugger
+    Operating temperature: 0~85 degree
+
+    Supported Software
+
+    IAR Embedded Workbench For C8051
+    SmartRF Flash Programmer
+    SmartRF Studio
+    SmartRF Packet Sniffer
+    PurePath Wireless Configurator
+    Connects to PC
+
+LED Status
+
+    OFF: The debugger has no power or there is no valid firmware on the debugger.
+    AMBER (BOTH LEDS ON): The debugger is powered, but there is no valid firmware.
+    RED LED BLINKING: The Debugger is in Boot Recovery Mode.
+    RED LED ON: No device detected.
+    GREEN LED ON: The target device has been properly detected. It is possible to start programming/debugging.
+	
+Programming and debugging the following 8051-based system-on-chips from Texas Instruments: 
+	CC2540, CC2541, CC2543, CC2544, CC2545	
+Target board connection via 10-pin IDC connector (2x5 2.54mm pitch).
+
+
+CC2541 Keyfob Reference Design
+http://www.ti.com/product/CC2541/toolssoftware#TIDesigns
+
+===================================================================================================================================================
+https://e2e.ti.com/
+https://www.youtube.com/results?search_query=cc2541+i2c+programming+tutorial
+
+
+HM-19 - BLE 4.2 + 5.0
+=====================
+http://www.jnhuamao.cn/bluetooth.asp
+http://www.dsdtech-global.com/2018/06/dsdtech-hm-19.html
+https://www.amazon.com/DSD-TECH-Bluetooth-CC2640R2F-Arduino/dp/B07MBLVHH8/
+http://www.trading228.com/serial-master-slave-ibeacon-hm-19-bluetooth-4-2-module.html
+
+
+BLE HM-10 PROJECTS
+==================
+HM-10
+======
+http://www.martyncurrey.com/hm-10-bluetooth-4ble-modules/
+
+How to Develop Bluetooth Low Energy Stack TI CC2541 Custom Profile
+https://www.thegeekstuff.com/2014/07/ti-ble-custom-profile/
+
+HM-10 Bluetooth Module pinout
+https://components101.com/wireless/hm-10-bluetooth-module
+http://wiki.seeedstudio.com/Bluetooth_V4.0_HM_11_BLE_Module/
+http://letsmakerobots.com/node/38009
+
+Very Low Power BLE Made Easy With Arduino -- Part 1-3
+https://www.instructables.com/id/Very-Low-Power-BLE-Made-Easy-With-Arduino/
+https://www.forward.com.au/pfod/BLE/LowPower/index.html
+https://www.forward.com.au/pfod/BLE/LowPower/TempHumidity/index.html
+https://www.forward.com.au/pfod/BLE/LowPower/NanoReplacement/index.html
+
+Waking HM10 and HM11 BLE boards - PULLING GPIO16 TO GND VIA RESISTOR
+https://www.rogerclark.net/waking-hm10-and-hm11-ble-boards/
+https://www.rogerclark.net/hm10-ibeacon-disappointing-battery-life/
+https://www.rogerclark.net/easy-bluetooth-low-energy-connector/
+
+Bluetooth 4.0 HM-10 / cc2541 / BLE
+http://danchen.work/bluetooth-4-0-hm-10-cc2541-ble/
+
+HM-10/11 - Build an Arduino Multi-Node BLE Humidity and Temperature Sensor Monitor
+https://www.allaboutcircuits.com/projects/build-an-arduino-uno-multi-node-ble-humidity-and-temperature-sensor-monitor/
+Overview of the BLE Solar Beacon from Cypress Semiconductor
+https://www.allaboutcircuits.com/technical-articles/overview-of-the-ble-solar-beacon-from-cypress-semiconductor/
+
+How to Use Bluetooth 4.0 HM10 
+https://www.instructables.com/id/How-to-Use-Bluetooth-40-HM10/
+
+How to Create an Arduino Compatible Bluetooth 4.0 Module
+https://www.instructables.com/id/How-to-Create-an-Arduino-Compatible-Bluetooth-40-M/
+
+How to flash genuine HM-10 firmware on CC2541 (make genuine HM-10 from CC41)
+https://forum.arduino.cc/index.php?topic=393655.30
+
+
+Bluetooth Interfacing with HM-10
+http://fab.cba.mit.edu/classes/863.15/doc/tutorials/programming/bluetooth.html
+https://ladvien.com/HM10/
+https://www.instructables.com/id/How-to-Create-an-Arduino-Compatible-Bluetooth-40-M/
+
+
+MIT PROJECTS -> BME280 + HM-10 + 328P ---> BLE 4.0 - ANDROID  
+http://archive.fabacademy.org/archives/2016/fablabdigiscope/students/456/W19_project_development.html
+
+Use HM-10 as a Central Device or an iBeacon
+http://blog.blecentral.com/2015/05/13/hm-10-central-ibeacon/
+http://blog.blecentral.com/2015/05/05/hm-10-peripheral/
+http://blog.blecentral.com/2015/04/28/systems-on-a-chip-modules-and-development-kits-for-bluetooth-low-energy-ble/
+
+
+Bluetooth 4.0 HM-10 BLE module 
+http://acoptex.com/project/302/basics-project-028d-bluetooth-40-hm-10-ble-module-at-acoptexcom/
+	
+https://www.reddit.com/r/AskElectronics/comments/2zq8t9/whats_the_difference_between_the_hm10_and_hm11/cpldgo0/
+
+Understanding the different types of BLE Beacons
+https://os.mbed.com/blog/entry/BLE-Beacons-URIBeacon-AltBeacons-iBeacon/
+https://os.mbed.com/docs/mbed-os/v5.13/tutorials/ble-tutorial.html
+
+Make IBeacon With HM10/HM11
+https://www.instructables.com/id/make-iBeacon/
+
+Turn Your CC2541 Based HM-10 Bluetooth Smart Module Into an IBeacon
+https://www.instructables.com/id/Turn-your-CC2541-based-HM-10-Bluetooth-Smart-Modul/
+
+PORTABLE BRAILLE READER
+https://people.ece.cornell.edu/land/courses/ece4760/FinalProjects/f2017/mmm389_ahs278/mmm389_ahs278_final_report_2/mmm389_ahs278_final_report_2.html
+
+How to connect HM-10 Bluetooth 4.0 module as a Central Device - iBeacon
+https://radiojitter.wordpress.com/2018/05/02/how-to-connect-hm-10-bluetooth-4-0-module-as-a-central-device/
+
+How to Setup HM-10 BLE Module as iBeacon
+https://circuitdigest.com/microcontroller-projects/how-to-setup-hm-10-ble-module-as-ibeacon
+
+How to Use HM-10 BLE Module with Arduino to Control an LED using Android App
+https://circuitdigest.com/microcontroller-projects/how-to-use-arduino-and-hm-10-ble-module-to-control-led-with-android-app
+
+SMARTPHONE CONTROLLED ROBOT USING BLE 4.0 !!!
+https://www.instructables.com/id/SMARTPHONE-CONTROLLED-ROBOT-USING-BLE-40-/
+https://circuitdigest.com/microcontroller-projects/bluetooth-controlled-robot-car-using-arduino
+
+Controlling LED with BLE Module HM 10
+https://roboindia.com/tutorials/ble-4-0-arduino-led-control/
+
+Robot Car Controlled by Hand Motions
+https://people.ece.cornell.edu/land/courses/ece4760/FinalProjects/f2018/lst26_ak754/4760_Final/4760%20Final%20Project%20Write%20Up_1/4760FinalProjectWriteUp.html
+
+A Wireless Programmable Pace Clock
+http://people.ece.cornell.edu/land/courses/ece4760/FinalProjects/s2011/pss83/Website/index.html
+
+Bluetooth communication -- DSD TECH HM10 BLE
+https://people.ece.cornell.edu/land/courses/ece4760/PIC32/index_UART.html
+
+Sound-localizing Camera
+http://people.ece.cornell.edu/land/courses/ece4760/FinalProjects/f2014/ht425/Report/Report/ECE%204760%20Time%20System.html
+
+https://stackoverflow.com/questions/38759929/hm-10-at-commands-using-beacon-way-to-broadcast-sensors-data
+
+
+
+JDY-19 2.4GHZ Ultra Low Power Bluetooth 4.2 Module BLE IBEACON 40 meters
+========================================================================
+https://robokits.co.in/wireless-solutions/bluetooth/jdy-19-2.4ghz-ultra-low-power-bluetooth-4.2-module-ble-ibeacon-40-meters
+
+ Model: JDY-19
+Working frequency band: 2.4G
+Transmit power: 4db (maximum)
+Communication interface: UART
+Operating voltage: 1.8V – 3.6V
+Operating temperature: -40 ° C - 80 ° C
+Antenna: Built-in PCB antenna
+Receive sensitivity: -97dbm
+Transmission distance: 80 meters
+Master and slave support: slave
+Module size: 19.6 * 14.94 * 1.8 mm (length, width, height)
+bluetooth version: BLE 4.2 (compatible with BLE4.0, BLE4.1)
+Awakening state current: 500uA (with broadcast)
+Light sleep state current: <50uA (with broadcast)
+Deep sleep current: 3uA (no broadcast)
+Instruction parameter saving: Parameter configuration power-down data is saved
+STM soldering temperature: <260°C
+
+Overview:
+
+    Model: JDY-19
+
+    Working voltage:1.8V – 3.6V
+
+    UART Communication
+
+    Transmission Distance:40 meters
+
+Description:
+JDY-19 transparent transmission module is based on bluetooth 4.2 protocol standard, working frequency range is 2.4GHZ range, modulation mode is GFSK, maximum transmission power is 4db, maximum transmission distance is 40 meters, supports users to modify equipment through AT command instructions such as name and baud rate are convenient and quick to use. The JDY-19 bluetooth module can quickly use for product application through simple configuration.
+ 
+Features:
+
+    Model: JDY-19
+
+    bluetooth version: BLE 4.2 (compatible with BLE4.0, BLE4.1)
+
+    Antenna: Built-in PCB antenna
+
+    Working frequency band: 2.4G
+
+    Transmission distance: 40 meters
+
+    modulation mode is GFSK
+
+    Master and slave support: slave
+
+Specifications:
+
+    Transmit power: 4db (maximum)
+
+    Communication interface: UART
+
+    Operating voltage: 1.8V – 3.6V
+
+    Operating temperature: -40 ° C - 80 ° C
+
+    Receive sensitivity: -97dbm
+
+    Awakening state current: 500uA (with broadcast)
+
+    Light sleep state current: <50uA (with broadcast)
+
+    Deep sleep current: 3uA (no broadcast)
+
+    Instruction parameter saving: Parameter configuration power-down data is saved
+
+    STM soldering temperature: <260°C
+
+    Module size: 19.6 * 14.94 * 1.8 mm 
+
+Pinouts:
+
+    VCC: Power supply (1.8-3.6V)
+
+    NULL: None
+
+    ADC: ADC pin
+
+    NULL: None
+
+    IO6: GPIO or PWM1
+
+    STAT: Connect status pin, which has been connected to high level,unconnected to low level
+
+    IO5: GPIO or PWM2
+
+    IO4: GPIO or PWM3
+
+    IO1: GPIO or PWM4
+
+     IO2: GPIO
+
+    NULL: None
+
+    NULL: None
+
+    IO3: GPIO
+
+    IO7: GPIO
+
+     IO8: GPIO
+
+     IO9: GPIO
+
+    ALED: Broadcast indicator pin
+
+    INT1: Button interrupts the input pin (key value is uploaded to APP)
+
+    TXD: Serial port output pin (TTL level)
+
+    RXD: Serial port input pin (TTL level)
+
+    INT2: Button interrupts the input pin (key value is uploaded to APP)
+
+    PWRC: Sleep wake-up pin, low level effectiveUnder connection state, the AT instruction can be sent throughlower the PWRC pin, such as AT+DISC disconnect.
+
+    RST: Soft reset pin, low level effective
+
+    GND: Power ground
+
+===================================================================================================================================================
+pCharacteristic->setValue
+https://github.com/nkolban/esp32-snippets/issues/79
+https://github.com/nkolban/esp32-snippets/blob/master/cpp_utils/BLECharacteristic.h#L76-L82
+
+			==========================================================================================
+			||	http://www.neilkolban.com/esp32/docs/cpp_utils/html/class_b_l_e_characteristic.html ||
+			==========================================================================================
+
+std::string - the C++ String Class
+https://www.cprogramming.com/tutorial/string.html
+http://www.cplusplus.com/reference/string/string/
+
+std::basic_string
+https://en.cppreference.com/w/cpp/string/basic_string
+https://www.learncpp.com/cpp-tutorial/4-4b-an-introduction-to-stdstring/
+https://www.codesdope.com/cpp-stdstring/
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+						==========================================================
+						||	http://www.lucadentella.it/en/category/tutorial/	||
+						==========================================================
+						
+https://github.com/lucadentella/esp32-tutorial
+https://www.youtube.com/playlist?list=PL45uNmSXju7n1xZFNN3xoXuAsqBbsP5VL
+
+https://github.com/espressif/arduino-esp32/blob/master/cores/esp32/esp32-hal-bt.c
+
+https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/examples/WiFiBlueToothSwitch/WiFiBlueToothSwitch.ino
+https://github.com/espressif/esp-idf/tree/master/examples/bluetooth
+
+espressif/arduino-esp32
+=======================
+https://github.com/espressif/arduino-esp32/tree/master/libraries/BLE/examples
+https://github.com/espressif/arduino-esp32/tree/master/libraries
+
+https://github.com/espressif/esp-idf/blob/master/examples/bluetooth/bluedroid/ble/gatt_server/main/gatts_demo.c
+https://github.com/espressif/esp-idf/blob/master/examples/bluetooth/bluedroid/ble/gatt_server/tutorial/Gatt_Server_Example_Walkthrough.md
+https://github.com/espressif/esp-idf/blob/master/examples/bluetooth/bluedroid/ble/gatt_server_service_table/tutorial/Gatt_Server_Service_Table_Example_Walkthrough.md
+
+
+
+http://www.neilkolban.com/esp32/docs/cpp_utils/html/index.html
+https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/bluetooth/
+
+
+nkolban/esp32-snippets
+========================
+BLE_Arduino-Neil Kolban : THESE KOLBAN REPOS ARE ALREADY IN ARDUINO-ESP32-BLE
+https://github.com/nkolban/esp32-snippets/tree/master/cpp_utils/tests/BLETests/Arduino
+C:\Users\Debajyoti\Documents\Arduino\ESP32_EXAMPLES\BLE_Arduino-Neil Kolban\examples
+https://github.com/nkolban/ESP32_BLE_Arduino
+
+
+*ESP32 Kolban Technical Tutorials*
+==================================
+https://www.youtube.com/playlist?list=PLB-czhEQLJbWMOl7Ew4QW1LpoUUE7QMOos
+
+
+======================================================================
+ARDUINO ESP32 BLE EXAMPLES
+
+BATTERY SERVICE  SERVER --- OK
+SCAN V1                 --- OK, NOT SHOWING CUSTOM DATA (CHAR. VALUE/DATA)
+SERVER V1 + DEEPSLEEP   --- OK, SCANNER NOT SHOWING CHAR. VALUE/DATA 
+CLIENT V1 				--- OK, GETTING NOTIFY DATA FROM SERVER
+
+https://randomnerdtutorials.com/esp32-bluetooth-low-energy-ble-arduino-ide/
+
+https://www.google.com/search?client=firefox-b-d&ei=_bJsXZ6CJILEz7sPrs6_mA4&q=esp32+ble+advertising+data+arduino&oq=esp32+ble+advertising+data+arduino&gs_l=psy-ab.3...37844.39214..40488...0.2..0.219.1047.0j1j4......0....1..gws-wiz.......0i71j0.a03g5vxKLKU&ved=0ahUKEwje9LfxvbHkAhUC4nMBHS7nD-MQ4dUDCAo&uact=5
+https://www.google.com/search?client=firefox-b-d&q=esp32+ble+advertising+example&sa=X&ved=2ahUKEwilivOFvrHkAhXKILcAHX0uDgcQ1QIoAnoECAoQAw
+https://www.google.com/search?client=firefox-b-d&q=esp32+ble+custom+characteristic&spell=1&sa=X&ved=0ahUKEwi11JykzLHkAhU_7HMBHXPvBKQQBQguKAA&biw=1327&bih=664
+
+
+#include "SimpleBLE.h"
+
+#if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
+#error Bluetooth is not enabled! Please run `make menuconfig` to and enable it
+#endif
+
+Serial.setDebugOutput(true);
+Serial.println("ESP32 SDK: "+ESP.getSdkVersion());
+ble.begin("ESP32 SimpleBLE");
+
+			BLECharacteristic::PROPERTY_BROADCAST | BLECharacteristic::PROPERTY_READ  |
+			BLECharacteristic::PROPERTY_NOTIFY    | BLECharacteristic::PROPERTY_WRITE |
+			BLECharacteristic::PROPERTY_INDICATE
+			
+GATT SERVICE:
+https://www.bluetooth.com/specifications/gatt/services/
+		Environmental Sensing		0x181A	
+		Temperature, Humidity, Irradiance
+		Illuminance [lux = lumen/m⁻²(lm/m⁻²)] vs Irradiance [watt/cm⁻²(W/cm⁻²)]	http://www.dfisica.ubi.pt/~hgil/Fotometria/HandBook/ch07.html 
+		Arduino Light Sensor - TSL2561 and Experiments with Infrared and Visible Light
+		https://makersportal.com/blog/2018/4/19/arduino-light-sensor-tsl2561-and-experiments-with-infrared-and-visible-light
+		https://www.translatorscafe.com/unit-converter/en/illumination/1-11/
+		
+		
+		Recommended Lighting Levels in Buildings
+		https://mountlighting.co.uk/technical/cibse-recommended-lighting-levels/
+		https://www.atp-instrumentation.co.uk/blog/lighting-levels-workplace/
+		https://www.engineeringtoolbox.com/light-level-rooms-d_708.html
+		
+		Indoor Positioning			0x1821
+WGS84 Coordinates		https://epsg.io/map#srs=4326&x=73.811100&y=18.534632&z=21&layer=streets
+
+ESP32 BLE GATT server example
+https://gist.github.com/heiko-r/f284d95141871e12ca0164d9070d61b4
+======================================================================
+
+http://www.iotsharing.com/2017/07/how-to-use-ble-in-arduino-esp32.html
+http://www.iotsharing.com/2017/07/how-to-use-arduino-esp32-ble-as-gatt-client.html
+https://randomnerdtutorials.com/esp32-bluetooth-low-energy-ble-arduino-ide/
+http://www.iotsharing.com/2017/07/how-to-use-ble-in-arduino-esp32.html
+https://www.youtube.com/watch?v=FvIywveUVZw
+https://www.youtube.com/channel/UCvsMfEoIu_ZdBIgQVcY_AZA/search?query=Bluetooth+BLE
+https://techtutorialsx.com/2018/03/04/esp32-arduino-bluetooth-classic-getting-started/
+
+ATADIAT - ESP32 - BLE
+https://atadiat.com/en/e-all-about-esp32-p1-introduction/
+https://atadiat.com/en/e-all-about-esp32-part-2/
+https://atadiat.com/en/e-all-about-esp32-part-3/
+https://atadiat.com/en/e-all-about-esp32-part-4/
+https://atadiat.com/en/e-bluetooth-low-energy-ble-101-tutorial-intensive-introduction/
+
+MQTT
+https://atadiat.com/en/e-mqtt-101-tutorial-introduction-and-eclipse-mosquitto/
+https://iotbyhvm.ooo/mqtt/
+
+PCBREFLUX ESP32
+https://pcbreflux.blogspot.com/
+https://github.com/pcbreflux/espressif/tree/master/esp32/app
+
+==============================================================================================================
+
+ ESP32 BLE TUTS
+================
+
+How to Use Serial Bluetooth in ESP32
+https://circuitdigest.com/microcontroller-projects/using-classic-bluetooth-in-esp32-and-toogle-an-led
+
+ESP32 BLE Server - GATT Service for Battery Level Indication
+https://circuitdigest.com/microcontroller-projects/esp32-ble-server-how-to-use-gatt-services-for-battery-level-indication
+
+ESP32 BLE Client – Connecting to Fitness Band to Trigger a Bulb
+https://circuitdigest.com/microcontroller-projects/esp32-ble-client-connecting-to-fitness-band-to-trigger-light
+
+ESP32 based Bluetooth iBeacon
+https://circuitdigest.com/microcontroller-projects/esp32-based-bluetooth-ibeacon
+
+ESP32 ESP-IDF (31-35) – BLE 
+============================
+http://www.lucadentella.it/en/2018/02/09/esp32-31-ble-gap/
+http://www.lucadentella.it/en/2018/03/05/esp32-32-ble-ibeacon/
+http://www.lucadentella.it/en/2018/03/26/esp32-33-ble-advertising/
+http://www.lucadentella.it/en/2018/03/29/esp32-34-ble-raw-advertising/
+http://www.lucadentella.it/en/2018/04/03/esp32-35-ble-scan-response/
+http://www.lucadentella.it/en/category/esp32/
+https://github.com/lucadentella/esp32-tutorial
+
+https://embetronicx.com/tutorials/tech_devices/bluetooth-low-energy-ble-introduction-part-1/
+https://embetronicx.com/tutorials/tech_devices/bluetooth-low-energy-ble-introduction-part-2/
+
+http://dev.ti.com/tirex/content/simplelink_academy_cc2640r2sdk_1_12_01_16/modules/ble_scan_adv_basic/ble_scan_adv_basic.html
+
+https://randomnerdtutorials.com/esp32-bluetooth-low-energy-ble-arduino-ide/
+https://platformio.org/lib/show/1841/ESP32%20BLE%20Arduino
+
+https://randomnerdtutorials.com/esp32-cam-video-streaming-face-recognition-arduino-ide/
+
+ESP32+BLE TUTORIALS
+=============== 
+lucadentella.in
+https://randomnerdtutorials.com/esp32-bluetooth-low-energy-ble-arduino-ide/
+http://www.iotsharing.com/2017/08/esp32-tutorials.html
+https://techtutorialsx.com/category/esp32/
+https://www.dfrobot.com/blog-964.html 
+https://pcbreflux.blogspot.com/
+https://circuitdigest.com
+iot-bits.com
+https://exploreembedded.com 
+https://lastminuteengineers.com/esp32-ntp-server-date-time-tutorial/
+https://iotbyhvm.ooo/esp32-ble-tutorials/
+esp32.net
+
+ESP32 HUGE APPS - PARTITION MANAGEMENT
+==========================================
+https://robotzero.one/arduino-ide-partitions/
+https://techtutorialsx.com/2018/10/06/esp32-arduino-fat-file-system/
+http://iot-bits.com/customizing-esp32-partitions-table/
+https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/partition-tables.html
+
+
+FREERTOS BASICS & ADVANCED
+==========================
+https://embetronicx.com/tutorials/rtos/freertos/rtos-basic-tutorial-for-beginners/
+https://embetronicx.com/tutorials/rtos/freertos/rtos-advanced-tutorial-for-beginners/
+https://www.embetronicx.com/freertos/basic_2/
+
+
+ESP32 – BLE : Building an Echo Service GATT Server
+https://thejeshgn.com/2018/06/11/esp32-ble-building-an-echo-service-gatt-server/
+
+
+==============================================================================================================
+
+
+ANDRIOD DEVELOPER'S GUIDE: Bluetooth overview
+https://developer.android.com/guide/topics/connectivity/bluetooth
+https://developer.android.com/reference/android/bluetooth/BluetoothSocket
+
+Android and Bluetooth
+http://www.lucadentella.it/en/category/android-e-bluetooth/
+Android Developer Guides - Google
+https://developer.android.com/guide
+
+Building an Android Beacon (Android iBeacon Tutorial Overview) [1/3]
+====================================================================
+https://www.pubnub.com/blog/building-android-beacon-android-ibeacon-tutorial-overview/
+
+Controlling Robots with NativeScript Bluetooth
+https://www.nativescript.org/blog/controlling-robots-with-nativescript-bluetooth
+
+https://learn.sparkfun.com/tutorials/connectivity-of-the-internet-of-things/bluetooth
+
+
+===================================================================================================================================================
+
+BLE nRF24L01+ PROJECTS
+==================
+nRF24L01+
+==========
+Sending Sensor Data to Android Phone using Arduino and NRF24L01 over Bluetooth (BLE)
+https://circuitdigest.com/microcontroller-projects/sending-sensor-data-to-android-phone-using-arduino-nrf24l01-over-bluetooth-ble
+
+nRF24L01 2.4GHz Radio/Wireless Transceivers How-To
+http://arduinoinfo.mywikis.net/wiki/Nrf24L01-2.4GHz-HowTo
+
+nRF24L01 Interfacing with Arduino UNO
+https://www.electronicwings.com/arduino/nrf24l01-interfacing-with-arduino-uno
+
+Arduino Wireless Communication – NRF24L01 Tutorial
+https://howtomechatronics.com/tutorials/arduino/arduino-wireless-communication-nrf24l01-tutorial/
+
+Complete Guide for nRF24L01 – 2.4GHz RF Transceiver Module With Arduino
+https://randomnerdtutorials.com/nrf24l01-2-4ghz-rf-transceiver-module-with-arduino/
+
+How To Build an Arduino Wireless Network with Multiple NRF24L01 Modules
+https://howtomechatronics.com/tutorials/arduino/how-to-build-an-arduino-wireless-network-with-multiple-nrf24l01-modules/
+
+Lijun's Docs - Using nRF24L01+ as A Bluetooth Low Energy Broadcaster/Beacon
+https://d.lij.uno/misc-nrf24-ble.html
+https://github.com/lijuno/nRF24_BLE/blob/master/Arduino/nRF24_BLE_advertizer_demo/nRF24_BLE_advertizer_demo.ino
+
+
+ESP32 WiFi Weather Station With a BME280 Sensor
+https://www.instructables.com/id/ESP32-WiFi-Weather-Station-With-a-BME280-Sensor/
+
+
+===================================================================================================================================================
+
+*5G and IoT – Emerging Tech with Endless Use Cases*
+https://www.telit.com/blog/state-of-5g-and-iot-current-future-applications/
+
+*Bluetooth, WiFi, BLE, Zigbee, Z-Wave, 6LoWPAN, NFC*
+https://predictabledesigns.com/wireless_technologies_bluetooth_wifi_zigbee_gsm_lte_lora_nb-iot_lte-m/
+
+*Make your Bluetooth Low Energy IoT device more secure with Visible Light Communication*
+https://medium.com/rtone-iot-security/make-your-bluetooth-low-energy-iot-device-more-secure-with-visible-light-communication-c2980006d2ac
+
+*Bluetooth mesh networking*
+https://www.ericsson.com/en/white-papers/bluetooth-mesh-networking
+
+*Evolution or Revolution? Figuring Out the Impact of 5G on Your IoT Strategy*
+https://www.sierrawireless.com/iot-blog/iot-blog/2019/02/5g-iot-strategy/
+
+How 5G Changes the IoE Governance Game
+https://www.sixgill.com/2018/08/09/5g-changes-ioe-governance-game/#
+
+*Examining 5 IEEE Protocols – ZigBee, WiFi, Bluetooth, BLE, and WiMax*
+https://www.iotforall.com/ieee-protocols-zigbee-wifi-bluetooth-ble-wimax/
+
+ZWave, ZigBee, WiFi, which wins?
+https://community.smartthings.com/t/zwave-zigbee-wifi-which-wins/148640
+
+What 5G Means for The Future of Internet of Things
+https://www.ecnmag.com/blog/2019/01/what-5g-means-future-internet-things
+
+
+====================================================================================================================
+BLE LINKS
+
+Ellisys Bluetooth Video 1 Intro to Bluetooth Low Energy
+https://www.youtube.com/watch?v=eZGixQzBo7Y
+
+Enabling IoT Applications with Bluetooth 5 and Thread -- Mouser Electronics and Nordic Semiconductor
+https://www.youtube.com/watch?v=hAcI8vwsh6U
+https://devzone.nordicsemi.com/nordic/short-range-guides/b/bluetooth-low-energy/posts/ble-central-tutorial
+https://devzone.nordicsemi.com/nordic/short-range-guides/b/bluetooth-low-energy/posts/ble-advertising-a-beginners-tutorial
+
+Bluetooth 5: Reinventing Connectivity and Advancing Industrial IoT | Mouser Electronics
+https://www.youtube.com/watch?v=fzTlwqc5sLg
+
+Bluetooth Low Energy
+https://www.mikroe.com/blog/bluetooth-low-energy-part-1-introduction-ble
+https://www.mikroe.com/blog/bluetooth-low-energy-part-2-ble-p-click
+https://www.mikroe.com/blog/bluetooth-low-energy-part-3-ble-2-click
+
+The following series provides more in-depth view of the BLE protocol in a lucid manner:
+Ellisys Bluetooth Video Series - 1-14  Intro to Bluetooth Low Energy
+https://www.youtube.com/playlist?list=PLYj4Cw17Aw7ypuXt7mDFWAyy6P661TD48
+
+Intro to Bluetooth low energy and BLE development with Nordic Semiconductor - Part 1 & 2
+https://www.youtube.com/watch?v=pLgnHuGI69s
+https://www.youtube.com/watch?v=YAADUQ_Vxpk
+
+Nordic Semiconductor nRF52 Series SoCs
+https://www.mouser.in/new/nordicsemiconductor/nrf52-series-soc/
+
+=====================================================================================================================
+Bluetooth 5: Reinventing Connectivity and Advancing Industrial IoT | Mouser Electronics
+https://www.youtube.com/watch?v=fzTlwqc5sLg
+
+nRF52 family BLE SoC - Nordic Semiconductor - Enabling IoT Applications with Bluetooth 5 and Thread 
+https://www.youtube.com/watch?v=hAcI8vwsh6U
+
+===================================================================================================================================================
+
+What is LE Audio and LC3, the latest in Bluetooth audio?
+https://www.soundguys.com/le-audio-lc3-explained-28192/
+https://www.anandtech.com/show/15349/bluetooth-sig-announces-le-audio-standard-new-baseline-for-next-decade
+https://venturebeat.com/2020/01/06/bluetooth-le-audio-promises-superior-sound-quality-and-battery-life/
+https://www.thequint.com/tech-and-auto/tech-news/bluetooth-audio-wireless-headphones-earbuds-new-features-more
+
+============================================================================================================================================
+
+Bluetooth 5.1 Angle of Arrival (AoA) and Angle of Departure (AoD)
+radio direction finding (RDF) technology
+
+Bluetooth Angle of Arrival & Departure 
+https://www.bluetooth.com/blog/new-aoa-aod-bluetooth-capabilities/
+
+Real-time Location System
+Indoor Positioning System
+
+	indoor navigation/wayfinding, 
+	proximity marketing and 
+	advanced item finding
+	cold chain management
+    Where’s my car in the parking lot
+    Find your way out or within a shopping mall
+    Navigations within any buildings
+    Tracking people across a company, children in school etc.
+
+precise real-time positioning down to 10 cm, low latency (down to 100 ms)
+
+------------------------------------------------------------------------------------------------------------------------------------------
+Bluetooth Angle of Arrival & Departure
+https://www.youtube.com/watch?v=LVuY2Ng_N3Y
+https://blog.nordicsemi.com/getconnected/quuppas-direction-finding-experience-comes-to-bluetooth
+https://www.bluetooth.com/bluetooth-resources/lessons-and-growth-in-bluetooth-angle-of-arrival-departure/
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Inside Bluetooth 5.1 – Direction Finding and More
+https://www.youtube.com/watch?v=kpioWvMZMqw
+
+
+Bluetooth is Getting Precise with Positioning Systems
+https://www.bluetooth.com/blog/bluetooth-positioning-systems/
+https://www.bluetooth.com/bluetooth-resources/?types=paper
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Quuppa Positioning Engine Raspberry Pi nRF52840 AOI AOD RTLS 
+
+Quuppa Positioning Engine (QPE)
+https://quuppa.com/quuppa-positioning-engine/
+The Quuppa Positioning Engine (QPE) is the heart and soul of the system. 
+It receives data from the Locators, runs it through advanced positioning algorithms 
+and offers a standard JSON / REST – push / pull API that enables seamless integration 
+with other systems. The QPE can be run locally or as a cloud-based platform.
+
+Quuppa Q17 Locator - RTLS
+https://quuppa.com/q17/
+https://quuppa.com/product-documentation/manuals/q/megamap/topics/Hardware.html
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+Wiliot - Battery-free Bluetooth Sensor Tags - MR. BEACON
+https://www.youtube.com/watch?v=_PRhxP7w4qg
+https://www.youtube.com/c/MrBeacon/playlists
+
+WILIOT
+Battery-free Bluetooth Use Case Overview - WILIOT
+https://support.wiliot.com/hc/en-us/articles/360044944353-Battery-free-Bluetooth-Use-Case-Overview
+Nano-Watt Computing - An Overview
+https://support.wiliot.com/hc/en-us/articles/360023549753-Nano-Watt-Computing-An-Overview
+https://support.wiliot.com/hc/en-us/sections/360004363473-Wiliot-Technology-Resources
+
+============================================================================================================================================
+
+
+
+

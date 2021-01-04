@@ -8,6 +8,10 @@
 
 
 */
+
+//#define DEBUG_ALL_TAGS
+#define DEBUG_KNOWN_TAGS
+
 #define LED_BUILTIN 2
 #define ARRSIZE(x) (sizeof(x)/sizeof(x[0]))
 #define ENDIAN_CHANGE_U16(x) ((((x)&0xFF00)>>8) + (((x)&0xFF)<<8))
@@ -48,6 +52,21 @@ class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks
 
       BLEScan* foundBLEgetScan = advertisedDevice.getScan();
 
+#ifdef DEBUG_ALL_TAGS
+      Serial.printf("\n--------------------------------DEBUG_ALL_TAGS------------------------------------\n");
+      //Serial.printf("Advertised Device: %s \n", foundBLEAdvertisedDevice.c_str());
+      Serial.printf("\nAdvertised Device Data: %s \n", advertisedDevice.toString().c_str());
+      //Serial.printf("Advertised Device 2: %s \n", foundBLEAdvertisedDevice);
+
+      //Serial.printf("\n BLEaddr = %s", foundBLEaddr.c_str());
+      //Serial.printf("\n BLEname = %s", foundBLEname.c_str());
+      //Serial.printf("\n RSSI = %d", foundBLErssi);
+      //Serial.printf("\n TxPower = %d \n", foundBLETXPower);
+      //Serial.printf("\n MfgData = %s", foundBLEMfgData);
+      //Serial.printf("\n ServiceData = %s", foundBLEServiceData);
+
+#endif
+
       //puts(foundBLEMfgData);
       //for (int i = 0; i < (sizeof(knownBLEAddresses) / sizeof(knownBLEAddresses[0])); i++)
       for (int i = 0; i < ARRSIZE(knownBLEAddresses); i++)
@@ -56,8 +75,11 @@ class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks
         //if (strcmp(advertisedDevice.getAddress().toString().c_str(), knownBLEAddresses[i].c_str()) == 0)
         if (!strcmp(foundBLEaddr.c_str(), knownBLEAddresses[i].c_str()))
         { device_found[i] = true;
+
+#ifdef DEBUG_KNOWN_TAGS
+          Serial.printf("\n--------------------------------DEBUG_KNOWN_TAGS------------------------------------\n");
           //Serial.printf("Advertised Device: %s \n", foundBLEAdvertisedDevice.c_str());
-          Serial.printf("Advertised Device Data: %s \n", advertisedDevice.toString().c_str());
+          Serial.printf("\nAdvertised Device Data: %s \n", advertisedDevice.toString().c_str());
           //Serial.printf("Advertised Device 2: %s \n", foundBLEAdvertisedDevice);
 
           Serial.printf("\n BLEaddr = %s", foundBLEaddr.c_str());
@@ -72,10 +94,10 @@ class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks
           //          Serial.printf("\n MfgData = %s", foundBLEMfgData.c_str());
           //          Serial.printf("\n ServiceData = %s", foundBLEServiceData.c_str());
 
-
+#endif
 
           //break;
-          Serial.printf("\n\n----------------------------------------2-------------------------------------------\n\n");
+          Serial.printf("\n----------------------------------------2-------------------------------------------\n");
         }
         //else          device_found[i] = false;
       }
@@ -125,16 +147,16 @@ void loop()
   for (int i = 0; i < ARRSIZE(knownBLEAddresses); i++)
   {
     if (device_found[i])
-    { 
-      if(flag)
+    {
+      if (flag)
       { found_BLE_MAC_list += ", " + knownBLEAddresses[i];
       }
       else
-      { found_BLE_MAC_list += knownBLEAddresses[i];      
+      { found_BLE_MAC_list += knownBLEAddresses[i];
       }
       flag++;
     }
-    
+
     device_found[i] = false;
   }
 
@@ -142,7 +164,7 @@ void loop()
   Serial.println(found_BLE_MAC_list);
 
   found_BLE_MAC_list = "";
-  
+
   Serial.printf("\n\n----------------------------------------3-------------------------------------------\n\n");
 
 }

@@ -40,8 +40,13 @@ RTC_DATA_ATTR long int WiFiConnRetryAttempt = 0;
 #include <BLEAdvertisedDevice.h>
 
 BLEScan *pBLEScan;
-//                                  JDY-08             ESP32-EDDYSTN           MLT-BT05             ESTIMOTE             DUMMY
-String knownBLEAddresses[] = {"d4:36:39:c2:28:3c", "24:0a:c4:83:20:c2", "c8:fd:19:4a:f7:27", "C8:E7:EC:39:B8:D5", "AA:BB:CC:DD:EE:FF"};
+                                                                                     
+String knownBLEAddresses[] = {"d4:36:39:c2:28:3c", // JDY-08
+                              "24:0a:c4:83:20:c2", // ESP32-EDDYSTN
+                              "c8:fd:19:4a:f7:27", // MLT-BT05
+                              "c8:e7:ec:39:b8:d5", // ESTIMOTE
+                              "d4:36:39:b1:54:f1"};// iBEACON 
+                              // , ":::::" // DUMMY
 bool device_found[ARRSIZE(knownBLEAddresses)] = {0};
 String found_BLE_MAC_list;
 

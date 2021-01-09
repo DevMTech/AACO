@@ -5,29 +5,18 @@ https://docs.particle.io/tutorials/device-os/bluetooth-le/
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
-Proximity and RSSI
-https://www.bluetooth.com/blog/proximity-and-rssi/
+	Proximity and RSSI
+	https://www.bluetooth.com/blog/proximity-and-rssi/
 
-IBeacon using HM10 BLE module - Distance / Proximity
-https://elementztechblog.wordpress.com/2017/03/23/ibeacon-using-hm10-ble-module/
-	D:\WIN8 FILES\[ BLE ] - MESH, 5, 5.1 - 2019 - VIDEOS - 6GB - B\[] HM10, JDY08 - BLE\] HM-10-as-iBeacon - BlueLuminance.pdf
 		
-IBeacon using HM10 BLE module
-https://elementztechblog.wordpress.com/2017/03/23/ibeacon-using-hm10-ble-module/
-Locate Beacon - iBeacon Locator App
-https://play.google.com/store/apps/details?id=com.radiusnetworks.locate
+	IBeacon using HM10 BLE module - Distance / Proximity
+	https://elementztechblog.wordpress.com/2017/03/23/ibeacon-using-hm10-ble-module/
+	Locate Beacon - iBeacon Locator App
+	https://play.google.com/store/apps/details?id=com.radiusnetworks.locate
 
-
-------------------------------------------------------------------------------------------------------------------------------------------
-
- micahpearlman / zero-tiny-ble  - EAGLE PCB 
- AVR ATTiny85 microcontroller and a Bluetooth 4.0 (Bluetooth Low Energy or BLE) radio.
-	https://github.com/micahpearlman/zero-tiny-ble
-	https://kichman.github.io/JDY-08/
-	https://ladvien.com/HM10/
-
-------------------------------------------------------------------------------------------------------------------------------------------
+	D:\WIN8 FILES\[ BLE ] - MESH, 5, 5.1 - 2019 - VIDEOS - 6GB - B\[] HM10, JDY08 - BLE\] HM-10-as-iBeacon - BlueLuminance.pdf
 	
+		
 	HM-10 Bluetooth 4 BLE Modules
 	http://www.martyncurrey.com/hm-10-bluetooth-4ble-modules/
 	Arduino, HM-10 and App Inventor 2
@@ -35,29 +24,29 @@ https://play.google.com/store/apps/details?id=com.radiusnetworks.locate
 	Arduino, HM-10 and App Inventor 2: Adding a slider
 	http://www.martyncurrey.com/arduino-hm-10-and-app-inventor-2-adding-a-slider/
 	
+------------------------------------------------------------------------------------------------------------------------------------------
+
+ micahpearlman / zero-tiny-ble  - EAGLE PCB 
+ AVR ATTiny85 microcontroller and a Bluetooth 4.0 (Bluetooth Low Energy or BLE) radio.
+	https://github.com/micahpearlman/zero-tiny-ble
+	https://kichman.github.io/JDY-08/
+	
+	HM-10 BREAKOUT PCB - EAGLE 
+	HM10 + ATtiny85 Serial Comm.
+	https://ladvien.com/HM10/
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+	
 	Bluetooth Interfacing with HM-10
 	http://fab.cba.mit.edu/classes/863.15/doc/tutorials/programming/bluetooth.html
 	
 	Bluetooth LE: Using CC-41A (HM-10 Clone)
 	https://www.hackster.io/achindra/bluetooth-le-using-cc-41a-hm-10-clone-d8708e
-	
-	Reflashing JDY-08 with HM-10 BLE firmware
-	https://github.com/handiko/JDY-08-Reflash
-	
-	HM10 FIRMWARE UPGRADE -> HM-10 HMSoft CC2541 V709 firmware upgrade file.........[2020-06]
-	http://www.jnhuamao.cn/download_rom_en.asp
-	http://www.jnhuamao.cn/index_en.asp	
-	http://www.jnhuamao.cn/bluetooth.asp
-	https://techienoise.blogspot.com/2016/02/upgrading-firmware-to-hm-10-cc2541-ble.html
-	https://github.com/suryasundarraj/hm-10-firmware
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 	
-	JDY-08 : bluetooth 4.0 module - CCDEBUGGER - CC2541
-	https://www.iot-experiments.com/jdy-08/
-	https://www.obddiag.net/ble-adventures.html
-	How to Develop Bluetooth Low Energy Stack TI CC2541 Custom Profile
-	https://www.thegeekstuff.com/2014/07/ti-ble-custom-profile/
+ 
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -724,10 +713,7 @@ Note that in V700 onwards:
 – the default baud rate change to 115200.
 – accepts commands with and without line endings.
 – better compatibility for other BLE modules. See the readme file that comes with the download.
-
-
-	HM10 FIRMWARE UPGRADE
-	http://www.jnhuamao.cn/index_en.asp
+ 
 
 There are 2 versions of the HM-10; the HM-10C and the HM-10S.
 The HM-10S has USB connection pads along the bottom and has 34 pads.
@@ -961,123 +947,180 @@ GND      | GND
 3.3V     | VCC
 D4       | EN (Optional)
 
+	MLT-BT05
+	Bluetooth Module with Arduino (AT-09, MLT-BT05, HM-10)
+	https://makersportal.com/blog/2019/10/14/bluetooth-module-with-arduino
+	https://roboindia.com/tutorials/ble-4-0-arduino-led-control/
+	https://blog.yavilevich.com/2017/03/mlt-bt05-ble-module-a-clone-of-a-clone/
+	https://www.techonicsltd.com/product/mlt-bt05-ble4-0/
+
+--------------------------------------------------------------------------------------------------------
+
+	IBeacon using HM10 BLE module
+	https://elementztechblog.wordpress.com/2017/03/23/ibeacon-using-hm10-ble-module/
+	 
+	HM-10 REVISITED !!!
+	http://www.martyncurrey.com/hm-10-bluetooth-4ble-modules/
+	https://www.thegeekstuff.com/2014/07/ti-ble-custom-profile/
+	http://fab.cba.mit.edu/classes/863.15/doc/tutorials/programming/bluetooth.html
+	https://ladvien.com/HM10/
+	https://ladvien.com/tags/#BLE
+	http://archive.fabacademy.org/archives/2016/fablabdigiscope/students/456/W19_project_development.html
+	http://blog.blecentral.com/2015/05/13/hm-10-central-ibeacon/
+	http://blog.blecentral.com/2015/05/05/hm-10-peripheral/
+
+	The complete cross-platform nRF development tutorial
+	https://www.novelbits.io/cross-platform-nrf-development-tutorial/
+	https://www.novelbits.io/
+
+	Bluetooth GATT: How to Design Custom Services & Characteristics [MIDI device use case] 
+	https://www.novelbits.io/bluetooth-gatt-services-characteristics/
+	https://www.midi.org/specifications/item/bluetooth-le-midi
+
 ==============================================================================================================
-Introduction to CC2541
-https://www.pocketmagic.net/introduction-to-cc2541/
-https://www.iot-experiments.com/jdy-08/
-https://www.obddiag.net/ble-adventures.html
 
---------------------------------------------------------------------------------------------------------
-
-STEPS TO FLASH HM-10 FIRMWARE TO JDY-08 : 		https://github.com/handiko/JDY-08-Reflash
-=======================================
-1. Program the Arduino UNO with the CCLoader.ino sketch.
-
-2. Connect the JDY-08 module into the Arduino. BE CAUTIOUS, JDY-08 is a 3.3V device, 
-Connect the VCC JDY-08 pin1 to the 3.3V pin on the Arduino. 
-I manage to be able to program the CC2541 at 5V level, but it is NOT RECOMMENDED.
-
-3. Check the COM Port number used by the Arduino. Let say it is COM9. Note down the 9.
-
-4. Open CMD, navigate to the JDY-08-Reflash/CCLoader/Exe folder. 
-There are the CCLoader.exe and the CC2541hm10v540.bin. 
-The CCLoader.exe and the .bin file must be in the same folder.
-
-5. Still on the CMD, type CCLoader.exe 9 CC2541hm10v540.bin 0 
-Number 9 is the COM port number and 
-0 means that we are using Arduino UNO board. 
-
-Testing the JDY-08 with HM-10 Firmware
-
-To test the BLE module whether is was successfuly programed with the HM-10 firmware, 
-we can run some simple AT commands to check if the module still alive 
-and check the firmware version.
-
-    Wire your module to the Arduino UNO as the picture below. Be carefull, 
-	don't forget to power the JDY-08 from 3.3V power source, wire some 
-	jumper to connect the P16 (JDY-08 UART TX) to the Arduino UNO D8, 
-	and the P17 (JDY-08 UART RX) to the Arduino UNO D9 thru resistors voltage divider. 
-
---------------------------------------------------------------------------------------------------------
-
-IBeacon using HM10 BLE module
-https://elementztechblog.wordpress.com/2017/03/23/ibeacon-using-hm10-ble-module/
-
-Bluetooth BLE Adventures - HM-10, JDY-08/10 - CC2541
-https://www.obddiag.net/ble-adventures.html
-https://madhurendra.com/cheap-ble-jdy-08/
-http://westsideelectronics.com/arduino-android-data-streaming-jdy-08/
+	HOW TO: Flash the HM-10 firmware on to CC41-A / CC2541 - Bluetooth 4.0 HM10
+	https://www.youtube.com/watch?v=ez3491-v8Og
 
 
-	HM10 FIRMWARE UPGRADE
-	http://www.jnhuamao.cn/index_en.asp
+	STEPS TO FLASH HM-10 FIRMWARE TO JDY-08 : 		https://github.com/handiko/JDY-08-Reflash
+	=======================================
+	1. Program the Arduino UNO with the CCLoader.ino sketch.
 
-HM-10 REVISITED !!!
-http://www.martyncurrey.com/hm-10-bluetooth-4ble-modules/
-https://www.thegeekstuff.com/2014/07/ti-ble-custom-profile/
-http://fab.cba.mit.edu/classes/863.15/doc/tutorials/programming/bluetooth.html
-https://ladvien.com/HM10/
-https://ladvien.com/tags/#BLE
-http://archive.fabacademy.org/archives/2016/fablabdigiscope/students/456/W19_project_development.html
-http://blog.blecentral.com/2015/05/13/hm-10-central-ibeacon/
-http://blog.blecentral.com/2015/05/05/hm-10-peripheral/
+	2. Connect the JDY-08 module into the Arduino. BE CAUTIOUS, JDY-08 is a 3.3V device, 
+	Connect the VCC JDY-08 pin1 to the 3.3V pin on the Arduino. 
+	I manage to be able to program the CC2541 at 5V level, but it is NOT RECOMMENDED.
 
-The complete cross-platform nRF development tutorial
-https://www.novelbits.io/cross-platform-nrf-development-tutorial/
-https://www.novelbits.io/
+	3. Check the COM Port number used by the Arduino. Let say it is COM9. Note down the 4.
 
-Bluetooth GATT: How to Design Custom Services & Characteristics [MIDI device use case] 
-https://www.novelbits.io/bluetooth-gatt-services-characteristics/
-https://www.midi.org/specifications/item/bluetooth-le-midi
+	4. Open CMD, navigate to the JDY-08-Reflash/CCLoader/Exe folder. 
+	There are the CCLoader.exe and the CC2541hm10v540.bin. 
+	The CCLoader.exe and the .bin file must be in the same folder.
 
+	5. Still on the CMD, type :
+														// CCLoader_M.exe 18 CC2541hm10v540.bin 0
+				CCLoader.exe 4 CC2541hm10v540.bin 0 
+				CCLoader.exe 4 HMSoft.bin 0
+				
+	How to change the COM port for a USB Serial adapter on Windows 7, 8, 8.1, and 10
+	https://kb.plugable.com/questions/714099
+				
+	EDIT 'main.c' with ADDITIONAL PORTS IF REQUIRED & RECOMPILE  to create new 'CCLoader.exe'   			
+				gcc -static main.c -o CCLoader.exe // MAY NEED TO INSTALL MINGW TO COMPILE (gcc)
+
+	How to Install MinGW (GCC/G++) Compiler in Windows 10	
+	https://www.youtube.com/watch?v=sXW2VLrQ3Bs
+				
+				
+				
+	Number 4 is the COM port number and 
+	0 means that we are using Arduino UNO board. 
+
+	Testing the JDY-08 with HM-10 Firmware
+	=======================================
+
+	To test the BLE module whether is was successfuly programed with the HM-10 firmware, 
+	we can run some simple AT commands to check if the module still alive 
+	and check the firmware version.
+
+		Wire your module to the Arduino UNO as the picture below. 
+		Be careful, don't forget to power the JDY-08 from 3.3V power source, 
+		wire some jumper to connect the P16 (JDY-08 UART TX) to the Arduino UNO D8, 
+		and the P17 (JDY-08 UART RX) to the Arduino UNO D9 thru resistors voltage divider. 
+
+		Upload JDY-08_Serial_Interface.ino into your Arduino UNO (don't forget to install AltSoftSerial library first). 
+		
+		Open Serial Monitor window, set to 9600baud, NL & CR, then message below should appear. If not, try press the Arduino Reset button. 
+		
+		Check Whether the JDY-08 responding AT Commands. This test will confirm whether the JDY-08 responding the incoming AT Commands. 
+		The commands that we are going to send is AT+VERR? which will ask the module what version of the firmware is installed. 
+		To do this, first you need to type AT then [SEND] and the module should relply with OK. 
+		This indicate the module is recognizing AT command and still responding. 
+		Second you need to type AT+VERR? then [SEND]. The module should reply with "HMSoft V540" 
+		
+		If this test is success, then your JDY-08 module with HM-10 V540 firmware is ready to go!
+	
 ============================================================================================================================================
-
-JDY 08 CC2541 
-=============
-JDY-08 Bluetooth - kichMan
-JDY-08 Bluetooth transparent transmission module, with resource for KiCAD
 	
-	kichMan/JDY-08 -> AT COMMANDS
+	JDY 08 CC2541 
+	=============	
+	*JDY-08 : CC2541 24-PIN bluetooth 4.0 module - CC Debugger*
+	===========================================================
+
+	Reflashing JDY-08 with HM-10 BLE firmware - ARDUINO
+	https://github.com/handiko/JDY-08-Reflash	
+	https://handiko.github.io/JDY-08-Reflash/
+    https://www.iot-experiments.com/jdy-08/
+    https://github.com/RedBearLab/CCLoader
+    https://github.com/PaulStoffregen/AltSoftSerial
+	
+	
+	Bluetooth BLE Adventures - HM-10, JDY-08/10 - ARDUINO, CCDEBUGGER - CC2541
+	https://www.obddiag.net/ble-adventures.html
+	https://forum.arduino.cc/index.php?topic=393655.0
+	
+	
+	JDY-08 Bluetooth - kichMan/JDY-08  -> AT COMMANDS
+	JDY-08 Bluetooth transparent transmission module, with resource for KiCAD	
 	https://kichman.github.io/JDY-08/
-	https://github.com/kichMan/JDY-08
-	
+	https://github.com/kichMan/JDY-08	
 	
 
-	
-	JDY-08 CC2541 BLE LINKS
-	JDY-08 : bluetooth 4.0 module
+	JDY-08 : bluetooth 4.0 module - CCDEBUGGER - CC2541
 	https://www.iot-experiments.com/jdy-08/
 	
-	Reflashing JDY-08 with HM-10 BLE firmware
-	https://handiko.github.io/JDY-08-Reflash/
-	https://github.com/handiko/JDY-08-Reflash
+	 
+	SmartRF Flash Programmer (v1) for 8051  (NOT V2 WHICH IS FOR ARM MCUs)
+	http://www.ti.com/tool/flash-programmer
+	http://www.ti.com/tool/cc-debugger
+	
+	JDY-08 Bluetooth LE Module - Datasheet, Fritzing part
+	https://forum.arduino.cc/index.php?topic=432074.0
+	
+	
+	Introduction to CC2541 - CCDEBUGGER - JTAG PIN CONNECTIONS
+	https://www.pocketmagic.net/introduction-to-cc2541/
+	https://www.uradmonitor.com/the-first-wearable/
+
+
+
+
+	
+	HM10 FIRMWARE UPGRADE -> HM-10 HMSoft CC2541 V709 firmware upgrade file.........[2020-06]
+	http://www.jnhuamao.cn/download_rom_en.asp
+	http://www.jnhuamao.cn/index_en.asp	
+	http://www.jnhuamao.cn/bluetooth.asp
+	https://techienoise.blogspot.com/2016/02/upgrading-firmware-to-hm-10-cc2541-ble.html
+	https://github.com/suryasundarraj/hm-10-firmware
+	
+	
+	Upload Arduino or AVR Programs to ATtiny84/85 Over UART using HM-10
+	https://ladvien.com/arduino-avr-browser-wireless-uploader/
+	https://ladvien.com/upload-arduino-or-avr-programs-attiny85-uart/
+	https://ladvien.com/bluetooth-low-energy-javascript/
+	
+	
+	How to stream data from Arduino to Android with the JDY-08 - ARDUINO
+	http://westsideelectronics.com/arduino-android-data-streaming-jdy-08/
+	https://madhurendra.com/cheap-ble-jdy-08/
+	https://aykevl.nl/2017/05/jdy-08
+	
 	
 	iBeacon using a JDY-08 BLE module
 	https://github.com/handiko/iBeacon
 
-	
-	How to stream data from Arduino to Android with the JDY-08
-	http://westsideelectronics.com/arduino-android-data-streaming-jdy-08/
+ 
+
+	How to Develop Bluetooth Low Energy Stack TI CC2541 Custom Profile
+	https://www.thegeekstuff.com/2014/07/ti-ble-custom-profile/
 
 --------------------------------------------------------------------------------------------------------
 
-*JDY-08 : CC2541 24-PIN bluetooth 4.0 module - CC Debugger*
-===========================================================
-https://github.com/handiko/JDY-08-Reflash
 
-JDY-08 : bluetooth 4.0 module
-https://www.iot-experiments.com/jdy-08/
 
-JDY-08 Bluetooth LE Module - Datasheet, Fritzing part
-https://forum.arduino.cc/index.php?topic=432074.0
 
-Bluetooth BLE Adventures - HM-10, JDY-08/10 - CC2541
-https://www.obddiag.net/ble-adventures.html
-https://madhurendra.com/cheap-ble-jdy-08/
-http://westsideelectronics.com/arduino-android-data-streaming-jdy-08/
-https://aykevl.nl/2017/05/jdy-08
-
-https://usermanual.wiki/City-Hong-Teng-Yu-Da-Electronic-Technology/JDY-08
+--------------------------------------------------------------------------------------------------------
+ 
 
 
 Testing and Getting To Know the JDY-08 Bluetooth SOC from ICStation
@@ -1089,8 +1132,8 @@ https://www.youtube.com/watch?v=r_g3Zb8F69c
 
 How to Flash the Firmware on Clone HM-10 BLE Module using Arduino Uno
 https://circuitdigest.com/microcontroller-projects/how-to-flash-the-firmware-on-cloned-hm-10-ble-module-using-arduino-uno
-HOW TO: Flash the HM-10 firmware on to CC41-A / CC2541 - Bluetooth 4.0
-https://www.youtube.com/watch?v=ez3491-v8Og
+https://circuitdigest.com/microcontroller-projects/how-to-use-arduino-and-hm-10-ble-module-to-control-led-with-android-app
+
 
 TI BLE-Stack User’s Guide - BLE4.2
 http://dev.ti.com/tirex/content/simplelink_cc2640r2_sdk_1_50_00_58/docs/blestack/ble_user_guide/html/ble-stack-3.x-guide/index.html
@@ -1145,6 +1188,7 @@ CC2541 Keyfob Reference Design
 http://www.ti.com/product/CC2541/toolssoftware#TIDesigns
 
 ===================================================================================================================================================
+
 https://e2e.ti.com/
 https://www.youtube.com/results?search_query=cc2541+i2c+programming+tutorial
 
@@ -1298,7 +1342,11 @@ Overview:
     Transmission Distance:40 meters
 
 Description:
-JDY-19 transparent transmission module is based on bluetooth 4.2 protocol standard, working frequency range is 2.4GHZ range, modulation mode is GFSK, maximum transmission power is 4db, maximum transmission distance is 40 meters, supports users to modify equipment through AT command instructions such as name and baud rate are convenient and quick to use. The JDY-19 bluetooth module can quickly use for product application through simple configuration.
+JDY-19 transparent transmission module is based on bluetooth 4.2 protocol standard, working frequency range is 2.4GHZ range, 
+modulation mode is GFSK, maximum transmission power is 4db, maximum transmission distance is 40 meters, supports users to modify 
+equipment through AT command instructions such as name and baud rate are convenient and quick to use. 
+
+The JDY-19 bluetooth module can quickly use for product application through simple configuration.
  
 Features:
 
@@ -1360,7 +1408,7 @@ Pinouts:
 
     IO1: GPIO or PWM4
 
-     IO2: GPIO
+    IO2: GPIO
 
     NULL: None
 
@@ -1370,9 +1418,9 @@ Pinouts:
 
     IO7: GPIO
 
-     IO8: GPIO
+    IO8: GPIO
 
-     IO9: GPIO
+    IO9: GPIO
 
     ALED: Broadcast indicator pin
 
@@ -1391,6 +1439,7 @@ Pinouts:
     GND: Power ground
 
 ===================================================================================================================================================
+
 pCharacteristic->setValue
 https://github.com/nkolban/esp32-snippets/issues/79
 https://github.com/nkolban/esp32-snippets/blob/master/cpp_utils/BLECharacteristic.h#L76-L82

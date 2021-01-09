@@ -1,10 +1,4 @@
 
-MLT-BT05
-Bluetooth Module with Arduino (AT-09, MLT-BT05, HM-10)
-https://makersportal.com/blog/2019/10/14/bluetooth-module-with-arduino
-https://roboindia.com/tutorials/ble-4-0-arduino-led-control/
-https://blog.yavilevich.com/2017/03/mlt-bt05-ble-module-a-clone-of-a-clone/
-https://www.techonicsltd.com/product/mlt-bt05-ble4-0/
 
 
 Initial setup:
@@ -51,7 +45,7 @@ a string.
 Break the connection by cycling the power on both modules.
 Both LEDs should blink when you turn on the power.
  
-On the Central side (PIC32 running the HM10 est code):
+On the Central side (PIC32 running the HM10 test code):
 1. Send 'AT+IMME0' to turn off manual pairing
 2. Send 'AT+RESET'. The modules should immediately reconnect and LEDs stop blinking.
 3. Change mode to data using 'm' command

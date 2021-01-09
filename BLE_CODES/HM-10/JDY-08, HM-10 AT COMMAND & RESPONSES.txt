@@ -1,0 +1,130 @@
+
+JDY-08 DEFAULT FIRMWARE (BEFORE FLASHING HM-10 FIRMWARE)
+
+	JDY-08: +ERR
+	------------	
+	Using the JDY-08 module
+	https://aykevl.nl/2017/05/jdy-08
+	
+	Flashing the HM-10 firmware on a JDY-08
+	https://aykevl.nl/2017/05/jdy-08-firmware
+	It turns out it is necessary to connect a 10µF capacitor between the GND 
+	and reset pins. This took me a while to figure out. 
+	CCLoader opens a new serial connection which causes the UNO to restart, 
+	probably missing the first few bytes it sends.
+	
+	
+	https://madhurendra.com/cheap-ble-jdy-08/
+	https://forum.arduino.cc/index.php?topic=432074.15
+
+	
+CONNECT TO CP2012 USB-UART MODULE & OPEN ARDUINO SERIAL MONITOR OR 
+ANY SERIAL COMM. TERMINAL, TERATERM ETC. WHICH ALLOWS NO LINE ENDING OPTION (OTHER THAN PUTTY)
+WITH BAUD RATE 115200, NO LINE ENDING
+
+UART 	JDY-08
+3V3 	VCC		
+TX		P02 (RX)
+RX		P03 (TX)
+GND		GND
+
+		!!!!!! MOST IMPORTANT: PULL DOWN P00 PIN LOW TO GND FOR > 1s TO ENTER AT MODE OF JDY-08 DEFAULT FIRMWARE !!!!!!
+		
+		REFER 'JDY-08 Bluetooth LE Module Datasheet.pdf' FOR DEFAULT FIRMWARE PINOUT, AT COMMANDS 
+			  -----------------------------------------	
+
+AT, AT+HELP, AT+MODE, AT+ADDR, AT+BAUD ..  DON'T WORK!! 
+NO OUTPUT OR +ERR
++ERR:1002
+QUITE A FEW OTHER COMMANDS NOT SUPPORTED BY DEFAULT FIRMWARE !!! 
+
+ENTER AT COMMAND IN ARDUINO SERIAL MONITOR & PRESS 'Send' / ENTER KEY (BAUD RATE 115200, NO LINE ENDING) 
+FOLLOWING AT COMMANDS WORK: 
+
+AT+RST
++OK
+
+AT+NAME
++NAME:JDY-08
+
+AT+VER
++JDY-08-V3.37
+
+AT+MAC
++MAC:D43639C21F25
+
+AT+PWM
++PWMOPE:0
+
+AT+BOUD
++BOUD:0
+
+AT+PASS
++PSS:123456
+
+AT+CHRUUID
++CHUUID:FFE1
+
+AT+GETSTAT
++STS:01
+
+AT+PWMFRE
++PWMFRE:1000
+
+AT+WSXVR
++WXSVR:0
+
+==============================================================================================================
+
+HM-10 AT COMMANDS
+
+<AT
+>OK
+
+<AT+VERR?
+>OKHMSoft V551
+
+<AT+NAME?
+>OK+NAME:OldBLE
+
+<AT+NAMEBLE_0
+>OK+Set:BLE_0
+
+
+<AT+ADDR?
+>OK+ADDR:D43639B154F1
+>OK+ADDR:C8FD199C8598
+
+<AT+BAUD?
+>OK+Get:0 	// 0 = 9600
+
+<AT+MODE?
+>OK+Get:0	//
+
+<AT+PASS?
+>OK+Get:000000	//PASSWORD
+
+
+AT → Test Command
+
+AT+ROLE=0 → Slave Mode select
+
+AT+ROLE=1 → Master Mode select
+
+AT+NAME=xyz  → Set Bluetooth Name
+
+AT+PSWD=xyz → Set Password
+
+AT+UART=<value1>,<value2>,<value3>  → set Baud rate
+
+Eg. AT+UART=9600,0,0
+
+Pin Description of accelerometer
+
+    STATE  → Open
+    Rx  → Serial receiving pin
+    Tx  → Serial transmitting pin
+    GND   → ground
+    Vcc     → +5volt dc
+    EN       → to enter in AT mode
+

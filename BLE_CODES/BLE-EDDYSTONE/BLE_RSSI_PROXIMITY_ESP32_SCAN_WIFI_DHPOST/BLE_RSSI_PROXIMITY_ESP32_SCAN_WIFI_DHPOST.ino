@@ -18,6 +18,9 @@
 
 enum BLE_TAG_STATES {MISSING, FOUND};
 
+
+#define TEST_MODE
+
 int httpCode;
 String deviceName = "", deviceDescription, deviceMAC, deviceIP, deviceConfigParams;
 String WiFi_Status = "DISCONNECTED";
@@ -184,7 +187,7 @@ void loop()
       }
       tag_states[i] = device_found[i];
 
-// [{"mac":"d4:36:39:c2:28:3c","state":1},{"mac":"24:0a:c4:83:20:c2","state":1},{"mac":"c8:fd:19:4a:f7:27","state":1}]
+      // [{"mac":"d4:36:39:c2:28:3c","state":1},{"mac":"24:0a:c4:83:20:c2","state":1},{"mac":"c8:fd:19:4a:f7:27","state":1}]
 
       if (flag) // 2ND MAC ADDRESS ONWARDS
       { found_BLE_MAC_list += ",{\"mac\":\"";
@@ -201,9 +204,9 @@ void loop()
       found_BLE_MAC_list += state;
       found_BLE_MAC_list += "}";
 
-//      found_BLE_MAC_list += ",\"state\":\"";
-//      found_BLE_MAC_list += state;
-//      found_BLE_MAC_list += "\"";
+      //      found_BLE_MAC_list += ",\"state\":\"";
+      //      found_BLE_MAC_list += state;
+      //      found_BLE_MAC_list += "\"";
 
 
 
@@ -238,7 +241,9 @@ void loop()
   Serial.printf("\n\n----------------------------------------3-------------------------------------------\n\n");
 
   //WiFi_ON();
+#ifndef TEST_MODE
   if (found_BLE_MAC_list != "") // https://www.arduino.cc/en/Tutorial/BuiltInExamples/StringComparisonOperators
+#endif
   {
     HTTP_POST_NOTIF();  //  delay(1500);
     WiFi_OFF();

@@ -23,7 +23,7 @@ String URL = "http://" + DH_SERVER_IP + ":80/api/rest/device/" + DH_DEVICE_ID + 
 void HTTP_POST_NOTIF()
 {
   Serial.println("\n*************************************************************************************************");
-  
+
   HTTP_post_status = "FAILURE";
 
   Serial.println("\n\nDH_DEVICE_ID :" + DH_DEVICE_ID); //String());
@@ -54,18 +54,18 @@ void HTTP_POST_NOTIF()
   // CO2 = 432;  pm_2point5 = 3.51;  pm_10 = 8.5;    // timeStamp = "2020-01-15T10:15:34.444Z";
 
   // start connection and send HTTP header
-//  String data = "{\"notification\": \"sensordata\"";
-//  data += ",\"timestamp\":\""; // data += timeStamp; // "\"2019-09-11T11:15:34.444Z\""
-//  data += "\",\"parameters\": {";
-//  data += "\"temp\":\"";  data += tempC;
-//  data += "\",\"humi\":\""; data += humidity;
-//  data += "\",\"lux\":\""; data += lux;
-//  data += "\",\"C\":\""; data += CO2;
-//  data += "\",\"D\":\""; data += pm_2point5; // pm_10; //
-//  data += "\",\"D10\":\""; data += pm_10; //
-//  data += "\",\"B\":\""; data += batteryLevel; // volt
-//  data += "\",\"N\":\""; data += (bootCount++); // (count++);
-//  data += "\"}}";
+  //  String data = "{\"notification\": \"sensordata\"";
+  //  data += ",\"timestamp\":\""; // data += timeStamp; // "\"2019-09-11T11:15:34.444Z\""
+  //  data += "\",\"parameters\": {";
+  //  data += "\"temp\":\"";  data += tempC;
+  //  data += "\",\"humi\":\""; data += humidity;
+  //  data += "\",\"lux\":\""; data += lux;
+  //  data += "\",\"C\":\""; data += CO2;
+  //  data += "\",\"D\":\""; data += pm_2point5; // pm_10; //
+  //  data += "\",\"D10\":\""; data += pm_10; //
+  //  data += "\",\"B\":\""; data += batteryLevel; // volt
+  //  data += "\",\"N\":\""; data += (bootCount++); // (count++);
+  //  data += "\"}}";
 
   //        data += "\"T\":\"";  data += tempC;      //
   //        data += "\",\"H\":\""; data += humidity;
@@ -74,22 +74,53 @@ void HTTP_POST_NOTIF()
   //        data += "\",\"G\":\""; data += GPS;
 
   // found_BLE_MAC_list = "d4:36:39:c2:28:3c, 24:0a:c4:83:20:c2";
-  
-  String data = "{\"notification\": \"sensordata\"";
+  // {"notification": "sensordata","timestamp":"","parameters": {"BLE_STATE":[{"mac":"d4:36:39:c2:28:3c","state":1},{"mac":"c8:fd:19:4a:f7:27","state":1}]}}
+
+  //  'd4:36:39:c2:28:3c': { item: 'Artefact-123', location: 'Art gallery' },
+  //  '24:0a:c4:83:20:c2': { item: 'Artefact-789', location: 'Store room' },
+  //  'c8:fd:19:4a:f7:27': { item: 'Painting-468', location: 'Lobby area' },
+
+  String data = "";
+
+#ifndef TEST_MODE
+  data = "{\"notification\": \"sensordata\"";
   data += ",\"timestamp\":\""; // data += timeStamp; // "\"2019-09-11T11:15:34.444Z\""
-  //data += "\",\"parameters\": ["; // 
+  //data += "\",\"parameters\": ["; //
   //data += "\",\"parameters\": ";
   data += "\",\"parameters\": {";
   //data += "\"BLE_STATE\":\"";
-  data += "\"BLE_STATE\":[";  
+  data += "\"BLE_STATE\":[";
   data += found_BLE_MAC_list;
   // data += "\"BLE_MAC\":\"";  data += found_BLE_MAC_list;
   // data += "\",\"BLE_MAC\":\"";  data += found_BLE_MAC_list;
   //data += "}"; //
-  data += "]"; // 
-  data += "}}"; // 
+  data += "]"; //
+  data += "}}"; //
   //data += "\"}}";
-  
+#endif
+
+  //////// FOR TESTING PURPOSE ONLY
+#ifdef TEST_MODE
+  static unsigned long turn = 0;
+  switch (turn % 4)
+  {
+    case 0:
+      data = "{\"notification\": \"sensordata\",\"timestamp\": \"\",\"parameters\": {\"BLE_STATE\":[{\"mac\":\"d4:36:39:c2:28:3c\",\"state\":1},{\"mac\":\"c8:fd:19:4a:f7:27\",\"state\":1}]}}"; // ALTS
+      break;
+    case 1:
+      data = "{\"notification\": \"sensordata\",\"timestamp\": \"\",\"parameters\": {\"BLE_STATE\":[{\"mac\":\"d4:36:39:c2:28:3c\",\"state\":0},{\"mac\":\"c8:fd:19:4a:f7:27\",\"state\":1}]}}"; // ALTS
+      break;
+    case 2:
+      data = "{\"notification\": \"sensordata\",\"timestamp\": \"\",\"parameters\": {\"BLE_STATE\":[{\"mac\":\"d4:36:39:c2:28:3c\",\"state\":1},{\"mac\":\"c8:fd:19:4a:f7:27\",\"state\":0}]}}"; // ALTS
+      break;
+    case 3:
+      data = "{\"notification\": \"sensordata\",\"timestamp\": \"\",\"parameters\": {\"BLE_STATE\":[{\"mac\":\"d4:36:39:c2:28:3c\",\"state\":0},{\"mac\":\"c8:fd:19:4a:f7:27\",\"state\":0}]}}"; // ALTS
+  }
+  turn++;
+#endif
+
+  // {"notification": "sensordata","timestamp":"","parameters": {"BLE_STATE":[{"mac":"d4:36:39:c2:28:3c","state":1},{"mac":"c8:fd:19:4a:f7:27","state":1}]}}
+
   // 2020-08-03T18:25:34
   //String data = "{\"notification\": \"sensordata\",\"timestamp\": \"\",\"parameters\": {\"temp\":\"22.5\",\"humi\":\"40\",\"lux\":\"500\",\"C\":\"400\",\"D\":\"6.10\",\"D10\":\"10.40\",\"B\":\"4.3\",\"N\":\"5\"}}"; // AACO
 
@@ -153,7 +184,7 @@ void HTTP_POST_NOTIF()
     WiFi_ON(); // WiFi_setup();
   }
 
-   Serial.println("\n*************************************************************************************************");
+  Serial.println("\n*************************************************************************************************");
 }
 
 //String DH_DEVICE_ID = "wfh-aaco01"; //  DEVICE ID

@@ -119,6 +119,7 @@ void WiFi_OFF()
 { WiFi.disconnect(true);
   WiFi.mode(WIFI_OFF); // WiFi.mode( WIFI_MODE_NULL );   // btStart(); // btStop();
   delay(1);
+  
   if (WiFi.status() == WL_CONNECTED)
   {
     WiFi_Status = "CONNECTED";
@@ -137,20 +138,18 @@ void WiFi_OFF()
     digitalWrite (LED_BUILTIN, LOW); //HIGH = ON //LOW = OFF
     //pinMode (LED_BUILTIN, INPUT);
   }
+  
 }
+
 
 void WiFi_ON()
-{
-  //  WiFi.forceSleepWake();
-  // delay(1);
-  WiFi_setup();
-}
-
-void WiFi_setup()
 {
   deviceMAC = WiFi.macAddress();              //macToStr(mac);  //mac;
   Serial.print("\n\nMAC : "); // 84:0D:8E:C3:60:8C ESP32S
   Serial.println(deviceMAC); // (WiFi.macAddress());
+
+  //  WiFi.forceSleepWake();
+  // delay(1);
 
     WiFi.mode(WIFI_STA);
 
@@ -165,9 +164,7 @@ void WiFi_setup()
     Serial.println(ssid);
     WiFi.begin(ssid, password);
 
-//  if (bootCount == 1)
-//  { WiFiManagerSetup();
-//  }
+
 
 
   //Serial.println("Connecting Wifi...");
@@ -180,7 +177,16 @@ void WiFi_setup()
     delay(50);
   }
 
-  WiFiConnRetryAttempt++;
+  // if (bootCount<=1 && (WiFi.status() != WL_CONNECTED))
+  if ((WiFi.status() != WL_CONNECTED))
+  { WiFiConnRetryAttempt++;
+    WiFiManagerSetup();
+  }
+  else
+  { WiFiConnRetryAttempt = 0;
+  }
+
+  
   Serial.println("\n WiFi Conn Retry Attempt : " + String(WiFiConnRetryAttempt));
 
   if (WiFi.status() != WL_CONNECTED && (WiFiConnRetryAttempt >= 2))
@@ -299,6 +305,6 @@ void WiFi_setup()
 void initialize()
 {
   tempC = 22.5; humidity = 52;  lux = 560;  batteryLevel = 3.32;
-  CO2 = 432;  pm_2point5 = 3.51;  pm_10 = 8.5;    // timeStamp = "2020-01-15T10:15:34.444Z";
+  CO2 = 432.8;  pm_2point5 = 3.51;  pm_10 = 8.5;    // timeStamp = "2020-01-15T10:15:34.444Z";
   found_BLE_MAC_list = "d4:36:39:c2:28:3c, 24:0a:c4:83:20:c2";
 }

@@ -1,12 +1,19 @@
+
 /******************************************CONFIGURE THESE PARAMETERS***************************************************/
 
 // ACCESS 2029-12-31
 String accessTokenS = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTg5MzQzMjU0MDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.HQN9Fb7mMhAu2AJVhej4x1-wYT_JMY1i1VDnVDKY9u0";
-String DH_DEVICE_ID = "demo-9-1"; // "e50d6085-2aba-48e9-b1c3-73c673e414be"; // "b-9-2"; // "AACO163"; // "device2"; //  DEVICE ID
+String DH_DEVICE_ID = "demo-12-1"; // "e50d6085-2aba-48e9-b1c3-73c673e414be"; // "b-9-2"; // "AACO163"; // "device2"; //  DEVICE ID
 String DH_SERVER_IP = "10.208.34.200"; // "10.208.34.163"; // "10.42.0.1"; // "10.208.34.242"; // "192.168.122.1"; // "10.42.0.1"; //  "10.208.37.221"; // "10.208.35.79"; // ifconfig
 String URL = "http://" + DH_SERVER_IP + ":80/api/rest/device/" + DH_DEVICE_ID + "/notification"; //HTTP DEVICE NAME: ESP_AFMS_01
 // REFRESH 2029-12-31 eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTg5MzQzMjU0MDAwMCwidCI6MCwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.WqHgb-2-yV7jlXDu_Dhs9YB7k4UJOm8OX-gAUGgGYJs
 // eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTkyNDg4NTgwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.uNqldVfNzxl3aL_kb9UvxmUHjLMsYpbRt7w3so0O3ig";
+
+
+//String accessTokenS = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTkyNDg4NTgwMDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.uNqldVfNzxl3aL_kb9UvxmUHjLMsYpbRt7w3so0O3ig";
+//String DH_DEVICE_ID = "b-9-2"; // "AACO163"; // "device2"; //  DEVICE ID
+//String DH_SERVER_IP = "10.208.34.163"; // "10.42.0.1"; // "10.208.34.242"; // "192.168.122.1"; // "10.42.0.1"; //  "10.208.37.221"; // "10.208.35.79"; // ifconfig
+//String URL = "http://" + DH_SERVER_IP + ":80/api/rest/device/" + DH_DEVICE_ID + "/notification"; //HTTP DEVICE NAME: ESP_AFMS_01
 
 /******************************************CONFIGURE THESE PARAMETERS***************************************************/
 
@@ -15,9 +22,11 @@ String URL = "http://" + DH_SERVER_IP + ":80/api/rest/device/" + DH_DEVICE_ID + 
 
 void HTTP_POST_NOTIF()
 {
+  Serial.println("\n*************************************************************************************************");
+  
   HTTP_post_status = "FAILURE";
 
-  Serial.println("\n\nDH_DEVICE_ID : " + DH_DEVICE_ID); //String());
+  Serial.println("\n\nDH_DEVICE_ID :" + DH_DEVICE_ID); //String());
   // Serial.println("DH_SERVER_IP :" + DH_SERVER_IP);
 
   //int httpTime = millis();
@@ -29,7 +38,7 @@ void HTTP_POST_NOTIF()
   // URL = "http://" + DH_SERVER_IP + ":80/api/rest/device/" + DH_DEVICE_ID + "/notification"; //HTTP DEVICE NAME: ESP_AFMS_01
   // URL = "https://playground.devicehive.com/api/rest/device/" + DH_DEVICE_ID + "/notification";
 
-  Serial.println("DH_DEVICE_URL : " + URL) ;
+  Serial.println("DH_DEVICE_URL :" + URL) ;
 
   String TokenBearer = accessTokenS; // "Bearer " +
   http.begin(URL); //HTTP USER NAME: Dev
@@ -44,23 +53,19 @@ void HTTP_POST_NOTIF()
   // tempC = 22.5; humidity = 52;  lux = 560;  batteryLevel = 3.32;
   // CO2 = 432;  pm_2point5 = 3.51;  pm_10 = 8.5;    // timeStamp = "2020-01-15T10:15:34.444Z";
 
-
-
   // start connection and send HTTP header
-  String data = "{\"notification\": \"sensordata\"";
-  data += ",\"timestamp\":\""; // data += timeStamp; // "\"2019-09-11T11:15:34.444Z\""
-  data += "\",\"parameters\": {";
-  data += "\"temp\":\"";  data += tempC;
-  data += "\",\"humi\":\""; data += humidity;
-  data += "\",\"lux\":\""; data += lux;
-  data += "\",\"C\":\""; data += CO2;
-  data += "\",\"D\":\""; data += pm_2point5; // pm_10; //
-  data += "\",\"D10\":\""; data += pm_10; //
-  data += "\",\"B\":\""; data += batteryLevel; // volt
-  data += "\",\"N\":\""; data += (bootCount++); // (count++);
-  data += "\",\"BLE_STATE\":\"1";  // 0
-  //data += "\",\"BLE_MAC\":\"";  data += found_BLE_MAC_list;
-  data += "\"}}";
+//  String data = "{\"notification\": \"sensordata\"";
+//  data += ",\"timestamp\":\""; // data += timeStamp; // "\"2019-09-11T11:15:34.444Z\""
+//  data += "\",\"parameters\": {";
+//  data += "\"temp\":\"";  data += tempC;
+//  data += "\",\"humi\":\""; data += humidity;
+//  data += "\",\"lux\":\""; data += lux;
+//  data += "\",\"C\":\""; data += CO2;
+//  data += "\",\"D\":\""; data += pm_2point5; // pm_10; //
+//  data += "\",\"D10\":\""; data += pm_10; //
+//  data += "\",\"B\":\""; data += batteryLevel; // volt
+//  data += "\",\"N\":\""; data += (bootCount++); // (count++);
+//  data += "\"}}";
 
   //        data += "\"T\":\"";  data += tempC;      //
   //        data += "\",\"H\":\""; data += humidity;
@@ -68,8 +73,19 @@ void HTTP_POST_NOTIF()
   //        data += "\",\"C\":\""; data += CO2;
   //        data += "\",\"G\":\""; data += GPS;
 
+  // found_BLE_MAC_list = "d4:36:39:c2:28:3c, 24:0a:c4:83:20:c2";
+  
+  String data = "{\"notification\": \"sensordata\"";
+  data += ",\"timestamp\":\""; // data += timeStamp; // "\"2019-09-11T11:15:34.444Z\""
+  data += "\",\"parameters\": {";
+  data += "\"BLE_STATE\":\"";  data += found_BLE_MAC_list;
+  // data += "\"BLE_MAC\":\"";  data += found_BLE_MAC_list;
+  // data += "\",\"BLE_MAC\":\"";  data += found_BLE_MAC_list;
+  data += "\"}}";
+  
   // 2020-08-03T18:25:34
-  // String data = "{\"notification\": \"sensordata\",\"timestamp\": \"\",\"parameters\": {\"temp\":\"22.5\",\"humi\":\"40\",\"lux\":\"500\",\"C\":\"400\",\"D\":\"6.10\",\"D10\":\"10.40\",\"B\":\"4.3\",\"N\":\"5\"}}"; // AACO
+  //String data = "{\"notification\": \"sensordata\",\"timestamp\": \"\",\"parameters\": {\"temp\":\"22.5\",\"humi\":\"40\",\"lux\":\"500\",\"C\":\"400\",\"D\":\"6.10\",\"D10\":\"10.40\",\"B\":\"4.3\",\"N\":\"5\"}}"; // AACO
+
 
 
   // String data = {"notification": "sensordata","timestamp":"","parameters": {"temp":"30.22","humi":"67.11","lux":"15.08","C":"401","D":"6.00","D10":"15.60","B":"4.36","N":"51"}};
@@ -88,14 +104,7 @@ void HTTP_POST_NOTIF()
   Serial.print("\n[HTTP] POST DATA: \t");
   Serial.println(data);
 
-//  if (bootCount<=2 && (WiFi.status() != WL_CONNECTED))
-//  { WiFiManagerSetup();
-//  }
-//  else
-  {
-    WiFi_ON(); // WiFi_setup();
-  }
-
+  WiFi_setup();
 
   //  if((wifiMulti.run() == WL_CONNECTED))  // wait for WiFi connection
   if (WiFi.status() == WL_CONNECTED)
@@ -105,49 +114,39 @@ void HTTP_POST_NOTIF()
     Serial.print("\n[HTTP-POST] IP address:\t");    Serial.println(WiFi.localIP());
     Serial.print("[HTTP-POST] Connected to ");    Serial.println(WiFi.SSID());
 
-    int count = 0;    httpCode = 0;
+    int count = 1;    httpCode = 0;
 
-    //while (httpCode != 201 && count <= 2)
-    { count++;
+    while (httpCode != 201 && count <= 5)
+    { httpCode =  http.POST(data);
       Serial.println("http post attempt: " + String(count));
-      httpCode =  http.POST(data);
+      count++;
     }
-
-    Serial.printf("[HTTP] Response Code: %d\n", httpCode); // HTTP header has been send and Server response header has been handled
 
     if (httpCode > 0) // httpCode will be negative on error
-    {
-      if (httpCode == 201)//HTTP_CODE_OK) // file found at server
-      { Serial.println("HTTP_POST_SUCCESS"); // Serial.println("HTTP_CODE_OK");
-        HTTP_post_status = "SUCCESS";
+    { Serial.printf("[HTTP] Response Code: %d\n", httpCode); // HTTP header has been send and Server response header has been handled
+      HTTP_post_status = "SUCCESS";
+
+      if (httpCode == HTTP_CODE_OK) // file found at server
+      { Serial.println("HTTP_CODE_OK");
       }
-      else
-      { HTTP_post_status = "FAILURE";
-        Serial.println("[HTTP] POST... failed!");
-        //Serial.printf(" Error: %s\n", http.errorToString(httpCode).c_str());
-
-#ifdef BUZZER
-        pinMode(BUZZER, OUTPUT);   // BUZ ON
-        for (int i = 0; i < 5; i++)
-        { digitalWrite(BUZZER, !(digitalRead(BUZZER))); delay(200);
-        }
-        pinMode(BUZZER, INPUT); // BUZ OFF
-#endif
-
-      }
-
       String payload = http.getString();
-      Serial.println(" Payload : " + payload);
+      Serial.println(payload);
     }
-
+    else
+    { Serial.printf("[HTTP] POST... failed, error: %s\n", http.errorToString(httpCode).c_str());
+      String payload = http.getString();
+      Serial.println(payload);
+      HTTP_post_status = "FAILURE";
+    }
     http.end();
-
   }
   else
   { Serial.println("\n==========NOT CONNECTED TO WiFi - TRYING TO CONNECT==================\n");
     WiFi_Status = "DISCONNECTED";
     WiFi_ON(); // WiFi_setup();
   }
+
+   Serial.println("\n*************************************************************************************************");
 }
 
 //String DH_DEVICE_ID = "wfh-aaco01"; //  DEVICE ID

@@ -88,12 +88,9 @@ void HTTP_POST_NOTIF()
   Serial.print("\n[HTTP] POST DATA: \t");
   Serial.println(data);
 
-//  if (bootCount<=2 && (WiFi.status() != WL_CONNECTED))
-//  { WiFiManagerSetup();
-//  }
-//  else
+  if ((WiFi.status() != WL_CONNECTED))
   {
-    WiFi_ON(); // WiFi_setup();
+    WiFi_ON(); //  
   }
 
 
@@ -146,7 +143,7 @@ void HTTP_POST_NOTIF()
   else
   { Serial.println("\n==========NOT CONNECTED TO WiFi - TRYING TO CONNECT==================\n");
     WiFi_Status = "DISCONNECTED";
-    WiFi_ON(); // WiFi_setup();
+    //WiFi_ON(); //  
   }
 }
 

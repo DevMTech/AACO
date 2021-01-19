@@ -47,7 +47,7 @@ String knownBLEAddresses[] = {"d4:36:39:c2:28:3c", // JDY-08
                               "24:0a:c4:83:20:c2", // ESP32-EDDYSTN
                               "c8:fd:19:4a:f7:27", // MLT-BT05
                               "c8:e7:ec:39:b8:d5", // ESTIMOTE
-                              "d4:36:39:b1:54:f1"  // JDY-08
+                              "d4:36:39:b1:54:f1"
                              };// iBEACON
 // , ":::::" // DUMMY
 bool device_found[ARRSIZE(knownBLEAddresses)] = {0};
@@ -184,50 +184,26 @@ void loop()
       }
       tag_states[i] = device_found[i];
 
-// [{"mac":"d4:36:39:c2:28:3c","state":1},{"mac":"24:0a:c4:83:20:c2","state":1},{"mac":"c8:fd:19:4a:f7:27","state":1}]
-
-      if (flag) // 2ND MAC ADDRESS ONWARDS
-      { found_BLE_MAC_list += ",{\"mac\":\"";
-        found_BLE_MAC_list += knownBLEAddresses[i];
-        found_BLE_MAC_list += "\"";
+      if (flag)
+      { found_BLE_MAC_list += ", " + knownBLEAddresses[i];
       }
-      else // 1ST MAC ADDRESS
-      { found_BLE_MAC_list += "{\"mac\":\"";
-        found_BLE_MAC_list += knownBLEAddresses[i];
-        found_BLE_MAC_list += "\"";
+      else
+      { found_BLE_MAC_list += knownBLEAddresses[i];
       }
-
-      found_BLE_MAC_list += ",\"state\":";
-      found_BLE_MAC_list += state;
-      found_BLE_MAC_list += "}";
-
-//      found_BLE_MAC_list += ",\"state\":\"";
-//      found_BLE_MAC_list += state;
-//      found_BLE_MAC_list += "\"";
-
-
-
-      //      if (flag)
-      //      { found_BLE_MAC_list += ", " + knownBLEAddresses[i];
-      //      }
-      //      else
-      //      { found_BLE_MAC_list += knownBLEAddresses[i];
-      //      }
-      //      found_BLE_MAC_list += "=" + state;
-
+      found_BLE_MAC_list += "=" + state;
       flag++;
     }
 
-    //    if (device_found[i])
-    //    {
-    //      if (flag)
-    //      { found_BLE_MAC_list += ", " + knownBLEAddresses[i];
-    //      }
-    //      else
-    //      { found_BLE_MAC_list += knownBLEAddresses[i];
-    //      }
-    //      flag++;
-    //    }
+//    if (device_found[i])
+//    {
+//      if (flag)
+//      { found_BLE_MAC_list += ", " + knownBLEAddresses[i];
+//      }
+//      else
+//      { found_BLE_MAC_list += knownBLEAddresses[i];
+//      }
+//      flag++;
+//    }
 
     device_found[i] = false;
   }

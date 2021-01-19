@@ -1,3 +1,21 @@
+
+/* FREERTOS ESP32
+  https://circuitdigest.com/microcontroller-projects/esp32-dual-core-programming-using-arduino-ide
+  https://savjee.be/2020/02/esp32-keep-wifi-alive-with-freertos-task/
+  https://savjee.be/2020/01/multitasking-esp32-arduino-freertos/
+  https://randomnerdtutorials.com/esp32-dual-core-arduino-ide/
+  https://desire.giesecke.tk/index.php/2018/01/30/multithreading-support-with-xtaskcreate/
+  https://forums.freertos.org/t/xcreatetask-with-params-newbie/8056
+  https://github.com/espressif/arduino-esp32/issues
+
+  esp32 freertos wifi example
+  https://www.google.com/search?client=firefox-b-d&q=esp32+freertos+wifi+example
+  
+  esp32 wifi task core
+  https://www.google.com/search?client=firefox-b-d&q=esp32+wifi+task+core
+*/  
+
+
 // https://learn.adafruit.com/adafruit-bme680-humidity-temperature-barometic-pressure-voc-gas?view=all
 //   https://randomnerdtutorials.com/esp32-static-fixed-ip-address-arduino-ide/
 //   https://microcontrollerslab.com/esp32-static-fix-ip-address/
@@ -159,6 +177,8 @@ IPAddress secondaryDNS(10, 208, 11, 16); //optional
 //IPAddress secondaryDNS(0, 0, 0, 0); //optional
 
 
+TaskHandle_t *CCS811TaskHandle = NULL;
+
 //static const uint8_t TX0_PIN = 1;
 //static const uint8_t RX0_PIN = 3;
 static const uint8_t SCL_PIN = 22;
@@ -252,11 +272,11 @@ void setup()
   Serial.println("\n\n*********************WAKE UP***********************\n\n");
 
 
-//  if (!bootCount)
-//  { WiFiManagerSetup();
-//  }
-//  WiFi_OFF();
-  
+  //  if (!bootCount)
+  //  { WiFiManagerSetup();
+  //  }
+  //  WiFi_OFF();
+
   bootCount++; //Increment boot number and print it every reboot
   Serial.println("Boot Count: " + String(bootCount));
 
@@ -277,6 +297,10 @@ void setup()
     Serial.println("\nFIRMWARE_MINOR_VERSION: " + String(FIRMWARE_MINOR_VERSION));
     Serial.println("\nNEW_FIRMWARE_MINOR_VERSION: " + String(NEW_FIRMWARE_MINOR_VERSION));
   }
+
+
+
+
 
   //  pinMode(PFET_3V3_BUS, OUTPUT); // TURN ON BUS
   //  digitalWrite(PFET_3V3_BUS, LOW); // POWER ON 3V3 BUS -> TURN ON SPI/I2C PERIPHERALS
@@ -302,19 +326,10 @@ void setup()
   //pinMode(PFET_3V3_BUS, INPUT); // TURN OFF BUS
   //  delay(1);
 
-  //  WiFi_ON();  // WiFi_setup(); // 84:0D:8E:C3:60:8C ESP32S
+  //  WiFi_ON(); // 84:0D:8E:C3:60:8C ESP32S
   // 84:0D:8E:C3:93:C0
 
-  loopOnce();
-}
 
-void loop()
-{}
-
-void loopOnce()
-{
-
-  // TEST_OLED();
   initialize();
 
   Serial.println("\n POWERING ON 3V3 BUS -> TURNING ON SPI/I2C PERIPHERALS ");
@@ -324,21 +339,57 @@ void loopOnce()
   delay(1);
   digitalWrite (LED_BUILTIN, HIGH); //HIGH = ON //LOW = OFF
 
+
+  xTaskCreate(
+    CO2_I2C_CCS811_setup,          // Function that should be called
+    "CO2_I2C_CCS811_setup",       // Name of the task (for debugging)
+    2000,               // Stack size (bytes)
+    NULL, // (void *) timeout_ms,               // Parameter to pass
+    1,                  // Task priority: 0(min)-24(max)
+    CCS811TaskHandle               // Task handle
+  );
+  
+//  xTaskCreatePinnedToCore(
+//    CO2_I2C_CCS811_setup,          // Function that should be called
+//    "CO2_I2C_CCS811_setup",       // Name of the task (for debugging)
+//    1000,               // Stack size (bytes)
+//    NULL, // (void *) timeout_ms,               // Parameter to pass
+//    1,                  // Task priority: 0(min)-24(max)
+//    CCS811TaskHandle,               // Task handle
+//    0                  // Core you want to run the task on (0 or 1)
+//  );
+
+  //loopOnce();
+}
+
+void loop()
+{
+  loopOnce();
+}
+
+void loopOnce()
+{
+  Serial.print("\nloopOnce() is running on: ");
+  Serial.println(xPortGetCoreID());
+  // TEST_OLED();
+
+
   batteryLevelRead_setup();
   batteryLevelRead(); // delay(500);
   BME680_Simple_setup();
   BME680_Simple_loop();
   LUX_TSL2561_setup();
   LUX_TSL2561_loop();
-  CO2_I2C_CCS811_setup();   //CO2_I2C_CCS811_loop();   // delay(5);
-  
+
 #ifdef DUST_SHARP
   DUST_SHARP_setup();   //DUST_SHARP_print();
 #endif
 
-#ifdef DUST_SDS011  
+#ifdef DUST_SDS011
   SDS011_DUST_MHZ19B_CO2_setup(); //   SDS011_DUST_loop();  delay(5);
 #endif
+
+  //CO2_I2C_CCS811_setup();   //CO2_I2C_CCS811_loop();   // delay(5);
 
   //  BME680_Air_Q_setup(); //  BME680_Air_Q_loop();  //delay(1);
   //  LUX_BH1750_setup(); //  LUX_BH1750_loop();  //delay(1);
@@ -346,14 +397,7 @@ void loopOnce()
 
   // TimeNow();   delay(50);
 
-
-#ifdef OLED
-  /////////////////// FOR OLED : UNCOMMENT NEXT LINE &  THIS TAB : "SSD1306_OLED_128x64_I2C" /////////////////////
-  SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
-  DRAW_BITMAP_LOGO();
-  print_PARAMS();
-  OLED_BLANK_SCREEN();
-#endif
+  vTaskDelete(CCS811TaskHandle);
 
   Serial.println("\n POWERING OFF 3V3 BUS -> TURNING OFF SPI/I2C PERIPHERALS \n");
   digitalWrite(PFET_3V3_BUS, HIGH); // POWER OFF 3V3 BUS -> TURN OFF SPI/I2C PERIPHERALS
@@ -364,8 +408,8 @@ void loopOnce()
 
   //  delay(POST_EVERY_x_mS);
 
-  // WiFi_ON();
-  //if (WiFi.status() != WL_CONNECTED)  WiFi_setup(); // 84:0D:8E:C3:60:8C ESP32S 84:0d:8e:c3:60:8c
+
+  //if (WiFi.status() != WL_CONNECTED)  WiFi_ON(); // 84:0D:8E:C3:60:8C ESP32S 84:0d:8e:c3:60:8c
   // WIFI_STATUS_OLED();
 
   HTTP_POST_NOTIF();  //  delay(1500);
@@ -388,23 +432,29 @@ void loopOnce()
   WiFi_OFF();
   //WIFI_STATUS_OLED();
 
-  
+
 
   Serial.println("\n POWERING ON 3V3 BUS -> TURNING ON SPI/I2C PERIPHERALS ");
   pinMode(PFET_3V3_BUS, OUTPUT); // TURN ON 3V3 BUS
   digitalWrite(PFET_3V3_BUS, LOW); // POWER ON 3V3 BUS -> TURN ON SPI/I2C PERIPHERALS
   delay(5);
   digitalWrite (LED_BUILTIN, HIGH); //HIGH = ON //LOW = OFF
-  
+
 #ifdef EPAPER
   /////////////////// FOR EPAPER : UNCOMMENT NEXT LINE &  THIS TAB :  "PRINT_VALUES_EPAPER_ESP32" /////////////////////
   WIFI_HTTP_STATUS_EPAPER();
-  ePaperPrintValues1(); 
+  ePaperPrintValues1();
 #endif
+
 
 #ifdef OLED
   /////////////////// FOR OLED : UNCOMMENT NEXT LINE &  THIS TAB : "SSD1306_OLED_128x64_I2C" /////////////////////
   SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
+  DRAW_BITMAP_LOGO();
+  print_PARAMS();
+  OLED_BLANK_SCREEN();
+
+  //  SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
   WIFI_HTTP_STATUS_OLED();
   OLED_BLANK_SCREEN();
 #endif
@@ -414,7 +464,7 @@ void loopOnce()
   //pinMode(PFET_3V3_BUS, INPUT); // TURN OFF 3V3 BUS
   //delay(10);
   digitalWrite (LED_BUILTIN, LOW); //HIGH = ON //LOW = OFF
-  
+
 
   //  digitalWrite(PFET_LATCH_NPN, LOW); // ESP32 OFF
   //  pinMode(PFET_3V3_BUS, INPUT); // TURN OFF BUS
@@ -458,8 +508,8 @@ void loopOnce()
   Serial.println("WiFiOnDuration: " + String(WiFiOnDuration) + "ms\n");
   Serial.println("OTADuration: " + String(OTADuration) + "ms\n");
   Serial.println("totalPwrOnDuration: " + String(totalPwrOnDuration) + "ms\n");
-//  digitalWrite (LED_BUILTIN, LOW); //HIGH = ON //LOW = OFF
-//  pinMode(LED_BUILTIN, INPUT); // LED OFF
+  //  digitalWrite (LED_BUILTIN, LOW); //HIGH = ON //LOW = OFF
+  //  pinMode(LED_BUILTIN, INPUT); // LED OFF
   esp_deep_sleep_start();
   Serial.println("This will never be printed");
 

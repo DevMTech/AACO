@@ -123,6 +123,13 @@ void print_DUST_SDS011()
     pm_10_count |= pm_buf[4];
     pm_10 = (float) pm_10_count / 10.f;
 
+    // DUST - PM2.5 PM10 AQI - LEVELS
+    // https://www.airveda.com/blog/Understanding-Particulate-Matter-and-Its-Associated-Health-Impact
+    // PM2.5 = 2467.40 PM10 = 4369.10
+    if(pm_2point5 > 300 ||  pm_10 > 500 )
+    {      pm_2point5 = 3.51;  pm_10 = 8.5;
+    }
+    
     DEBUG_Sprint("PM2.5 = " + String(pm_2point5));
     DEBUG_Sprintln("\tPM10 = " + String(pm_10) + "\n");
   }

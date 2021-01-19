@@ -252,11 +252,11 @@ void setup()
   Serial.println("\n\n*********************WAKE UP***********************\n\n");
 
 
-//  if (!bootCount)
-//  { WiFiManagerSetup();
-//  }
-//  WiFi_OFF();
-  
+  //  if (!bootCount)
+  //  { WiFiManagerSetup();
+  //  }
+  //  WiFi_OFF();
+
   bootCount++; //Increment boot number and print it every reboot
   Serial.println("Boot Count: " + String(bootCount));
 
@@ -302,7 +302,7 @@ void setup()
   //pinMode(PFET_3V3_BUS, INPUT); // TURN OFF BUS
   //  delay(1);
 
-  //  WiFi_ON();  // WiFi_setup(); // 84:0D:8E:C3:60:8C ESP32S
+  //  WiFi_ON(); // 84:0D:8E:C3:60:8C ESP32S
   // 84:0D:8E:C3:93:C0
 
   loopOnce();
@@ -330,30 +330,22 @@ void loopOnce()
   BME680_Simple_loop();
   LUX_TSL2561_setup();
   LUX_TSL2561_loop();
-  CO2_I2C_CCS811_setup();   //CO2_I2C_CCS811_loop();   // delay(5);
-  
+
 #ifdef DUST_SHARP
   DUST_SHARP_setup();   //DUST_SHARP_print();
 #endif
 
-#ifdef DUST_SDS011  
+#ifdef DUST_SDS011
   SDS011_DUST_MHZ19B_CO2_setup(); //   SDS011_DUST_loop();  delay(5);
 #endif
+
+  CO2_I2C_CCS811_setup();   //CO2_I2C_CCS811_loop();   // delay(5);
 
   //  BME680_Air_Q_setup(); //  BME680_Air_Q_loop();  //delay(1);
   //  LUX_BH1750_setup(); //  LUX_BH1750_loop();  //delay(1);
   //  HDC1080_setup();  // HDC1080_loop();
 
   // TimeNow();   delay(50);
-
-
-#ifdef OLED
-  /////////////////// FOR OLED : UNCOMMENT NEXT LINE &  THIS TAB : "SSD1306_OLED_128x64_I2C" /////////////////////
-  SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
-  DRAW_BITMAP_LOGO();
-  print_PARAMS();
-  OLED_BLANK_SCREEN();
-#endif
 
   Serial.println("\n POWERING OFF 3V3 BUS -> TURNING OFF SPI/I2C PERIPHERALS \n");
   digitalWrite(PFET_3V3_BUS, HIGH); // POWER OFF 3V3 BUS -> TURN OFF SPI/I2C PERIPHERALS
@@ -364,8 +356,8 @@ void loopOnce()
 
   //  delay(POST_EVERY_x_mS);
 
-  // WiFi_ON();
-  //if (WiFi.status() != WL_CONNECTED)  WiFi_setup(); // 84:0D:8E:C3:60:8C ESP32S 84:0d:8e:c3:60:8c
+
+  //if (WiFi.status() != WL_CONNECTED)  WiFi_ON(); // 84:0D:8E:C3:60:8C ESP32S 84:0d:8e:c3:60:8c
   // WIFI_STATUS_OLED();
 
   HTTP_POST_NOTIF();  //  delay(1500);
@@ -388,23 +380,29 @@ void loopOnce()
   WiFi_OFF();
   //WIFI_STATUS_OLED();
 
-  
+
 
   Serial.println("\n POWERING ON 3V3 BUS -> TURNING ON SPI/I2C PERIPHERALS ");
   pinMode(PFET_3V3_BUS, OUTPUT); // TURN ON 3V3 BUS
   digitalWrite(PFET_3V3_BUS, LOW); // POWER ON 3V3 BUS -> TURN ON SPI/I2C PERIPHERALS
   delay(5);
   digitalWrite (LED_BUILTIN, HIGH); //HIGH = ON //LOW = OFF
-  
+
 #ifdef EPAPER
   /////////////////// FOR EPAPER : UNCOMMENT NEXT LINE &  THIS TAB :  "PRINT_VALUES_EPAPER_ESP32" /////////////////////
   WIFI_HTTP_STATUS_EPAPER();
-  ePaperPrintValues1(); 
+  ePaperPrintValues1();
 #endif
+
 
 #ifdef OLED
   /////////////////// FOR OLED : UNCOMMENT NEXT LINE &  THIS TAB : "SSD1306_OLED_128x64_I2C" /////////////////////
   SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
+  DRAW_BITMAP_LOGO();
+  print_PARAMS();
+  OLED_BLANK_SCREEN();
+
+  //  SSD1306_128x64_setup();  //  SSD1306_128x64_loop();  // print_PARAMS();  delay(100);
   WIFI_HTTP_STATUS_OLED();
   OLED_BLANK_SCREEN();
 #endif
@@ -414,7 +412,7 @@ void loopOnce()
   //pinMode(PFET_3V3_BUS, INPUT); // TURN OFF 3V3 BUS
   //delay(10);
   digitalWrite (LED_BUILTIN, LOW); //HIGH = ON //LOW = OFF
-  
+
 
   //  digitalWrite(PFET_LATCH_NPN, LOW); // ESP32 OFF
   //  pinMode(PFET_3V3_BUS, INPUT); // TURN OFF BUS
@@ -458,8 +456,8 @@ void loopOnce()
   Serial.println("WiFiOnDuration: " + String(WiFiOnDuration) + "ms\n");
   Serial.println("OTADuration: " + String(OTADuration) + "ms\n");
   Serial.println("totalPwrOnDuration: " + String(totalPwrOnDuration) + "ms\n");
-//  digitalWrite (LED_BUILTIN, LOW); //HIGH = ON //LOW = OFF
-//  pinMode(LED_BUILTIN, INPUT); // LED OFF
+  //  digitalWrite (LED_BUILTIN, LOW); //HIGH = ON //LOW = OFF
+  //  pinMode(LED_BUILTIN, INPUT); // LED OFF
   esp_deep_sleep_start();
   Serial.println("This will never be printed");
 

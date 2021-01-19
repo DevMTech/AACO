@@ -3,7 +3,7 @@
 
 // ACCESS 2029-12-31
 String accessTokenS = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTg5MzQzMjU0MDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.HQN9Fb7mMhAu2AJVhej4x1-wYT_JMY1i1VDnVDKY9u0";
-String DH_DEVICE_ID = "demo-12-1"; // "e50d6085-2aba-48e9-b1c3-73c673e414be"; // "b-9-2"; // "AACO163"; // "device2"; //  DEVICE ID
+String DH_DEVICE_ID = "demo-11-1"; // "e50d6085-2aba-48e9-b1c3-73c673e414be"; // "b-9-2"; // "AACO163"; // "device2"; //  DEVICE ID
 String DH_SERVER_IP = "10.208.34.200"; // "10.208.34.163"; // "10.42.0.1"; // "10.208.34.242"; // "192.168.122.1"; // "10.42.0.1"; //  "10.208.37.221"; // "10.208.35.79"; // ifconfig
 String URL = "http://" + DH_SERVER_IP + ":80/api/rest/device/" + DH_DEVICE_ID + "/notification"; //HTTP DEVICE NAME: ESP_AFMS_01
 // REFRESH 2029-12-31 eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTg5MzQzMjU0MDAwMCwidCI6MCwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.WqHgb-2-yV7jlXDu_Dhs9YB7k4UJOm8OX-gAUGgGYJs
@@ -77,10 +77,18 @@ void HTTP_POST_NOTIF()
   
   String data = "{\"notification\": \"sensordata\"";
   data += ",\"timestamp\":\""; // data += timeStamp; // "\"2019-09-11T11:15:34.444Z\""
+  //data += "\",\"parameters\": ["; // 
+  //data += "\",\"parameters\": ";
   data += "\",\"parameters\": {";
-  data += "\"BLE_MAC\":\"";  data += found_BLE_MAC_list;
+  //data += "\"BLE_STATE\":\"";
+  data += "\"BLE_STATE\":[";  
+  data += found_BLE_MAC_list;
+  // data += "\"BLE_MAC\":\"";  data += found_BLE_MAC_list;
   // data += "\",\"BLE_MAC\":\"";  data += found_BLE_MAC_list;
-  data += "\"}}";
+  //data += "}"; //
+  data += "]"; // 
+  data += "}}"; // 
+  //data += "\"}}";
   
   // 2020-08-03T18:25:34
   //String data = "{\"notification\": \"sensordata\",\"timestamp\": \"\",\"parameters\": {\"temp\":\"22.5\",\"humi\":\"40\",\"lux\":\"500\",\"C\":\"400\",\"D\":\"6.10\",\"D10\":\"10.40\",\"B\":\"4.3\",\"N\":\"5\"}}"; // AACO

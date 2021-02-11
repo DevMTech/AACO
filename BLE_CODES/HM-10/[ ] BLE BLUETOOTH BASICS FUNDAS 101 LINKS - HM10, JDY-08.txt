@@ -5,6 +5,27 @@ https://docs.particle.io/tutorials/device-os/bluetooth-le/
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
+	
+	MIT APP INVENTOR
+	HM-10. BLE. Arduino UNO. Notify. Bluetooth. AT. iBeacon. Arrhythmia
+	https://community.appinventor.mit.edu/t/hm-10-ble-arduino-uno-notify-bluetooth-at-ibeacon-arrhythmia/12621
+	
+	Using HM-10 BLE Modules as Low-Cost iBeacons
+	https://www.radiojitter.com/using-hm-10-ble-modules-as-low-cost-ibeacons/
+	
+	Make IBeacon With HM10/HM11
+	https://www.instructables.com/make-iBeacon/
+	https://circuitdigest.com/microcontroller-projects/how-to-setup-hm-10-ble-module-as-ibeacon
+	https://makersportal.com/blog/2017/12/31/using-raspberry-pi-hm-10-and-bluepy-to-develop-an-ibeacon-mesh-network-part-1
+	How to use the HM10: Connect your Arduino to an iPhone with Bluetooth
+	http://www.hangar42.nl/hm10
+	
+	HM 10 NOT RESPONDING TO AT COMMANDS WHEN PROGRAMMED AS IBEACON	
+	https://forum.arduino.cc/index.php?topic=589047.0
+	https://arduino.stackexchange.com/questions/75460/hm-10-ble-controller-is-not-responding-to-some-at-commands
+	
+------------------------------------------------------------------------------------------------------------------------------------------
+
 	Proximity and RSSI
 	https://www.bluetooth.com/blog/proximity-and-rssi/
 
@@ -46,7 +67,44 @@ https://docs.particle.io/tutorials/device-os/bluetooth-le/
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 	
- 
+	MLT-BT05
+	Bluetooth Module with Arduino (AT-09, MLT-BT05, HM-10)
+	https://makersportal.com/blog/2019/10/14/bluetooth-module-with-arduino
+	https://makersportal.com/blexar-projects
+	https://roboindia.com/tutorials/ble-4-0-arduino-led-control/
+	https://blog.yavilevich.com/2017/03/mlt-bt05-ble-module-a-clone-of-a-clone/
+	https://www.techonicsltd.com/product/mlt-bt05-ble4-0/
+	
+	
+ Command             Description			           
+----------------------------------------------------------------
+ AT                  Check if the command terminal work normally 
+ AT+DEFAULT          Restore factory default			   
+ AT+BAUD             Get/Set baud rate		           
+ AT+RESET            Software reboot				   
+ AT+ROLE             Get/Set current role.	                   
+ AT+DISC             Disconnect connection                       
+ AT+ADVEN            Broadcast switch  		           
+ AT+ADVI             Broadcast interval		           
+ AT+NINTERVAL        Connection interval                         
+ AT+POWE             Get/Set RF transmit power 		   
+ AT+NAME             Get/Set local device name                   
+ AT+LADDR            Get local bluetooth address		   
+ AT+VERSION          Get firmware, bluetooth, HCI and LMP version
+ AT+TYPE             Binding and pairing settings		   
+ AT+PIN              Get/Set pin code for pairing                
+ AT+UUID             Get/Set system SERVER_UUID .            	   
+ AT+CHAR             Get/Set system CHAR_UUID .            	   
+ AT+INQ              Search from device		           
+ AT+RSLV             Read the scan list MAC address		   
+ AT+CONN             Connected scan list device		   
+ AT+CONA             Connection specified MAC		           
+ AT+BAND             Binding from device		           
+ AT+CLRBAND          Cancel binding    		           
+ AT+GETDCN           Number of scanned list devices		   
+ AT+SLEEP            Sleep mode 		                   
+ AT+HELP             List all the commands		           
+ ---------------------------------------------------------------
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -947,12 +1005,6 @@ GND      | GND
 3.3V     | VCC
 D4       | EN (Optional)
 
-	MLT-BT05
-	Bluetooth Module with Arduino (AT-09, MLT-BT05, HM-10)
-	https://makersportal.com/blog/2019/10/14/bluetooth-module-with-arduino
-	https://roboindia.com/tutorials/ble-4-0-arduino-led-control/
-	https://blog.yavilevich.com/2017/03/mlt-bt05-ble-module-a-clone-of-a-clone/
-	https://www.techonicsltd.com/product/mlt-bt05-ble4-0/
 
 --------------------------------------------------------------------------------------------------------
 
@@ -988,10 +1040,10 @@ D4       | EN (Optional)
 	1. Program the Arduino UNO with the CCLoader.ino sketch.
 
 	2. Connect the JDY-08 module into the Arduino. BE CAUTIOUS, JDY-08 is a 3.3V device, 
-	Connect the VCC JDY-08 pin1 to the 3.3V pin on the Arduino. 
+	Connect the VCC JDY-08 pin 1 (VCC) to the 3.3V pin on the Arduino. 
 	I manage to be able to program the CC2541 at 5V level, but it is NOT RECOMMENDED.
 
-	3. Check the COM Port number used by the Arduino. Let say it is COM9. Note down the 4.
+	3. Check the COM Port number used by the Arduino. Let say it is COM4. Note down the 4.
 
 	4. Open CMD, navigate to the JDY-08-Reflash/CCLoader/Exe folder. 
 	There are the CCLoader.exe and the CC2541hm10v540.bin. 
@@ -1001,7 +1053,10 @@ D4       | EN (Optional)
 														// CCLoader_M.exe 18 CC2541hm10v540.bin 0
 				CCLoader.exe 4 CC2541hm10v540.bin 0 
 				CCLoader.exe 4 HMSoft.bin 0
-				
+	
+	Number 4 is the COM port number and 
+	0 means that we are using Arduino UNO board.			
+	
 	How to change the COM port for a USB Serial adapter on Windows 7, 8, 8.1, and 10
 	https://kb.plugable.com/questions/714099
 				
@@ -1013,8 +1068,7 @@ D4       | EN (Optional)
 				
 				
 				
-	Number 4 is the COM port number and 
-	0 means that we are using Arduino UNO board. 
+ 
 
 	Testing the JDY-08 with HM-10 Firmware
 	=======================================
@@ -1044,6 +1098,29 @@ D4       | EN (Optional)
 	
 	JDY 08 CC2541 
 	=============	
+	
+	BLUETOOTH IAR WORKBENCH CC254 PERIPHERAL CODE
+	============================================= 
+	
+	Getting started with CC2541 SimplePeripheral Example in IAR workbench
+	https://www.youtube.com/watch?v=64QSQkRgxOM
+	
+	HM-10 BLE Remote -01: IAR Workbench Setup
+	https://www.youtube.com/watch?v=lTooP7BcF1s
+	
+	Getting started with CC2541 and transmitting our first beacon
+	https://www.baseapp.com/embedded/starting-cc2541-transmit-first-beacon/
+	
+	Using the AT-09 BLE module with the Arduino
+	https://medium.com/@yostane/using-the-at-09-ble-module-with-the-arduino-3bc7d5cb0ac2
+	
+	my version of BLE-CC254x-1.4.0, check the branches 
+	https://github.com/oroce/BLE-CC254x-1.4.0
+	
+	ASCII TO HEX
+	https://www.rapidtables.com/convert/number/ascii-to-hex.html
+	
+	
 	*JDY-08 : CC2541 24-PIN bluetooth 4.0 module - CC Debugger*
 	===========================================================
 
@@ -1082,7 +1159,10 @@ D4       | EN (Optional)
 	https://www.pocketmagic.net/introduction-to-cc2541/
 	https://www.uradmonitor.com/the-first-wearable/
 
-
+	
+	TI Bluetooth Low Energy software stack
+	BLE-STACK
+	https://www.ti.com/tool/BLE-STACK
 
 
 	

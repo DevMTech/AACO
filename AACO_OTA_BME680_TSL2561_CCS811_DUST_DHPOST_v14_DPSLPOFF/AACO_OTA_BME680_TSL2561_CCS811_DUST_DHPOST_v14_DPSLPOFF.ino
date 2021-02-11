@@ -73,6 +73,9 @@
 
 #include <WiFiManager.h> // https://github.com/tzapu/WiFiManager
 
+//#define DEEP_SLEEP
+
+
 #define LED_BUILTIN   2 // GPIO02 ESP32
 #define LED2 LED_BUILTIN
 
@@ -305,11 +308,18 @@ void setup()
   //  WiFi_ON(); // 84:0D:8E:C3:60:8C ESP32S
   // 84:0D:8E:C3:93:C0
 
-  loopOnce();
+//#ifdef DEEP_SLEEP 
+//  loopOnce();
+//#endif
+  
 }
 
 void loop()
-{}
+{
+//#ifndef DEEP_SLEEP
+  loopOnce();
+//#endif
+}
 
 void loopOnce()
 {
@@ -443,11 +453,7 @@ void loopOnce()
   // Configure the timer to wake us up!
   // esp_sleep_enable_timer_wakeup(DEEP_SLEEP_TIME * 60L * 1000000L);
 
-  // ESP32 Wake-up Source : Timer
-  esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP_S * uS_TO_S_FACTOR); //Set timer to 5 seconds
-  Serial.println("Setup ESP32 to sleep for every " + String(TIME_TO_SLEEP_S) + " Seconds");
-  Serial.println("Going to sleep now");
-  Serial.println("\n\n*********************DEEP SLEEP***********************\n\n");
+
 
   totalPwrOnDuration = millis() - totalPwrOnDuration;
   WiFiOffDuration = totalPwrOnDuration - WiFiConnAttemptDuration - WiFiOnDuration;
@@ -458,8 +464,18 @@ void loopOnce()
   Serial.println("totalPwrOnDuration: " + String(totalPwrOnDuration) + "ms\n");
   //  digitalWrite (LED_BUILTIN, LOW); //HIGH = ON //LOW = OFF
   //  pinMode(LED_BUILTIN, INPUT); // LED OFF
+  
+#ifdef DEEP_SLEEP
+  // ESP32 Wake-up Source : Timer
+  esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP_S * uS_TO_S_FACTOR); //Set timer to 5 seconds
+  Serial.println("Setup ESP32 to sleep for every " + String(TIME_TO_SLEEP_S) + " Seconds");
+  Serial.println("Going to sleep now");
+  Serial.println("\n\n*********************DEEP SLEEP***********************\n\n");
   esp_deep_sleep_start();
-  Serial.println("This will never be printed");
+#endif
+
+  delay(1000);
+  Serial.println("This will never be printed if DEEP_SLEEP mode is ON");
 
 }
 

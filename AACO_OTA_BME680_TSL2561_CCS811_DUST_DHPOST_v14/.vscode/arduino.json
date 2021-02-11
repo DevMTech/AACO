@@ -1,6 +1,0 @@
-{
-    "board": "esp32:esp32:esp32",
-    "configuration": "PSRAM=disabled,PartitionScheme=default,CPUFreq=240,FlashMode=qio,FlashFreq=80,FlashSize=4M,UploadSpeed=921600,DebugLevel=debug",
-    "port": "COM3",
-    "sketch": "AACO_OTA_BME680_TSL2561_CCS811_DUST_DHPOST_v10.ino"
-}

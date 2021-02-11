@@ -1,6 +1,8 @@
 
 /******************************************CONFIGURE THESE PARAMETERS***************************************************/
 
+// http://10.208.34.200/admin/admin/device/demo-11-1
+
 // ACCESS 2029-12-31
 String accessTokenS = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlswXSwiZSI6MTg5MzQzMjU0MDAwMCwidCI6MSwidSI6MSwibiI6WyIqIl0sImR0IjpbIioiXX19.HQN9Fb7mMhAu2AJVhej4x1-wYT_JMY1i1VDnVDKY9u0";
 String DH_DEVICE_ID = "demo-11-1"; // "e50d6085-2aba-48e9-b1c3-73c673e414be"; // "b-9-2"; // "AACO163"; // "device2"; //  DEVICE ID
@@ -101,6 +103,7 @@ void HTTP_POST_NOTIF()
 
   //////// FOR TESTING PURPOSE ONLY
 #ifdef TEST_MODE
+  Serial.printf("\n--------------------------------TEST MODE------------------------------------\n");
   static unsigned long turn = 0;
   switch (turn % 4)
   {
@@ -117,6 +120,8 @@ void HTTP_POST_NOTIF()
       data = "{\"notification\": \"sensordata\",\"timestamp\": \"\",\"parameters\": {\"BLE_STATE\":[{\"mac\":\"d4:36:39:c2:28:3c\",\"state\":0},{\"mac\":\"c8:fd:19:4a:f7:27\",\"state\":0}]}}"; // ALTS
   }
   turn++;
+
+  delay(2000);
 #endif
 
   // {"notification": "sensordata","timestamp":"","parameters": {"BLE_STATE":[{"mac":"d4:36:39:c2:28:3c","state":1},{"mac":"c8:fd:19:4a:f7:27","state":1}]}}

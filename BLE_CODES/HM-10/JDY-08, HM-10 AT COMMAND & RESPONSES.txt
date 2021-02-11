@@ -76,8 +76,30 @@ AT+WSXVR
 
 ==============================================================================================================
 
+
+
 HM-10 AT COMMANDS
 
+	"2c:6b:7d:74:ca:87" // PCB-HM10-MLT-BT05
+	
+	MLT-BT05 BLE
+	http://www.martyncurrey.com/bluetooth-modules/#BT05-A
+	http://www.martyncurrey.com/hm-10-bluetooth-4ble-modules/
+	MLT-BT05 BLE module – a clone of a clone??
+	https://blog.yavilevich.com/2017/03/mlt-bt05-ble-module-a-clone-of-a-clone/
+	https://makersportal.com/blog/2019/10/14/bluetooth-module-with-arduino
+	https://www.electroschematics.com/getting-started-with-ble-and-arduino/
+	https://forum.arduino.cc/index.php?topic=594277.0
+	
+TO WAKE UP HM-10 SEND RANDOM STRING OF ALPHABETS LONGER THAN 80 CHARACTERS:
+
+ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ
+HFFJHFFJHFJHFJHFHJFHGFYURTTYERTWEWERQADSFFGHCCXXBVVNVNBJHJKJLLJUOUPIPPUOYRTSFGHFFJHFFJHFJHFJHFHJFHGFYURTTYERTWEWERQADSFFGHCCXXBVVNVNBJHJKJLLJUOUPIPPUOYRTSFGHFFJHFFJHFJHFJHFHJFHGFYURTTYERTWEWERQADSFFGHCCXXBVVNVNBJHJKJLLJUOUPIPPUOYRTSFGHFFJHFFJHFJHFJHFHJFHGFYURTTYERTWEWERQADSFFGHCCXXBVVNVNBJHJKJLLJUOUPIPPUOYRTSFGHFFJHFFJHFJHFJHFHJFHGFYURTTYERTWEWERQADSFFGHCCXXBVVNVNBJHJKJLLJUOUPIPPUOYRTSFGHFFJHFFJHFJHFJHFHJFHGFYURTTYERTWEWERQADSFFGHCCXXBVVNVNBJHJKJLLJUOUPIPPUOYRTSFG
+>OK+WAKE 
+ 
+
+AT → Test Command 
+ 
 <AT
 >OK
 
@@ -87,6 +109,8 @@ HM-10 AT COMMANDS
 <AT+NAME?
 >OK+NAME:OldBLE
 
+AT+NAME=xyz  → Set Bluetooth Name
+
 <AT+NAMEBLE_0
 >OK+Set:BLE_0
 
@@ -95,36 +119,138 @@ HM-10 AT COMMANDS
 >OK+ADDR:D43639B154F1
 >OK+ADDR:C8FD199C8598
 
+Query Advertising type
+<AT+ADTY?	
+>OK+Get:3 // Only advertising
+
+0:Connect by any device
+1:Allow to connect with last succeeded device(within 1.28s after power on)
+2:Allow to broadcast and scanning
+3:Only advertising
+Default:0
+
+Set Advertising type
+<AT+ADTY[0~3] 
+>OK+Set:[para]
+
+Query Advertising interval
+<AT+ADVI?
+>OK+Get:5 // 5: 546.25ms
+
+para: 0 ~ F
+0: 100ms
+1: 152.5ms
+2: 211.25ms
+3: 318.75ms
+4: 417.5ms
+5: 546.25ms
+6: 760ms
+7: 852.5ms
+8: 1022.5ms
+9: 1285ms
+A: 2000ms
+B: 3000ms
+C: 4000ms
+D: 5000ms
+E: 6000ms
+F: 7000ms
+Default: 0
+HMSoft Default: 0
+HMSensor Default: 9
+
+Set Advertising interval
+<AT+ADVI[para]  // para: 0 ~ F
+>OK+ Set:[para] 
+
+
 <AT+BAUD?
 >OK+Get:0 	// 0 = 9600
 
-<AT+MODE?
->OK+Get:0	//
-
-<AT+PASS?
->OK+Get:000000	//PASSWORD
-
-
-AT → Test Command
-
-AT+ROLE=0 → Slave Mode select
-
-AT+ROLE=1 → Master Mode select
-
-AT+NAME=xyz  → Set Bluetooth Name
-
-AT+PSWD=xyz → Set Password
+Option	Baud rate
+	0	9600
+	1	19200
+	2	38400
+	3	57600
+	4	115200
+	5	4800
+	6	2400
+	7	1200
+	8	230400
 
 AT+UART=<value1>,<value2>,<value3>  → set Baud rate
 
 Eg. AT+UART=9600,0,0
 
+<AT+MODE?
+>OK+Get:0	//
+
+
+AT+ROLE=0 → Slave Mode select
+
+AT+ROLE=1 → Master Mode select
+
+<AT+PASS?
+>OK+Get:000000	//PASSWORD
+>OK+Get:123456	//PASSWORD
+
+AT+PSWD=xyz → Set Password
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FAKE HM-10
+MLT-BT05-V4.1
+HM-10 BLE controller is not responding to some AT commands
+https://arduino.stackexchange.com/questions/75460/hm-10-ble-controller-is-not-responding-to-some-at-commands
+
+21:01:19.739 ->  Command             Description                       
+21:01:19.880 ->  ---------------------------------------------------------------- 
+21:01:19.949 ->  AT                  Check if the command terminal work normally  
+21:01:20.054 ->  AT+RESET            Software reboot                   
+21:01:20.159 ->  AT+VERSION          Get firmware, bluetooth, HCI and LMP version 
+21:01:20.271 ->  AT+HELP             List all the commands                 
+21:01:20.365 ->  AT+NAME             Get/Set local device name                    
+21:01:20.459 ->  AT+PIN              Get/Set pin code for pairing                 
+21:01:20.552 ->  AT+PASS             Get/Set pin code for pairing                 
+21:01:20.646 ->  AT+BAUD             Get/Set baud rate                         
+21:01:20.740 ->  AT+LADDR            Get local bluetooth address           
+21:01:20.880 ->  AT+ADDR             Get local bluetooth address           
+21:01:20.950 ->  AT+DEFAULT          Restore factory default               
+21:01:21.054 ->  AT+RENEW            Restore factory default               
+21:01:21.157 ->  AT+STATE            Get current state                 
+21:01:21.271 ->  AT+PWRM             Get/Set power on mode(low power)          
+21:01:21.365 ->  AT+POWE             Get/Set RF transmit power         
+21:01:21.459 ->  AT+SLEEP            Sleep mode                            
+21:01:21.553 ->  AT+ROLE             Get/Set current role.                     
+21:01:21.693 ->  AT+PARI             Get/Set UART parity bit.                     
+21:01:21.787 ->  AT+STOP             Get/Set UART stop bit.                       
+21:01:21.834 ->  AT+START            System start working.             
+21:01:21.952 ->  AT+IMME             System wait for command when power on.    
+21:01:22.056 ->  AT+IBEA             Switch iBeacon mode.                      
+21:01:22.161 ->  AT+IBE0             Set iBeacon UUID 0.                           
+21:01:22.264 ->  AT+IBE1             Set iBeacon UUID 1.                           
+21:01:22.381 ->  AT+IBE2             Set iBeacon UUID 2.                           
+21:01:22.475 ->  AT+IBE3             Set iBeacon UUID 3.                           
+21:01:22.569 ->  AT+MARJ             Set iBeacon MARJ .                        
+21:01:22.663 ->  AT+MINO             Set iBeacon MINO .                        
+21:01:22.756 ->  AT+MEA              Set iBeacon MEA .                         
+21:01:22.850 ->  AT+NOTI             Notify connection event .                    
+21:01:22.967 ->  AT+UUID             Get/Set system SERVER_UUID .                  
+21:01:23.071 ->  AT+CHAR             Get/Set system CHAR_UUID .                
+21:01:23.174 ->  -----------------------------------------------------------------
+21:01:23.257 ->  Note: (M) = The command support slave mode only.
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
 Pin Description of accelerometer
 
-    STATE  → Open
-    Rx  → Serial receiving pin
-    Tx  → Serial transmitting pin
-    GND   → ground
+    STATE  	→ Open
+    Rx  	→ Serial receiving pin
+    Tx  	→ Serial transmitting pin
+    GND   	→ ground
     Vcc     → +5volt dc
-    EN       → to enter in AT mode
+    EN      → to enter in AT mode
 

@@ -127,7 +127,7 @@
 // GND to GND,
 // SDA to 21,
 // SCL to 22,
-// nWAKE to GPIO15 (any GPIO)
+// nWAKE to GND [ccs811(-1)] / (any GPIO): GPIO15 [ccs811(15)]
 // nWAKE -> PULLDOWN TO GND to ACTIVATE/WAKE, pass -1 as parameter to ccs811(-1) instead of ccs811(GPIO)
 // Pin number connected to nWAKE (nWAKE can also be bound to GND, then pass -1),
 // CCS811(int nwake=-1, int slaveaddr=CCS811_SLAVEADDR_0); // 0x5A[90] or 0x5B[91]

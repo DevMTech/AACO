@@ -19,7 +19,14 @@
 enum BLE_TAG_STATES {MISSING, FOUND};
 
 
-#define TEST_MODE
+//#define TEST_MODE
+
+//#define DEBUG_ALL_TAGS
+#define DEBUG_KNOWN_TAGS
+
+#define LED_BUILTIN 2
+#define ARRSIZE(x) (sizeof(x)/sizeof(x[0]))
+#define ENDIAN_CHANGE_U16(x) ((((x)&0xFF00)>>8) + (((x)&0xFF)<<8))
 
 int httpCode;
 String deviceName = "", deviceDescription, deviceMAC, deviceIP, deviceConfigParams;
@@ -32,13 +39,6 @@ unsigned long totalPwrOnDuration = 0, WiFiConnAttemptDuration = 0, WiFiOnDuratio
 RTC_DATA_ATTR long int WiFiConnRetryAttempt = 0;
 
 
-//#define DEBUG_ALL_TAGS
-#define DEBUG_KNOWN_TAGS
-
-#define LED_BUILTIN 2
-#define ARRSIZE(x) (sizeof(x)/sizeof(x[0]))
-#define ENDIAN_CHANGE_U16(x) ((((x)&0xFF00)>>8) + (((x)&0xFF)<<8))
-
 #include <BLEDevice.h>
 #include <BLEUtils.h>
 #include <BLEScan.h>
@@ -46,13 +46,16 @@ RTC_DATA_ATTR long int WiFiConnRetryAttempt = 0;
 
 BLEScan *pBLEScan;
 
-String knownBLEAddresses[] = {"d4:36:39:c2:28:3c", // JDY-08
-                              "24:0a:c4:83:20:c2", // ESP32-EDDYSTN
-                              "c8:fd:19:4a:f7:27", // MLT-BT05
-                              "c8:e7:ec:39:b8:d5", // ESTIMOTE
-                              "d4:36:39:b1:54:f1"  // JDY-08
-                             };// iBEACON
-// , ":::::" // DUMMY
+String knownBLEAddresses[] = { "d4:36:39:c2:28:3c" // JDY-08
+                              ,"d4:36:39:c2:0f:61" // PCB-JDY-08
+                              ,"2c:6b:7d:74:ca:87" // PCB-HM10-MLT-BT05 
+                              ,"24:0a:c4:83:20:c2" // ESP32-EDDYSTN
+                              ,"c8:fd:19:4a:f7:27" // MLT-BT05
+                              ,"c8:e7:ec:39:b8:d5" // ESTIMOTE
+                              ,"d4:36:39:b1:54:f1" // HM-10 iBEACON / JDY-08
+                             };
+                                // ,":::::" // DUMMY
+                                
 bool device_found[ARRSIZE(knownBLEAddresses)] = {0};
 int tag_states[ARRSIZE(knownBLEAddresses)] = {0};
 String found_BLE_MAC_list;
@@ -139,12 +142,18 @@ void setup()
   Serial.begin(115200); //Enable UART on ESP32
   Serial.println("Scanning..."); // Print Scanning
   pinMode(LED_BUILTIN, OUTPUT); //make BUILTIN_LED pin as output
+
+#ifndef TEST_MODE
+  Serial.printf("\n--------------------------------SCAN MODE------------------------------------\n");
   BLEDevice::init("ESP32_SCAN_TEST");
   pBLEScan = BLEDevice::getScan(); //create new scan
   pBLEScan->setAdvertisedDeviceCallbacks(new MyAdvertisedDeviceCallbacks()); //Init Callback Function
   pBLEScan->setActiveScan(true); //active scan uses more power, but get results faster
   pBLEScan->setInterval(100); // set Scan interval
   pBLEScan->setWindow(99);  // less or equal setInterval value
+
+#endif
+  
 }
 
 //When a scan completes, we have a set of found devices.
@@ -156,6 +165,8 @@ void setup()
 void loop()
 { Serial.printf("\n\n----------------------------------------1-------------------------------------------\n\n");
 
+#ifndef TEST_MODE
+  Serial.printf("\n--------------------------------SCAN MODE------------------------------------\n");
   BLEScanResults foundDevices = pBLEScan->start(scanTime, false);
   for (int i = 0; i < foundDevices.getCount(); i++)
   {
@@ -241,7 +252,7 @@ void loop()
   Serial.printf("\n\n----------------------------------------3-------------------------------------------\n\n");
 
   //WiFi_ON();
-#ifndef TEST_MODE
+
   if (found_BLE_MAC_list != "") // https://www.arduino.cc/en/Tutorial/BuiltInExamples/StringComparisonOperators
 #endif
   {
@@ -251,8 +262,11 @@ void loop()
 
   found_BLE_MAC_list = "";
 
-  delay(5000);
-
+#ifdef TEST_MODE
+  delay(10000);
+#else
+  delay(1000);
+#endif
   // ESP.restart();
 
 }

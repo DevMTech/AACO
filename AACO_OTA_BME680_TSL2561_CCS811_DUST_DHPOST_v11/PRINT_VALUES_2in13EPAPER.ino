@@ -9,6 +9,7 @@
 //MISO 19
 //SCK  18
 //SS    5
+
 //HELTEC SPI 2.13" EPD PIN CONNECTIONS
 //VCC   3V3 (NOT 5V!)
 //GND   GND
@@ -25,9 +26,9 @@
 
 
 
-#ifdef EPAPER
+#ifdef EPAPER2in13
 
-int EPAPER_DELAY_1 = 100;
+int EPAPER2in13_DELAY_1 = 100;
 
 // base class GxEPD2_GFX can be used to pass references or pointers to the display instance as parameter, uses ~1.2k more code
 // enable or disable GxEPD2_GFX base class
@@ -69,11 +70,11 @@ GxEPD2_3C<GxEPD2_213c, GxEPD2_213c::HEIGHT> display(GxEPD2_213c(SS, 2, 0, 4)); /
 // #include <RTClib.h> // https://github.com/adafruit/RTClib
 
 
-void EPAPER_BLANK_SCREEN()
+void EPAPER2in13_BLANK_SCREEN()
 {
   display.init(115200);
 
-  Serial.println("\n\t EPAPER_BLANK_SCREEN()\n");
+  Serial.println("\n\t EPAPER2in13_BLANK_SCREEN()\n");
   display.setFullWindow();
   display.setRotation(1);
   display.fillScreen(GxEPD_WHITE); //(GxEPD_BLACK); //
@@ -93,14 +94,14 @@ do
 //    display.println("");
 } while (display.nextPage());
 
-  delay(EPAPER_DELAY_1);
+  delay(EPAPER2in13_DELAY_1);
 }
 
-void WIFI_HTTP_STATUS_EPAPER()
+void WIFI_HTTP_STATUS_EPAPER2in13()
 {
   display.init(115200);
 
-  Serial.println("\n\t WIFI_HTTP_STATUS_EPAPER()\n");
+  Serial.println("\n\t WIFI_HTTP_STATUS_EPAPER2in13()\n");
   display.setFullWindow();
   display.setRotation(1);
   display.fillScreen(GxEPD_WHITE); // (GxEPD_BLACK); //
@@ -145,11 +146,11 @@ void WIFI_HTTP_STATUS_EPAPER()
 
   } while (display.nextPage());
 
-  delay(EPAPER_DELAY_1); // delay(2000);
+  delay(EPAPER2in13_DELAY_1); // delay(2000);
 }
 
-void WIFI_SSID_CONFIG_EPAPER()
-{ Serial.println("\n  ENTERING ->  WIFI_SSID_CONFIG_AP_EPAPER \n");
+void WIFI_SSID_CONFIG_EPAPER2in13()
+{ Serial.println("\n  ENTERING ->  WIFI_SSID_CONFIG_AP_EPAPER2in13 \n");
 
   display.init(115200);
 
@@ -181,13 +182,13 @@ void WIFI_SSID_CONFIG_EPAPER()
 
   } while (display.nextPage());
 
-  delay(EPAPER_DELAY_1); // delay(2000);
+  delay(EPAPER2in13_DELAY_1); // delay(2000);
 }
 
-void ePaperPrintValues1()
+void EPAPER2in13PrintValues1()
 { display.init(115200);
 
-  Serial.println("\n\t ePaperPrintValues1()\n");
+  Serial.println("\n\t EPAPER2in13PrintValues1()\n");
   display.setFullWindow();
   display.setRotation(1);
   display.fillScreen(GxEPD_WHITE);
@@ -201,7 +202,7 @@ void ePaperPrintValues1()
 
   do
   {
-    // Serial.println("\n\tePaperPrintValues()\n");
+    // Serial.println("\n\tEPAPER2in13PrintValues()\n");
 
     display.println();
     display.print("Temperature ");
@@ -256,16 +257,16 @@ void ePaperPrintValues1()
 
   } while (display.nextPage());
 
-  delay(EPAPER_DELAY_1); // delay(1000);
+  delay(EPAPER2in13_DELAY_1); // delay(1000);
 }
 
 
-// ePaperPrintValues("customTextToPrint", &FreeMonoBold9pt7b); // function call
-// void ePaperPrintValues(const char text[], const GFXfont* f) // function definition
-void ePaperPrintValues2()
+// EPAPER2in13PrintValues("customTextToPrint", &FreeMonoBold9pt7b); // function call
+// void EPAPER2in13PrintValues(const char text[], const GFXfont* f) // function definition
+void EPAPER2in13PrintValues2()
 { display.init(115200);
 
-  Serial.println("\n\t ePaperPrintValues2()\n");
+  Serial.println("\n\t EPAPER2in13PrintValues2()\n");
   display.setFullWindow();
   display.setRotation(1);
   display.fillScreen(GxEPD_WHITE);
@@ -279,7 +280,7 @@ void ePaperPrintValues2()
 
   do
   {
-    // Serial.println("\n\tePaperPrintValues()\n");
+    // Serial.println("\n\tEPAPER2in13PrintValues()\n");
     display.println();
 
     //    display.setTextColor(GxEPD_BLACK);
@@ -326,23 +327,23 @@ void ePaperPrintValues2()
 
   } while (display.nextPage());
 
-  delay(EPAPER_DELAY_1); // delay(1000);
+  delay(EPAPER2in13_DELAY_1); // delay(1000);
 }
 
 
 
-//void ePaperSetup()
+//void EPAPER2in13Setup()
 //{
 //  //  Serial.begin(115200); delay(100);
 //
-//  Serial.println("\n ePaperSetup()");
+//  Serial.println("\n EPAPER2in13Setup()");
 //
 //  display.init(115200);
 //  // first update should be full refresh
 //
-//  // ePaperPrintRTCtime(); delay(1000);
-//  // ePaperPrintValues1(); // delay(1000);
-//  // ePaperPrintValues2(); // delay(1000);
+//  // EPAPER2in13PrintRTCtime(); delay(1000);
+//  // EPAPER2in13PrintValues1(); // delay(1000);
+//  // EPAPER2in13PrintValues2(); // delay(1000);
 //
 //  // helloWorldForDummies();     delay(1000);
 //  // partial refresh mode can be used to full screen, if display panel hasFastPartialUpdate
@@ -354,11 +355,11 @@ void ePaperPrintValues2()
 //    Serial.print("SCK ");  Serial.println(SCK);
 //    Serial.print("SS ");  Serial.println(SS);
 //
-//  Serial.println("EPAPER setup done");
+//  Serial.println("EPAPER2in13 setup done");
 //}
 
-//void ePaperPrintRTCtime()
-//{ Serial.println("\n\t ePaperPrintRTCtime()\n");
+//void EPAPER2in13PrintRTCtime()
+//{ Serial.println("\n\t EPAPER2in13PrintRTCtime()\n");
 //  display.setFullWindow();
 //  display.setRotation(1);
 //
@@ -379,7 +380,7 @@ void ePaperPrintValues2()
 //
 //  do
 //  {
-//    // Serial.println("\n\tePaperPrintValues()\n");
+//    // Serial.println("\n\tEPAPER2in13PrintValues()\n");
 //
 //    display.println();
 //

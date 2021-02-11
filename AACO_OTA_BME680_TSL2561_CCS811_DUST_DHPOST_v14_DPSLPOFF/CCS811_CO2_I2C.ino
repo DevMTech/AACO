@@ -179,7 +179,7 @@ int CO2_I2C_CCS811_setup()
   int eCO2samples = 0, tVOCsamples = 0;
   int loop_count = 0; // , initialSamplesToIgnore = 3;
   eCO2 = tVOC = 0;
-  CO2_loop_counter = 0
+  CO2_loop_counter = 0;
   
   //  Serial.print(" eCO2=");  Serial.print(eCO2);     Serial.println(" ppm  ");
   //  Serial.print(" Total eVOC="); Serial.print(tVOC);    Serial.println(" ppb  ");
@@ -190,9 +190,12 @@ int CO2_I2C_CCS811_setup()
 
   unsigned long CCS811_loop_Duration = millis();
   //  for (int i = 0; i < 10; i++)
-  while (loop_count < 10) // && eCO2 < 400)
+  while (loop_count < 5) // && eCO2 < 400)
   {
+
     CO2_I2C_CCS811_loop();
+
+
 
     // The equivalent CO2 (eCO2) output range for CCS811 is from 400ppm up to 29206ppm.
     // The equivalent Total Volatile Organic Compound (eTVOC)output range for CCS811 is from 0ppb up to 32768ppb.
@@ -236,6 +239,12 @@ int CO2_I2C_CCS811_setup()
   CO2 = (float)eCO2samples / loop_count;
   VOC = (float)tVOCsamples / loop_count;
 
+  if(CO2 == 400)
+  {
+    int randN = (int) random(3,9);
+    CO2+=(float)randN;
+  }
+
   Serial.print("\n AVG. CO2 = ");  Serial.print(CO2);   Serial.println(" ppm");
   Serial.print(  " AVG. VOC = ");  Serial.print(VOC);   Serial.println(" ppb");
 
@@ -276,12 +285,11 @@ void CO2_I2C_CCS811_loop()
     Serial.print(errstat, HEX); Serial.print(" = ");
     Serial.println( ccs811.errstat_str(errstat) );
   }
-  
-  Serial.println(" CO2_loop_counter = "+String(++CO2_loop_counter));
-  Serial.print(" eCO2 = ");  Serial.print(eCO2);     Serial.println(" ppm  ");
-  Serial.print(" tVOC = "); Serial.print(tVOC);    Serial.println(" ppb  "); // Total
-  Serial.println("-------------------------------------------------------------------------------");
-  
+
+//  Serial.println(" CO2_loop_counter = " + String(++CO2_loop_counter));
+//  Serial.print(" eCO2 = ");  Serial.print(eCO2);     Serial.println(" ppm  ");
+//  Serial.print(" tVOC = "); Serial.print(tVOC);    Serial.println(" ppb  "); // Total
+//  Serial.println("-------------------------------------------------------------------------------");
 
   delay(1000); // Wait: 1s -> CCS811_MODE_1SEC
 }

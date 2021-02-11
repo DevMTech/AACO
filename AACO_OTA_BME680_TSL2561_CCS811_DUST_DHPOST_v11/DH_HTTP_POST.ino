@@ -58,7 +58,7 @@ void HTTP_POST_NOTIF()
   data += "\",\"D10\":\""; data += pm_10; //
   data += "\",\"B\":\""; data += batteryLevel; // volt
   data += "\",\"N\":\""; data += (bootCount++); // (count++);
-  data += "\",\"BLE_STATE\":\"1";  // 0
+  //data += "\",\"BLE_STATE\":\"1";  // 0
   //data += "\",\"BLE_MAC\":\"";  data += found_BLE_MAC_list;
   data += "\"}}";
 

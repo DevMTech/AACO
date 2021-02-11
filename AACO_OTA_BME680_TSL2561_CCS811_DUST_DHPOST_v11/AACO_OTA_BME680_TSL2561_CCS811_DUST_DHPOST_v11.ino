@@ -77,13 +77,20 @@
 #define LED2 LED_BUILTIN
 
 #define PFET_3V3_BUS 25 // GPIO25 ESP32
-#define PFET_POT_DIV 32 // GPIO32 ESP32
 #define BATTERY_V_IN 35 // GPIO35 ESP32
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~!!!!!!!!!!!!!!!!!!!ALERT!!!!!!!!!!!!!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~// 
+// IN LATEST PCB (FEB 2021) THIS PIN IS CONNECTED TO GPIO25 
+// #define PFET_POT_DIV 25 // GPIO32 ESP32 // UNCOMMENT FOR LASTEST PCB (FEB 2021)
+#define PFET_POT_DIV 32 // GPIO32 ESP32 // FOR OLD PCB (JAN 2020)
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~!!!!!!!!!!!!!!!!!!!ALERT!!!!!!!!!!!!!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~// 
+
+
 
 //#define DUST_SHARP
 #define DUST_SDS011
 #define OLED  // UNCOMMENT TO ENABLE
-//#define EPAPER   // UNCOMMENT TO ENABLE
+//#define EPAPER2in13   // UNCOMMENT TO ENABLE
 //#define BUZZER 12 // GPIO12 ESP32
 
 // #endif
@@ -102,7 +109,7 @@
 #include <driver/rtc_io.h>
 #include "driver/adc.h"
 #include <esp_wifi.h>
-#include <esp_bt.h>
+//#include <esp_bt.h>
 
 
 
@@ -388,10 +395,10 @@ void loopOnce()
   delay(5);
   digitalWrite (LED_BUILTIN, HIGH); //HIGH = ON //LOW = OFF
 
-#ifdef EPAPER
-  /////////////////// FOR EPAPER : UNCOMMENT NEXT LINE &  THIS TAB :  "PRINT_VALUES_EPAPER_ESP32" /////////////////////
-  WIFI_HTTP_STATUS_EPAPER();
-  ePaperPrintValues1();
+#ifdef EPAPER2in13
+  /////////////////// FOR EPAPER2in13 : UNCOMMENT NEXT LINE &  THIS TAB :  "PRINT_VALUES_EPAPER2in13_ESP32" /////////////////////
+  WIFI_HTTP_STATUS_EPAPER2in13();
+  EPAPER2in13PrintValues1();
 #endif
 
 

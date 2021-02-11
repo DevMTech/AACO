@@ -39,8 +39,8 @@ void configModeCallback(WiFiManager *myWiFiManager)
   WIFI_SSID_CONFIG_OLED();
 #endif
 
-#ifdef EPAPER
-  WIFI_SSID_CONFIG_EPAPER();
+#ifdef EPAPER2in13
+  WIFI_SSID_CONFIG_EPAPER2in13();
 #endif
 
 #ifdef BUZZER
@@ -97,8 +97,8 @@ void WiFiManagerSetup()
     ticker.detach();
     //pinMode(LED2, OUTPUT);
 
-#ifdef EPAPER
-    EPAPER_BLANK_SCREEN();
+#ifdef EPAPER2in13
+    EPAPER2in13_BLANK_SCREEN();
 #endif
 
 #ifdef BUZZER

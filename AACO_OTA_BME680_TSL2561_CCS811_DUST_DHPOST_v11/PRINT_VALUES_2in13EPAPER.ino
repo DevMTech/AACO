@@ -103,7 +103,7 @@ void WIFI_HTTP_STATUS_EPAPER2in13()
 
   Serial.println("\n\t WIFI_HTTP_STATUS_EPAPER2in13()\n");
   display.setFullWindow();
-  display.setRotation(1);
+  display.setRotation(1); // 0=0, 1=90, 2=180, 3=270 degrees 
   display.fillScreen(GxEPD_WHITE); // (GxEPD_BLACK); //
   display.setTextColor(GxEPD_BLACK); // (GxEPD_WHITE);//
   display.setFont(&FreeMonoBold9pt7b); //  display.setFont(f);

@@ -135,6 +135,8 @@ void SSD1306_128x64_setup()
   // Clear the buffer
   display.clearDisplay();
   display.setTextColor(WHITE);
+  // SET ROTATION : https://learn.adafruit.com/adafruit-gfx-graphics-library/rotating-the-display
+  //display.setRotation(2); // 0=0, 1=90, 2=180, 3=270 degrees
   //DRAW_BITMAP_LOGO(); // CDAC logo
   //display.display();
   //delay(1000);

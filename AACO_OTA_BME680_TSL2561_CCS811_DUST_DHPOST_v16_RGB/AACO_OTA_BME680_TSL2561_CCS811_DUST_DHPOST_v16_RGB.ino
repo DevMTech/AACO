@@ -75,6 +75,15 @@
 
 #define LED_BUILTIN   2 // GPIO02 ESP32
 #define LED2 LED_BUILTIN
+//#define BUZZER 12 // GPIO12 ESP32
+//#define REDLED 12
+//#define GRNLED 13
+//#define BLULED 14
+
+//#define DUST_SHARP
+#define DUST_SDS011
+#define OLED  // UNCOMMENT TO ENABLE
+//#define EPAPER2in13   // UNCOMMENT TO ENABLE
 
 #define PFET_3V3_BUS 25 // GPIO25 ESP32
 #define BATTERY_V_IN 35 // GPIO35 ESP32
@@ -87,15 +96,7 @@
 #endif
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~!!!!!!!!!!!!!!!!!!!ALERT!!!!!!!!!!!!!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
-
-
-//#define DUST_SHARP
-#define DUST_SDS011
-#define OLED  // UNCOMMENT TO ENABLE
-//#define EPAPER2in13   // UNCOMMENT TO ENABLE
-//#define BUZZER 12 // GPIO12 ESP32
-
-// #endif
+ 
 
 // #if defined(ESP8266)              // ESP12E - ESP8266cdac
 // #include <ESP8266WiFi.h>
@@ -213,6 +214,19 @@ static uint8_t POST_EVERY_x_mS = 2000; // TO SEND POST NOTIFICATIONS AFTER EVERY
 unsigned long totalPwrOnDuration = 0, WiFiConnAttemptDuration = 0, WiFiOnDuration = 0, WiFiOffDuration = 0, OTADuration = 0;
 //  '{"T":'+String(tempC)+',"H":'+String(humidity)+',"L":'+String(lux)+',"C":'+String(CO2)+',"D":'+String(pm_2point5)+',"B":'+String(batteryLevel)+',"TS":'+String(timeStamp)'}'
 
+void RGB_LED_OFF()
+{
+  digitalWrite(REDLED, HIGH);
+  digitalWrite(GRNLED, HIGH);
+  digitalWrite(BLULED, HIGH);
+}
+void RGB_LED_ON()
+{
+  digitalWrite(REDLED, LOW);
+  digitalWrite(GRNLED, LOW);
+  digitalWrite(BLULED, LOW);
+}
+
 // 24:0A:C4:83:20:C0 38PIN
 // CC:50:E3:A9:4C:D8 32PIN
 
@@ -273,6 +287,11 @@ void setup()
   pinMode(SDA_PIN, INPUT_PULLUP);
   pinMode(SCL_PIN, INPUT_PULLUP);
   pinMode(LED2, OUTPUT);
+  pinMode(REDLED, OUTPUT); // GPIO12
+  pinMode(GRNLED, OUTPUT); // GPIO13
+  pinMode(BLULED, OUTPUT); // GPIO14
+  RGB_LED_ON();
+//  RGB_LED_OFF();
   //pinMode(BUZZER, INPUT); // BUZ OFF
 
   //  pinMode(PFET_3V3_BUS, OUTPUT); // TURN ON BUS
@@ -359,7 +378,9 @@ void loopOnce()
   digitalWrite(PFET_3V3_BUS, LOW); // POWER ON 3V3 BUS -> TURN ON SPI/I2C PERIPHERALS
   delay(1);
   digitalWrite (LED_BUILTIN, HIGH); //HIGH = ON //LOW = OFF
-
+  
+  RGB_LED_ON(); // digitalWrite(BLULED, LOW);
+  
   batteryLevelRead_setup();
   batteryLevelRead(); // delay(500);
   BME680_Simple_setup();
@@ -383,6 +404,7 @@ void loopOnce()
 
   // TimeNow();   delay(50);
 
+  // RGB_LED_OFF();
   Serial.println("\n POWERING OFF 3V3 BUS -> TURNING OFF SPI/I2C PERIPHERALS \n");
   digitalWrite(PFET_3V3_BUS, HIGH); // POWER OFF 3V3 BUS -> TURN OFF SPI/I2C PERIPHERALS
   // pinMode(PFET_3V3_BUS, INPUT); // TURN OFF 3V3 BUS

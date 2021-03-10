@@ -228,7 +228,7 @@ void WIFI_SSID_CONFIG_OLED()
   digitalWrite(PFET_3V3_BUS, LOW); // POWER ON 3V3 BUS -> TURN ON SPI/I2C PERIPHERALS
   delay(5);
   digitalWrite (LED_BUILTIN, HIGH); //HIGH = ON //LOW = OFF
-
+  
   display.clearDisplay(); // clear display
   // delay(100);
   // display WiFi_Config SSID
@@ -239,18 +239,12 @@ void WIFI_SSID_CONFIG_OLED()
   display.setCursor(0, 10);
   display.print("Connect to AP");
   display.setTextSize(2);
-//  display.setCursor(0, 30);
-//  display.print(SOFT_AP_SSID);
+  display.setCursor(0, 30);
+  display.print(SOFT_AP_SSID);
 
   display.display();
   delay(OLED_DELAY_2);
   display.clearDisplay(); // clear display
-
-  Serial.println("\n POWERING OFF 3V3 BUS -> TURNING OFF SPI/I2C PERIPHERALS \n");
-  digitalWrite(PFET_3V3_BUS, HIGH); // POWER OFF 3V3 BUS -> TURN OFF SPI/I2C PERIPHERALS
-  // pinMode(PFET_3V3_BUS, INPUT); // TURN OFF 3V3 BUS
-  delay(5);
-  digitalWrite (LED_BUILTIN, LOW); //HIGH = ON //LOW = OFF
 
 }
 
@@ -394,13 +388,13 @@ void print_PARAMS()
   //    //------------------------------------------------------------------------------------------------------------------------------------------//
 
   // display PPM 2.5
-  //  display.setTextSize(1);
-  //  display.setCursor(0, 0);
-  //  display.print("PPM 2.5:");
-  //  display.setTextSize(2);
-  //  display.setCursor(0, 10);
-  //  display.print(pm_2point5);
-  //  display.print("PPM");
+  display.setTextSize(1);
+  display.setCursor(0, 0);
+  display.print("PPM 2.5:");
+  display.setTextSize(2);
+  display.setCursor(0, 10);
+  display.print(pm_2point5);
+  display.print("PPM");
 
   // display PPM 10
   display.setTextSize(1);
@@ -411,9 +405,9 @@ void print_PARAMS()
   display.print(pm_10);
   display.print("PPM");
 
-  //  display.display();
-  //  delay(OLED_DELAY_2);
-  //  display.clearDisplay(); // clear display
+  display.display();
+  delay(OLED_DELAY_2);
+  display.clearDisplay(); // clear display
   //    //------------------------------------------------------------------------------------------------------------------------------------------//
 
   // display CO2
@@ -427,13 +421,13 @@ void print_PARAMS()
   display.print(" PPM");
 
   // display VOC
-  //  display.setTextSize(1);
-  //  display.setCursor(0, 35);
-  //  display.print("Gas/VOC:");
-  //  display.setTextSize(2);
-  //  display.setCursor(0, 45);
-  //  display.print(VOC);
-  //  display.print(" KOhms");
+  display.setTextSize(1);
+  display.setCursor(0, 35);
+  display.print("Gas/VOC:");
+  display.setTextSize(2);
+  display.setCursor(0, 45);
+  display.print(VOC);
+  display.print(" KOhms");
 
   display.display();
   delay(OLED_DELAY_2);

@@ -1,11 +1,10 @@
 
 // AutoConnectWithFeedbackLED
 
-
 //RTC_DATA_ATTR char* ssid  = "hcdc-pc54";   RTC_DATA_ATTR char* password = "gLz7jl5s";
 //RTC_DATA_ATTR char* ssid  = "cdac";   RTC_DATA_ATTR char* password = "";
 
-
+/*
 //#include <WiFiManager.h> // https://github.com/tzapu/WiFiManager
 
 //for LED status
@@ -20,7 +19,7 @@ Ticker ticker;
 
 void tick() //toggle state
 { digitalWrite(LED2, !digitalRead(LED2)); // set pin to the opposite state
-
+//  digitalWrite(REDLED, !digitalRead(REDLED)); // set pin to the opposite state
 #ifdef BUZZER
   digitalWrite(BUZZER, !(digitalRead(BUZZER)));
 #endif
@@ -40,7 +39,7 @@ void configModeCallback(WiFiManager *myWiFiManager)
   Serial.println(SOFT_AP_SSID);
 
 #ifdef OLED
-  //    WIFI_SSID_CONFIG_OLED();
+  // WIFI_SSID_CONFIG_OLED();
 #endif
 
 #ifdef EPAPER2in13
@@ -75,10 +74,9 @@ void WiFiManagerSetup()
 //    wm.resetSettings(); //reset settings - wipe credentials for testing
 //  }
 
+
   //set callback that gets called when connecting to previous WiFi fails, and enters Access Point mode
   wm.setAPCallback(configModeCallback);
-
-
 
   bool res;
 
@@ -92,19 +90,23 @@ void WiFiManagerSetup()
   //res = wm.autoConnect(); // auto generated AP name from chipid
 
   //String APName = "AutoConnectAP"+ChipID;
-  res = wm.autoConnect("AutoConnectAP123456", "hcdc2021"); // pswd2031 - password protected AP, password filed should be 8 char. or longer
+  res = wm.autoConnect("AutoConnectAP123456", "pswd2021"); // password protected AP, password filed should be 8 char. or longer
   // then goes into a blocking loop awaiting configuration and will return success result
 
   if (!res)
   { Serial.println("Failed to connect and hit timeout");
+//    RGB_LED_OFF();
+//    digitalWrite(REDLED, LOW);    delay(500);
     ESP.restart(); // reset and try again, or maybe put it to deep sleep
     delay(1000);
   }
   else
   { Serial.println("Connected to the WiFi :"); // connected to the WiFi
     ticker.detach();
-    //pinMode(LED2, OUTPUT);
-
+    pinMode(LED2, OUTPUT);
+//    RGB_LED_OFF();
+//    digitalWrite(GRNLED, LOW);    delay(500);
+    
 #ifdef EPAPER2in13
     EPAPER2in13_BLANK_SCREEN();
 #endif
@@ -114,6 +116,8 @@ void WiFiManagerSetup()
     //pinMode(BUZZER, INPUT); // BUZ OFF
 #endif
 
+//    RGB_LED_ON(); //    RGB_LED_OFF();
+    
     Serial.println("\n POWERING OFF 3V3 BUS -> TURNING OFF SPI/I2C PERIPHERALS \n");
     digitalWrite(PFET_3V3_BUS, HIGH); // POWER OFF 3V3 BUS -> TURN OFF SPI/I2C PERIPHERALS
     // pinMode(PFET_3V3_BUS, INPUT); // TURN OFF 3V3 BUS
@@ -121,7 +125,7 @@ void WiFiManagerSetup()
     digitalWrite (LED_BUILTIN, LOW); //HIGH = ON //LOW = OFF
   }
 }
-
+*/
 
 void WiFi_OFF()
 { WiFi.disconnect(true);
@@ -147,6 +151,7 @@ void WiFi_OFF()
     //pinMode (LED_BUILTIN, INPUT);
   }
 
+//  RGB_LED_OFF();
 }
 
 
@@ -158,58 +163,53 @@ void WiFi_ON()
 
   //  WiFi.forceSleepWake();
   // delay(1);
+/*
+  WiFi.mode(WIFI_STA);
 
-  Serial.println("Connecting to Wifi...");
+
+  // Configures static IP address
+  //  if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) // if (!WiFi.config(local_IP, gateway, subnet))
+  //  { Serial.println("STA Failed to configure");
+  //  }
+
+  // Connect to Wi-Fi network with SSID and password
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
+  WiFi.begin(ssid, password);
+
+
+
+
+  //Serial.println("Connecting Wifi...");
   WiFiConnAttemptDuration += millis(); // Keep track of when we started our attempt to get a WiFi connection
 
-  /*
-      WiFi.mode(WIFI_STA);
+  int WiFiConnAttemptCount = 0;
+  while (WiFi.status() != WL_CONNECTED && (WiFiConnAttemptCount < 100))
+  { WiFiConnAttemptCount++;
+    Serial.print(".");
+    delay(50);
+  }
 
+  // if (bootCount<=1 && (WiFi.status() != WL_CONNECTED))
+  if ((WiFi.status() != WL_CONNECTED))
+  { WiFiConnRetryAttempt++;
+    WiFiManagerSetup();
+  }
+  else
+  { WiFiConnRetryAttempt = 0;
+  }
+*/
 
-    // Configures static IP address
-    //  if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) // if (!WiFi.config(local_IP, gateway, subnet))
-    //  { Serial.println("STA Failed to configure");
-    //  }
+  WiFiManagerSetup();
+  
+  Serial.println("\n WiFi Conn Retry Attempt : " + String(WiFiConnRetryAttempt));
 
-    // Connect to Wi-Fi network with SSID and password
-      Serial.print("Connecting to ");
-      Serial.println(ssid);
-      WiFi.begin(ssid, password);
-
-
-    int WiFiConnAttemptCount = 0;
-    while (WiFi.status() != WL_CONNECTED && (WiFiConnAttemptCount < 100))
-    { WiFiConnAttemptCount++;
-      Serial.print(".");
-      delay(50);
-    }
-
-    // if (bootCount<=1 && (WiFi.status() != WL_CONNECTED))
-    if ((WiFi.status() != WL_CONNECTED))
-    { WiFiConnRetryAttempt++;
-      WiFiManagerSetup();
-    }
-    else
-    { WiFiConnRetryAttempt = 0;
-    }
-
-
-
-    Serial.println("\n WiFi Conn Retry Attempt : " + String(WiFiConnRetryAttempt));
-
-    if (WiFi.status() != WL_CONNECTED && (WiFiConnRetryAttempt >= 2))
-    { Serial.println("\n=========================================== Restarting ESP32 ... in 100ms =========================================== \n\n");
-      delay(100);
-      WiFiConnRetryAttempt = 0;
-      ESP.restart();
-    }
-  */
-
-#ifdef OLED
-//  WIFI_SSID_CONFIG_OLED();
-#endif
-
-  WiFiManagerSetup(); // AutoConnectWithFeedbackLED.ino
+  if (WiFi.status() != WL_CONNECTED && (WiFiConnRetryAttempt >= 2))
+  { Serial.println("\n=========================================== Restarting ESP32 ... in 100ms =========================================== \n\n");
+    delay(100);
+    WiFiConnRetryAttempt = 0;
+    ESP.restart();
+  }
 
   WiFiConnAttemptDuration = millis() - WiFiConnAttemptDuration;
 

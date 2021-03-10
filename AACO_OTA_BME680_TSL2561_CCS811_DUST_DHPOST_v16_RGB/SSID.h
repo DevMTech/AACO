@@ -5,7 +5,7 @@
 
 //RTC_DATA_ATTR char* ssid  = "hcdc-pc54";   RTC_DATA_ATTR char* password = "gLz7jl5s";
 RTC_DATA_ATTR char* ssid  = "cdac";   RTC_DATA_ATTR char* password = "";
-//RTC_DATA_ATTR char* ssid  = "";   RTC_DATA_ATTR char* password = "";
+//RTC_DATA_ATTR char* ssid  = "ASUS_X00TD";   RTC_DATA_ATTR char* password = "";
 //RTC_DATA_ATTR char* ssid  = "";   RTC_DATA_ATTR char* password = "";
 
 #endif
